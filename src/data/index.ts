@@ -1,5 +1,5 @@
 /**
- * Stable public data-access surface for future PlotExplainer application code.
+ * Stable public data-access surface for future ScreenWhy application code.
  * UI/pages should import from here rather than fixtures, mock internals or API
  * implementation internals.
  */

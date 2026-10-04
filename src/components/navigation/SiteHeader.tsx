@@ -134,11 +134,11 @@ export function SiteHeader({ locale, activePath, alternateLocaleHref }: SiteHead
               <span className={styles.actionLabel}>Search</span>
             </button>
             {openPanel === "search" ? (
-              <div id="site-search-panel" className={`${styles.panel} ${styles.searchPanel}`} role="dialog" aria-label="Search PlotExplainer">
+              <div id="site-search-panel" className={`${styles.panel} ${styles.searchPanel}`} role="dialog" aria-label="Search ScreenWhy">
                 <SearchInput
                   id={`header-search-${isBangla ? "bn" : "en"}`}
                   inputRef={searchInputRef}
-                  label="Search PlotExplainer"
+                  label="Search ScreenWhy"
                   placeholder="Ending, character, mystery, scene…"
                   autoComplete="off"
                 />

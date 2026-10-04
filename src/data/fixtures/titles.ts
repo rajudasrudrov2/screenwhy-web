@@ -150,16 +150,16 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
     ],
     editorialDates: commonEditorDates,
     seo: {
-      title: "The Last Signal — PlotExplainer Demo Title",
+      title: "The Last Signal — ScreenWhy Demo Title",
       metaDescription:
-        "Fictional demonstration title used to validate PlotExplainer frontend contracts.",
-      canonicalUrl: "https://plotexplainer.com/movies/the-last-signal/",
+        "Fictional demonstration title used to validate ScreenWhy frontend contracts.",
+      canonicalUrl: "https://screenwhy.com/movies/the-last-signal/",
       index: false,
       breadcrumbLabel: "The Last Signal",
       publishedLocaleAlternates: [
         {
           locale: "bn-BD",
-          url: "https://plotexplainer.com/bn/movies/shesh-songket/",
+          url: "https://screenwhy.com/bn/movies/shesh-songket/",
           published: true,
         },
       ],
@@ -213,7 +213,7 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
     ],
     editorialDates: commonEditorDates,
     seo: {
-      canonicalUrl: "https://plotexplainer.com/tv/harbor-nine/",
+      canonicalUrl: "https://screenwhy.com/tv/harbor-nine/",
       index: false,
       breadcrumbLabel: "Harbor Nine",
     },
@@ -244,7 +244,7 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
     },
     editorialDates: commonEditorDates,
     seo: {
-      canonicalUrl: "https://plotexplainer.com/anime/the-glass-comet/",
+      canonicalUrl: "https://screenwhy.com/anime/the-glass-comet/",
       index: false,
       breadcrumbLabel: "The Glass Comet",
     },
@@ -275,7 +275,7 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
     },
     editorialDates: commonEditorDates,
     seo: {
-      canonicalUrl: "https://plotexplainer.com/k-drama/winter-verdict/",
+      canonicalUrl: "https://screenwhy.com/k-drama/winter-verdict/",
       index: false,
       breadcrumbLabel: "Winter Verdict",
     },
@@ -328,16 +328,16 @@ export const MOCK_TITLES_BN: readonly TitleDetail<"bn-BD">[] = Object.freeze([
     ],
     editorialDates: commonEditorDates,
     seo: {
-      title: "শেষ সংকেত — PlotExplainer ডেমো",
+      title: "শেষ সংকেত — ScreenWhy ডেমো",
       metaDescription:
-        "PlotExplainer frontend contract যাচাইয়ের জন্য কাল্পনিক ডেমো শিরোনাম।",
-      canonicalUrl: "https://plotexplainer.com/bn/movies/shesh-songket/",
+        "ScreenWhy frontend contract যাচাইয়ের জন্য কাল্পনিক ডেমো শিরোনাম।",
+      canonicalUrl: "https://screenwhy.com/bn/movies/shesh-songket/",
       index: false,
       breadcrumbLabel: "শেষ সংকেত",
       publishedLocaleAlternates: [
         {
           locale: "en-US",
-          url: "https://plotexplainer.com/movies/the-last-signal/",
+          url: "https://screenwhy.com/movies/the-last-signal/",
           published: true,
         },
       ],

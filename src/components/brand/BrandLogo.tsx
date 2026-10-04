@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { brandConfig } from "@/config/brand";
 import styles from "./BrandLogo.module.css";
 
 type BrandLogoProps = {
@@ -12,31 +12,25 @@ type BrandLogoProps = {
   label?: string;
 };
 
-const assets = {
-  horizontal: {
-    light: "/brand/logo/primary-light.svg",
-    dark: "/brand/logo/primary-dark.svg",
-  },
-  mark: {
-    light: "/brand/mark/pe-mark-light.svg",
-    dark: "/brand/mark/pe-mark-dark.svg",
-  },
-} as const;
+type BrandStyle = CSSProperties & { "--brand-target-width"?: string };
 
-const HORIZONTAL_RATIO = 433.172 / 80;
-
+/**
+ * Temporary ScreenWhy text identity.
+ *
+ * The former production logo/monogram must not be reused as ScreenWhy, and no
+ * official ScreenWhy logo package exists yet. Keep this compatibility-shaped
+ * component so header/footer layout can accept the future asset without a
+ * navigation rewrite.
+ */
 export function BrandLogo({
   kind = "horizontal",
   surface = "light",
   href = "/",
   width,
-  preload = false,
-  label = "PlotExplainer home",
+  preload: _preload = false,
+  label = "ScreenWhy home",
 }: BrandLogoProps) {
-  const resolvedWidth = width ?? (kind === "horizontal" ? 160 : 28);
-  const height = kind === "horizontal"
-    ? Math.max(1, Math.round(resolvedWidth / HORIZONTAL_RATIO))
-    : resolvedWidth;
+  const targetWidth = width ?? (kind === "horizontal" ? 160 : 96);
 
   return (
     <Link
@@ -44,17 +38,12 @@ export function BrandLogo({
       className={styles.link}
       aria-label={label}
       data-brand-kind={kind}
-      style={{ "--brand-width": `${resolvedWidth}px` } as CSSProperties}
+      data-brand-surface={surface}
+      style={{ "--brand-target-width": `${targetWidth}px` } as BrandStyle}
     >
-      <Image
-        src={assets[kind][surface]}
-        alt=""
-        width={resolvedWidth}
-        height={height}
-        className={kind === "horizontal" ? styles.horizontal : styles.mark}
-        preload={preload}
-        sizes={`${resolvedWidth}px`}
-      />
+      <span className={kind === "horizontal" ? styles.horizontal : styles.compact} aria-hidden="true">
+        {brandConfig.name}
+      </span>
     </Link>
   );
 }

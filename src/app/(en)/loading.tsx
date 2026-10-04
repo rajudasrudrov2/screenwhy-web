@@ -5,7 +5,7 @@ export default function Loading() {
   return (
     <Section>
       <PageContainer>
-        <StateShell title="Loading PlotExplainer…" tone="loading">
+        <StateShell title="Loading ScreenWhy…" tone="loading">
           <Skeleton width="min(100%, 28rem)" />
         </StateShell>
       </PageContainer>

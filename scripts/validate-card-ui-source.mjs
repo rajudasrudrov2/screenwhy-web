@@ -13,7 +13,7 @@ function walk(rel, predicate = () => true) {
 }
 
 const pkg = JSON.parse(read("package.json"));
-record(pkg.version === "0.3.2", "Package version is 0.3.2");
+record(pkg.version === "0.3.3", "Package version is 0.3.3");
 const required = [
   "src/components/domain/cards/TitleCard.tsx",
   "src/components/domain/cards/ExplanationCard.tsx",

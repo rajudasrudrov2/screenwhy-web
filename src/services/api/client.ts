@@ -35,7 +35,7 @@ export function createApiClient(): ApiClient {
     async request<T>(path: string, options: ApiRequestOptions = {}): Promise<ApiResult<T>> {
       if (!env.cmsApiBaseUrl) {
         return configurationFailure(
-          "PLOTEXPLAINER_CMS_API_BASE_URL is required when API requests are enabled.",
+          "ScreenWhy CMS API base URL is required when API requests are enabled.",
         );
       }
 

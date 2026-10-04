@@ -1,10 +1,21 @@
-# PlotExplainer Web 0.3.2
+# ScreenWhy Web 0.3.3
 
-PE-FE-02B continues **only** from the authoritative completed PE-FE-02A `0.3.1` source.
+ScreenWhy is the current public brand for the frontend formerly developed under the PlotExplainer project name. This release is a controlled brand migration from the authoritative frontend `0.3.2` lineage; it does not restart or redesign the product architecture.
+
+## Current brand
+
+- **Name:** ScreenWhy
+- **Domain:** `screenwhy.com`
+- **Primary tagline:** The Why Behind What You Watch.
+- **Brand promise:** Questions After Watching, Answered.
+- **Short slogan:** Watch. Wonder. Understand.
+- **Recommended Homepage H1:** Questions After Watching? Find the Answers.
+
+The former PlotExplainer logo/monogram/favicon assets are not used by the current UI. Until an official ScreenWhy Brand Kit is supplied, the header/footer use a restrained textual `ScreenWhy` identity fallback.
 
 ## Foundation state
 
-The completed PE-FE-01C data architecture remains unchanged:
+The completed frontend architecture through historical tasks PE-FE-01C, PE-FE-02A and PE-FE-02B is preserved:
 
 ```ts
 import { getRepositories } from "@/data";
@@ -14,41 +25,38 @@ const repositories = getRepositories();
 
 Application code receives the same typed repository interfaces from `mock` or `api`; API mode still fails closed with `BackendContractNotReadyError` until the backend transport contract is authoritative.
 
-PE-FE-02A Canon, Spoiler, Editorial Metadata and Quick Answer components are preserved unchanged.
+Existing Canon, Spoiler, Editorial Metadata, Quick Answer, Title Card, Explanation Card and Character Card systems remain unchanged except for brand-dependent copy/URLs.
 
-## PE-FE-02B discovery cards
+## Environment configuration
 
-Reusable production presentation cards now live under:
+Preferred variables are now ScreenWhy-named:
 
 ```text
-src/components/domain/cards/
+SCREENWHY_SITE_URL
+SCREENWHY_CMS_API_BASE_URL
+SCREENWHY_DATA_SOURCE
+SCREENWHY_ALLOW_INDEXING
 ```
 
-Implemented in this release:
+The former `PLOTEXPLAINER_*` environment names are temporarily accepted as compatibility fallbacks and are intentionally treated as legacy technical identifiers.
 
-- `TitleCard` — standard + compact; poster ratio, release/route/type context, explanation signal, graceful missing media;
-- `ExplanationCard` — standard + compact; Explanation Type, headline-first hierarchy, Primary Title, PE-FE-02A Spoiler/Canon composition;
-- `CharacterCard` — standard + compact; Character-first identity, Title context, spoiler-safe description, portrait/missing-media handling.
+The expected future CMS convention is `cms.screenwhy.com`, but this repository does not verify DNS or a live CMS.
 
-Cards consume existing PE-FE-01C Summary contracts, use centralized route helpers, and never fetch repositories, read environment variables, or import fixture internals.
+### Legacy REST namespace
 
-## Development-only card preview
+`/plotexplainer/v1` remains intentionally unchanged as a legacy internal API namespace. It is not public brand copy. A backend migration decision must determine whether that namespace is retained or version-migrated later.
+
+## Development-only previews
 
 Run the development server and open:
 
 ```text
+http://localhost:3000/__ui/
+http://localhost:3000/__ui/domain/
 http://localhost:3000/__ui/cards/
 ```
 
-The route is `noindex` and returns `404` in production. It obtains fixture-backed examples through the public repository boundary with explicit `mock` selection.
-
-The preview demonstrates standard/compact variants, Anime route-family versus fundamental Title Type, missing media, long English content, Bangla content, spoiler-free/major-spoiler explanations, Canon-scoped explanation context and spoiler-safe Character cards.
-
-The existing PE-FE-02A preview remains at:
-
-```text
-http://localhost:3000/__ui/domain/
-```
+These routes are `noindex` and return `404` in production.
 
 ## Validation
 
@@ -58,12 +66,13 @@ After dependencies are installed:
 npm run validate:data-foundation
 npm run validate:domain-ui-source
 npm run validate:card-ui-source
+npm run validate:brand-migration
 npm run typecheck
 npm run lint
 npm run build
 ```
 
-In the PE-FE-02B implementation environment, npm registry DNS remained unavailable (`EAI_AGAIN registry.npmjs.org`), so whole-project runtime/build verification could not be completed there. See the implementation report for source-level QA results.
+The brand-migration guardrail rejects unintended active former-brand references while allowing only the explicitly documented technical compatibility identifiers.
 
 ## Guardrails retained
 
@@ -71,11 +80,10 @@ In the PE-FE-02B implementation environment, npm registry DNS remained unavailab
 - Bangla remains under `/bn/` and never receives silent English editorial fallback.
 - Raw fixture arrays remain behind mock repositories.
 - No backend endpoint/DTO contract is invented.
-- PE-FE-01C data/domain foundation is unchanged.
-- PE-FE-02A Canon/Spoiler/Metadata/Quick Answer components are unchanged.
-- Header, footer, global tokens/CSS and production brand assets are unchanged.
-- No Citation/TOC, Relationship/Timeline UI, or public pages are implemented in PE-FE-02B.
+- The data/domain foundation is unchanged.
+- Existing domain/card UI architecture is unchanged.
+- No public page implementation is added by this migration.
 
 ## Next task
 
-`PE-FE-02C — Citation / Source / TOC / Article Primitives`
+`SW-FE-02C — Citation / Source / TOC / Article Primitives`

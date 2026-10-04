@@ -1,5 +1,5 @@
 /**
- * Language-neutral identity types for the PlotExplainer frontend domain.
+ * Language-neutral identity types for the ScreenWhy frontend domain.
  *
  * These are compile-time brands only. They intentionally add no runtime
  * wrapper/class overhead while preventing unrelated identifiers from being

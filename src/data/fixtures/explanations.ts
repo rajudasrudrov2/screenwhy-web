@@ -158,13 +158,13 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
     ],
     seo: {
       canonicalUrl:
-        "https://plotexplainer.com/explain/why-the-final-signal-repeats/",
+        "https://screenwhy.com/explain/why-the-final-signal-repeats/",
       index: false,
       breadcrumbLabel: "Why the Final Signal Repeats",
       publishedLocaleAlternates: [
         {
           locale: "bn-BD",
-          url: "https://plotexplainer.com/bn/explain/shesh-songket-keno-fire-ase/",
+          url: "https://screenwhy.com/bn/explain/shesh-songket-keno-fire-ase/",
           published: true,
         },
       ],
@@ -268,7 +268,7 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
     ],
     seo: {
       canonicalUrl:
-        "https://plotexplainer.com/explain/last-signal-book-vs-screen/",
+        "https://screenwhy.com/explain/last-signal-book-vs-screen/",
       index: false,
       breadcrumbLabel: "The Last Signal: Book vs Screen",
     },
@@ -337,7 +337,7 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
     ],
     seo: {
       canonicalUrl:
-        "https://plotexplainer.com/explain/harbor-nine-ending-explained/",
+        "https://screenwhy.com/explain/harbor-nine-ending-explained/",
       index: false,
       breadcrumbLabel: "Harbor Nine Ending Explained",
     },
@@ -409,13 +409,13 @@ export const MOCK_EXPLANATIONS_BN: readonly ExplanationDetail<"bn-BD">[] = Objec
     ],
     seo: {
       canonicalUrl:
-        "https://plotexplainer.com/bn/explain/shesh-songket-keno-fire-ase/",
+        "https://screenwhy.com/bn/explain/shesh-songket-keno-fire-ase/",
       index: false,
       breadcrumbLabel: "শেষ সংকেতটি কেন আবার ফিরে আসে",
       publishedLocaleAlternates: [
         {
           locale: "en-US",
-          url: "https://plotexplainer.com/explain/why-the-final-signal-repeats/",
+          url: "https://screenwhy.com/explain/why-the-final-signal-repeats/",
           published: true,
         },
       ],

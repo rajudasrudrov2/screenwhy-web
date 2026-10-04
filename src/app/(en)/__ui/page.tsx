@@ -43,7 +43,7 @@ export default function UiFoundationPreviewPage() {
           <div className={styles.headerBlock}>
             <Stack gap="var(--pe-space-4)">
               <p className={styles.eyebrow}>Development only · noindex · production returns 404</p>
-              <h1>PlotExplainer global UI foundation</h1>
+              <h1>ScreenWhy global UI foundation</h1>
               <p className="pe-lead">Brand, tokens, responsive shell and generic interaction primitives only. This is a component-verification surface, not a public page design.</p>
               <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "UI foundation preview" }]} />
             </Stack>
@@ -52,31 +52,31 @@ export default function UiFoundationPreviewPage() {
 
         <PageContainer>
           <section className={styles.board}>
-            <h2 className={styles.sectionTitle}>Approved production identity</h2>
+            <h2 className={styles.sectionTitle}>Temporary ScreenWhy identity</h2>
             <Grid mobile={1} tablet={2} gap="var(--pe-space-5)">
               <div className={styles.panel}>
                 <Stack>
-                  <p className="pe-metadata">Horizontal logo · light surface · 160px</p>
+                  <p className="pe-metadata">Text identity · light surface</p>
                   <BrandLogo kind="horizontal" surface="light" width={160} href="/__ui/" />
-                  <p className={styles.note}>Outlined production wordmark asset. No live-text reconstruction.</p>
+                  <p className={styles.note}>Temporary text fallback only. Official ScreenWhy logo asset is pending.</p>
                 </Stack>
               </div>
               <div className={styles.panel}>
                 <Stack>
-                  <p className="pe-metadata">Compact identity · light surface · 28px</p>
+                  <p className="pe-metadata">Compact text identity · light surface</p>
                   <BrandLogo kind="mark" surface="light" width={28} href="/__ui/" />
-                  <p className={styles.note}>Approved standalone PE Monogram for constrained header use.</p>
+                  <p className={styles.note}>Temporary ScreenWhy text fallback; no monogram has been invented.</p>
                 </Stack>
               </div>
               <div className={`${styles.panel} ${styles.panelDark}`} data-focus-surface="dark">
                 <Stack>
-                  <p className={styles.darkMeta}>Horizontal logo · dark surface</p>
+                  <p className={styles.darkMeta}>Text identity · dark surface</p>
                   <BrandLogo kind="horizontal" surface="dark" width={160} href="/__ui/" />
                 </Stack>
               </div>
               <div className={`${styles.panel} ${styles.panelDark}`} data-focus-surface="dark">
                 <Stack>
-                  <p className={styles.darkMeta}>PE Monogram · dark surface</p>
+                  <p className={styles.darkMeta}>Compact text identity · dark surface</p>
                   <BrandLogo kind="mark" surface="dark" width={28} href="/__ui/" />
                 </Stack>
               </div>
@@ -166,7 +166,7 @@ export default function UiFoundationPreviewPage() {
                 <TextInput id="preview-season" label="Season" placeholder="Season 2" helperText="Labels remain outside fields." required />
                 <TextInput id="preview-error" label="Episode" placeholder="Episode 8" error="This field is required." />
                 <TextInput id="preview-disabled" label="Disabled field" defaultValue="Unavailable" disabled />
-                <SearchInput id="preview-search" label="Search PlotExplainer" placeholder="Ending, character, mystery…" />
+                <SearchInput id="preview-search" label="Search ScreenWhy" placeholder="Ending, character, mystery…" />
                 <Select id="preview-select" label="Content type" defaultValue="explanation">
                   <SelectOption value="explanation">Explanation</SelectOption>
                   <SelectOption value="title">Title</SelectOption>

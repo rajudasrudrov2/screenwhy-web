@@ -15,7 +15,7 @@ export function parseDataSourceMode(value: string | undefined): DataSourceMode {
   if (isDataSourceMode(value)) return value;
 
   throw new Error(
-    `Invalid PLOTEXPLAINER_DATA_SOURCE value: ${value}. Expected "mock" or "api".`,
+    `Invalid SCREENWHY_DATA_SOURCE value: ${value}. Expected "mock" or "api".`,
   );
 }
 
@@ -42,18 +42,26 @@ function readAbsoluteUrl(
   return parsed.toString().replace(/\/$/, "");
 }
 
-const configuredDataSource = process.env.PLOTEXPLAINER_DATA_SOURCE;
+/** Preferred ScreenWhy variables take precedence; former-brand variables are
+ * temporary compatibility fallbacks for existing local/deployment configs. */
+const configuredDataSource =
+  process.env.SCREENWHY_DATA_SOURCE ?? process.env.PLOTEXPLAINER_DATA_SOURCE;
+
+const configuredSiteUrl =
+  process.env.SCREENWHY_SITE_URL ?? process.env.PLOTEXPLAINER_SITE_URL;
+
+const configuredCmsApiBaseUrl =
+  process.env.SCREENWHY_CMS_API_BASE_URL ??
+  process.env.PLOTEXPLAINER_CMS_API_BASE_URL;
+
+const configuredAllowIndexing =
+  process.env.SCREENWHY_ALLOW_INDEXING ??
+  process.env.PLOTEXPLAINER_ALLOW_INDEXING;
 
 export const env = Object.freeze({
-  siteUrl: readAbsoluteUrl(
-    process.env.PLOTEXPLAINER_SITE_URL,
-    "http://localhost:3000",
-  )!,
-  cmsApiBaseUrl: readAbsoluteUrl(process.env.PLOTEXPLAINER_CMS_API_BASE_URL),
+  siteUrl: readAbsoluteUrl(configuredSiteUrl, "http://localhost:3000")!,
+  cmsApiBaseUrl: readAbsoluteUrl(configuredCmsApiBaseUrl),
   dataSource: parseDataSourceMode(configuredDataSource),
   dataSourceExplicitlyConfigured: Boolean(configuredDataSource),
-  allowIndexing: readBoolean(
-    process.env.PLOTEXPLAINER_ALLOW_INDEXING,
-    false,
-  ),
+  allowIndexing: readBoolean(configuredAllowIndexing, false),
 });

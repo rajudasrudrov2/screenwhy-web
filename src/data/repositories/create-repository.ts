@@ -23,7 +23,7 @@ function resolveDataSource(options: CreateRepositoriesOptions): DataSourceMode {
   if (!isDataSourceMode(selected)) {
     throw new DataAccessError(
       "configuration",
-      'Invalid PlotExplainer data source. Expected "mock" or "api".',
+      'Invalid ScreenWhy data source. Expected "mock" or "api".',
     );
   }
 
@@ -37,7 +37,7 @@ function resolveDataSource(options: CreateRepositoriesOptions): DataSourceMode {
   if (runtimeEnvironment === "production" && !explicitlyConfigured) {
     throw new DataAccessError(
       "configuration",
-      "PLOTEXPLAINER_DATA_SOURCE must be explicitly configured in production.",
+      "SCREENWHY_DATA_SOURCE must be explicitly configured in production.",
     );
   }
 

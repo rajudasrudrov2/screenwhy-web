@@ -139,7 +139,7 @@ export const MOCK_CHARACTERS_EN: readonly CharacterDetail<"en-US">[] = Object.fr
       lastReviewed: serializedDateTime("2026-09-22T10:00:00+00:00"),
     },
     seo: {
-      canonicalUrl: "https://plotexplainer.com/characters/mara-vale/",
+      canonicalUrl: "https://screenwhy.com/characters/mara-vale/",
       index: false,
       breadcrumbLabel: "Mara Vale",
     },
@@ -169,7 +169,7 @@ export const MOCK_CHARACTERS_EN: readonly CharacterDetail<"en-US">[] = Object.fr
       lastReviewed: serializedDateTime("2026-09-22T11:00:00+00:00"),
     },
     seo: {
-      canonicalUrl: "https://plotexplainer.com/characters/elias-vale/",
+      canonicalUrl: "https://screenwhy.com/characters/elias-vale/",
       index: false,
       breadcrumbLabel: "Elias Vale",
     },

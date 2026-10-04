@@ -45,7 +45,7 @@ export class BackendContractNotReadyError extends DataAccessError {
   constructor(operation: string, resource?: string) {
     super(
       "backend_contract_not_ready",
-      "The PlotExplainer backend contract for this data operation is not ready yet.",
+      "The ScreenWhy backend contract for this data operation is not ready yet.",
       { operation, resource },
     );
     this.name = "BackendContractNotReadyError";
@@ -57,31 +57,31 @@ export function dataAccessErrorFromApiFailure(failure: ApiFailure): DataAccessEr
     case "configuration":
       return new DataAccessError(
         "configuration",
-        "The PlotExplainer API is not configured for this environment.",
+        "The ScreenWhy API is not configured for this environment.",
         { status: failure.status },
       );
     case "timeout":
       return new DataAccessError(
         "timeout",
-        "The PlotExplainer API request timed out.",
+        "The ScreenWhy API request timed out.",
         { status: failure.status },
       );
     case "network":
       return new DataAccessError(
         "network",
-        "The PlotExplainer API could not be reached.",
+        "The ScreenWhy API could not be reached.",
         { status: failure.status },
       );
     case "http":
       return new DataAccessError(
         "http",
-        "The PlotExplainer API returned an unsuccessful response.",
+        "The ScreenWhy API returned an unsuccessful response.",
         { status: failure.status },
       );
     case "invalid-json":
       return new DataAccessError(
         "malformed_payload",
-        "The PlotExplainer API returned an unsupported response payload.",
+        "The ScreenWhy API returned an unsupported response payload.",
         { status: failure.status },
       );
   }

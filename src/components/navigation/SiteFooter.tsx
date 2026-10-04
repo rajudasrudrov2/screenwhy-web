@@ -49,7 +49,7 @@ export function SiteFooter({ locale }: { locale: LocaleCode }) {
       <div className={styles.inner}>
         <div className={styles.brand}>
           <BrandLogo kind="horizontal" surface="dark" href={homeHref} width={160} />
-          <p className={styles.tagline}>Movies &amp; Shows, Explained.</p>
+          <p className={styles.tagline}>The Why Behind What You Watch.</p>
         </div>
 
         <div className={styles.groups}>
@@ -68,8 +68,8 @@ export function SiteFooter({ locale }: { locale: LocaleCode }) {
         </div>
 
         <div className={styles.bottom}>
-          <span>© PlotExplainer</span>
-          <span>Movies &amp; Shows, Explained.</span>
+          <span>© ScreenWhy</span>
+          <span>The Why Behind What You Watch.</span>
         </div>
       </div>
     </footer>

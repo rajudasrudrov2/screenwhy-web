@@ -69,14 +69,14 @@ let hardcodedCmsHost = false;
 let anyEscapeHatch = false;
 for (const file of repositoryFiles) {
   const text = await readFile(file, "utf8");
-  if (/cms\.plotexplainer\.com/i.test(text)) hardcodedCmsHost = true;
+  if (/cms\.(?:plotexplainer|screenwhy)\.com/i.test(text)) hardcodedCmsHost = true;
   if (/\bas\s+any\b|:\s*any\b|<any>/.test(text)) anyEscapeHatch = true;
 }
 record(!hardcodedCmsHost, "Repository/API modules contain no hardcoded CMS hostname");
 record(!anyEscapeHatch, "New repository/API modules contain no any escape hatch");
 
 const packageJson = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
-record(packageJson.version === "0.3.2", "Package version is 0.3.2");
+record(packageJson.version === "0.3.3", "Package version is 0.3.3");
 
 const forbiddenComponentNames = [
   "Citation",

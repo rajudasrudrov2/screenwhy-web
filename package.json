@@ -1,6 +1,6 @@
 {
-  "name": "plotexplainer-web",
-  "version": "0.3.2",
+  "name": "screenwhy-web",
+  "version": "0.3.3",
   "private": true,
   "engines": {
     "node": ">=20.19.0"
@@ -14,7 +14,8 @@
     "validate:data-foundation": "tsc -p tsconfig.data-validation.json && node scripts/run-data-validation.mjs && node scripts/validate-source-guardrails.mjs",
     "validate:source-guardrails": "node scripts/validate-source-guardrails.mjs",
     "validate:domain-ui-source": "node scripts/validate-domain-ui-source.mjs",
-    "validate:card-ui-source": "node scripts/validate-card-ui-source.mjs"
+    "validate:card-ui-source": "node scripts/validate-card-ui-source.mjs",
+    "validate:brand-migration": "node scripts/validate-screenwhy-brand.mjs"
   },
   "dependencies": {
     "next": "16.3.8",

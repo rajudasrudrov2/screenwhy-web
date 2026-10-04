@@ -12,15 +12,15 @@ export default function FrontendFoundationPage() {
           <Stack gap="var(--pe-space-5)">
             <div>
               <p className="pe-metadata">PE-FE-01B foundation status</p>
-              <h1>PlotExplainer global UI foundation</h1>
+              <h1>ScreenWhy global UI foundation</h1>
             </div>
             <p className="pe-lead">
-              Brand assets, typography, tokens, responsive layout primitives, global navigation and core interactions are wired. Final public page designs remain intentionally deferred.
+              Temporary ScreenWhy identity, typography, tokens, responsive layout primitives, global navigation and core interactions are wired. Official ScreenWhy logo assets and final public page designs remain intentionally deferred.
             </p>
             <dl className={styles.meta}>
               <div className={styles.row}><dt>Locale</dt><dd>en-US (root)</dd></div>
               <div className={styles.row}><dt>Data source</dt><dd>{env.dataSource}</dd></div>
-              <div className={styles.row}><dt>Version</dt><dd>0.2.0</dd></div>
+              <div className={styles.row}><dt>Version</dt><dd>0.3.3</dd></div>
             </dl>
             <p className={styles.note}>Development visual QA lives at <code>/__ui/</code> and returns 404 in production builds.</p>
             <ButtonLink href="/__ui/" variant="secondary">Open UI foundation preview</ButtonLink>
