@@ -1,4 +1,4 @@
-# ScreenWhy Web 0.3.3
+# ScreenWhy Web 0.3.4
 
 ScreenWhy is the current public brand for the frontend formerly developed under the PlotExplainer project name. This release is a controlled brand migration from the authoritative frontend `0.3.2` lineage; it does not restart or redesign the product architecture.
 
@@ -54,6 +54,7 @@ Run the development server and open:
 http://localhost:3000/__ui/
 http://localhost:3000/__ui/domain/
 http://localhost:3000/__ui/cards/
+http://localhost:3000/__ui/article/
 ```
 
 These routes are `noindex` and return `404` in production.
@@ -67,6 +68,7 @@ npm run validate:data-foundation
 npm run validate:domain-ui-source
 npm run validate:card-ui-source
 npm run validate:brand-migration
+npm run validate:article-ui-source
 npm run typecheck
 npm run lint
 npm run build
@@ -82,8 +84,8 @@ The brand-migration guardrail rejects unintended active former-brand references 
 - No backend endpoint/DTO contract is invented.
 - The data/domain foundation is unchanged.
 - Existing domain/card UI architecture is unchanged.
-- No public page implementation is added by this migration.
+- SW-FE-02C-A adds reusable article-reading and TOC primitives only; it does not assemble a public Explanation page.
 
 ## Next task
 
-`SW-FE-02C — Citation / Source / TOC / Article Primitives`
+`SW-FE-02C-B — Citation / Source UI`

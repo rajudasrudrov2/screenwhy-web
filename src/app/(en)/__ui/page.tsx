@@ -226,7 +226,7 @@ export default function UiFoundationPreviewPage() {
             <ReadingColumn className={styles.readingDemo}>
               <h2>720px long-form measure</h2>
               <p className="pe-article-body">Primary long-form Explanation paragraphs use 17px on mobile and 18px at desktop, with approximately 1.62 line-height. The reading measure stays constrained while large screens gain whitespace instead of stretched prose.</p>
-              <p className="pe-article-body">Domain-specific Title, Explanation and Character cards; Quick Answer; Canon; Spoiler; citations; relationships; timeline; and Table of Contents are intentionally not implemented in PE-FE-01B.</p>
+              <p className="pe-article-body">Later domain systems are demonstrated on dedicated development routes. Citation/source UI, relationships and timeline experiences remain deferred.</p>
             </ReadingColumn>
           </WideContainer>
         </Section>

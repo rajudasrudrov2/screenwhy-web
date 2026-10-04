@@ -1,0 +1,113 @@
+.prose {
+  width: min(100%, var(--pe-reading-max));
+  color: var(--pe-text-primary);
+  font-size: var(--pe-type-article-mobile);
+  line-height: 1.62;
+  overflow-wrap: break-word;
+}
+
+.prose[lang^="bn"] {
+  font-family: var(--pe-font-bangla);
+  letter-spacing: normal;
+  line-height: 1.72;
+}
+
+.prose :where(strong) {
+  font-weight: 700;
+}
+
+.prose :where(em) {
+  font-style: italic;
+}
+
+.lead {
+  margin: 0 0 var(--pe-space-6);
+  color: var(--pe-text-secondary);
+  font-size: var(--pe-type-lead-mobile);
+  line-height: 1.55;
+}
+
+.paragraph {
+  margin: 0 0 var(--pe-space-5);
+}
+
+.list {
+  display: grid;
+  gap: var(--pe-space-2);
+  margin: 0 0 var(--pe-space-6);
+  padding-inline-start: 1.4em;
+}
+
+.list li,
+.listItem {
+  padding-inline-start: var(--pe-space-1);
+}
+
+.quoteFigure {
+  margin: var(--pe-space-7) 0;
+}
+
+.blockquote {
+  margin: 0;
+  padding: var(--pe-space-4) 0 var(--pe-space-4) var(--pe-space-5);
+  border-inline-start: 3px solid var(--pe-border-strong);
+  color: var(--pe-text-secondary);
+  font-size: var(--pe-type-body-large);
+  line-height: 1.65;
+}
+
+.quoteAttribution {
+  margin-top: var(--pe-space-2);
+  padding-inline-start: var(--pe-space-5);
+  color: var(--pe-text-muted);
+  font-size: var(--pe-type-caption);
+  line-height: 1.5;
+}
+
+.divider {
+  height: 1px;
+  margin: var(--pe-space-9) 0;
+  border: 0;
+  background: var(--pe-divider);
+}
+
+.link {
+  color: var(--pe-text-link);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  overflow-wrap: anywhere;
+}
+
+.link:hover {
+  color: var(--pe-text-link-hover);
+}
+
+.link:visited {
+  color: var(--pe-text-link-visited);
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.emphasis {
+  font-style: italic;
+}
+
+@media (min-width: 768px) {
+  .prose {
+    font-size: clamp(var(--pe-type-article-mobile), 1.75vw, var(--pe-type-article-desktop));
+  }
+}
+
+@media (min-width: 1024px) {
+  .prose {
+    font-size: var(--pe-type-article-desktop);
+  }
+
+  .lead {
+    font-size: var(--pe-type-lead-desktop);
+  }
+}

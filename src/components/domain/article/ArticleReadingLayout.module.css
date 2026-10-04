@@ -1,0 +1,30 @@
+.layout {
+  display: grid;
+  gap: var(--pe-space-6);
+  width: min(100%, var(--pe-editorial-wide-max));
+  margin-inline: auto;
+  min-width: 0;
+}
+
+.tocRail,
+.reading {
+  min-width: 0;
+}
+
+.reading {
+  width: min(100%, var(--pe-reading-max));
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: var(--pe-toc-rail) minmax(0, var(--pe-reading-max));
+    justify-content: center;
+    align-items: start;
+    gap: var(--pe-space-8);
+  }
+
+  .reading {
+    margin-inline: 0;
+  }
+}

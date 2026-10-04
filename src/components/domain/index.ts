@@ -20,3 +20,4 @@ export {
 } from "@/components/domain/editorial/EditorialMetadata";
 export { QuickAnswer, type QuickAnswerProps } from "@/components/domain/quick-answer/QuickAnswer";
 export * from "@/components/domain/cards";
+export * from "@/components/domain/article";

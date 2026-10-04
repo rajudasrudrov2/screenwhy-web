@@ -1,0 +1,27 @@
+.figure {
+  margin: var(--pe-space-8) 0;
+}
+
+.media {
+  width: 100%;
+  overflow: clip;
+  border-radius: var(--pe-radius-lg);
+  background: var(--pe-surface-soft);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pe-space-1) var(--pe-space-3);
+  margin-top: var(--pe-space-2);
+  color: var(--pe-text-muted);
+  font-size: var(--pe-type-caption);
+  line-height: 1.5;
+}
+

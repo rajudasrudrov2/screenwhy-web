@@ -13,7 +13,7 @@ function walk(rel, predicate = () => true) {
 }
 
 const pkg = JSON.parse(read("package.json"));
-record(pkg.version === "0.3.3", "Package version is 0.3.3");
+record(pkg.version === "0.3.4", "Package version is 0.3.4");
 const required = [
   "src/components/domain/cards/TitleCard.tsx",
   "src/components/domain/cards/ExplanationCard.tsx",
@@ -43,9 +43,9 @@ record(preview.includes('dataSource: "mock"') && preview.includes("createReposit
 record(!/@\/data\/(fixtures|mock)/.test(preview), "Preview does not import raw fixtures/mock internals");
 record(preview.includes("robots: { index: false") && preview.includes('process.env.NODE_ENV === "production"') && preview.includes("notFound()"), "Preview is noindex and production-gated");
 
-const deferredNames = ["CitationList","SourceList","TableOfContents","RelationshipCard","TimelineCard"];
+const deferredNames = ["CitationList","SourceList","RelationshipCard","TimelineCard"];
 const allDomain = walk("src/components/domain", (p)=>/\.(ts|tsx)$/.test(p)).map((p)=>fs.readFileSync(p,"utf8")).join("\n");
-record(deferredNames.every((n)=>!allDomain.includes(`function ${n}`) && !allDomain.includes(`const ${n}`)), "PE-FE-02C/later component families remain deferred");
+record(deferredNames.every((n)=>!allDomain.includes(`function ${n}`) && !allDomain.includes(`const ${n}`)), "Citation/relationship/timeline component families remain deferred");
 
 const failed = checks.filter((c)=>!c.ok);
 for (const c of checks) console.log(`${c.ok?"PASS":"FAIL"} — ${c.label}`);

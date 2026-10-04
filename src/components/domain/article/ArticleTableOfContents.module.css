@@ -1,0 +1,137 @@
+.wrapper {
+  min-width: 0;
+}
+
+.desktop {
+  display: none;
+}
+
+.mobile {
+  border: 1px solid var(--pe-border-default);
+  border-radius: var(--pe-radius-md);
+  background: var(--pe-surface-canvas);
+  overflow: clip;
+}
+
+.mobile[open] {
+  border-color: var(--pe-border-strong);
+}
+
+.mobileSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pe-space-4);
+  min-height: var(--pe-control-md);
+  padding: 10px 14px;
+  cursor: pointer;
+  color: var(--pe-text-primary);
+  font-weight: 650;
+  list-style: none;
+}
+
+.mobileSummary::-webkit-details-marker {
+  display: none;
+}
+
+.mobileSummary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--pe-text-muted);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.mobile[open] .mobileSummary::after {
+  content: "−";
+}
+
+.mobileNav {
+  max-height: min(56vh, 480px);
+  overflow-y: auto;
+  padding: 0 var(--pe-space-3) var(--pe-space-3);
+}
+
+.heading {
+  margin: 0 0 var(--pe-space-3);
+  color: var(--pe-text-muted);
+  font-size: var(--pe-type-metadata);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.list {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  min-width: 0;
+}
+
+.item > .list {
+  margin-inline-start: var(--pe-space-3);
+  padding-inline-start: var(--pe-space-2);
+  border-inline-start: 1px solid var(--pe-border-subtle);
+}
+
+.link {
+  position: relative;
+  display: block;
+  min-height: var(--pe-control-md);
+  padding: 8px 10px;
+  border-radius: var(--pe-radius-sm);
+  color: var(--pe-text-secondary);
+  font-size: var(--pe-type-body-small);
+  line-height: 1.45;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.link:hover {
+  background: var(--pe-surface-soft);
+  color: var(--pe-text-primary);
+}
+
+.link.active {
+  color: var(--pe-text-primary);
+  font-weight: 700;
+}
+
+.link.active::before {
+  content: "";
+  position: absolute;
+  inset-block: 7px;
+  inset-inline-start: 0;
+  width: 2px;
+  border-radius: var(--pe-radius-round);
+  background: var(--pe-brand-indigo);
+}
+
+.nested > .link {
+  font-size: var(--pe-type-metadata);
+}
+
+@media (min-width: 1024px) {
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    position: sticky;
+    top: calc(var(--pe-space-7) + var(--pe-control-md));
+    display: block;
+    width: min(100%, var(--pe-toc-rail));
+    max-height: calc(100vh - (var(--pe-space-11) + var(--pe-control-md)));
+    overflow-y: auto;
+    padding-inline-end: var(--pe-space-3);
+  }
+
+  .link {
+    min-height: 32px;
+  }
+}

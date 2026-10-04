@@ -1,0 +1,35 @@
+.note {
+  display: grid;
+  gap: var(--pe-space-3);
+  margin: var(--pe-space-7) 0;
+  padding: var(--pe-space-4);
+  border: 1px solid var(--pe-border-default);
+  border-radius: var(--pe-radius-lg);
+  background: var(--pe-surface-subtle);
+}
+
+.noteTitle {
+  color: var(--pe-text-primary);
+  font-family: var(--pe-font-heading);
+  font-size: var(--pe-type-body-small);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.noteBody {
+  color: var(--pe-text-secondary);
+  font-size: var(--pe-type-body-small);
+  line-height: 1.62;
+}
+
+.noteBody :where(p + p) {
+  margin-top: var(--pe-space-3);
+}
+
+.spoilerSection {
+  margin: var(--pe-space-7) 0;
+}
+
+.sourceOnlyBody {
+  margin-top: var(--pe-space-4);
+}

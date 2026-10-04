@@ -1,6 +1,6 @@
 {
   "name": "screenwhy-web",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "engines": {
     "node": ">=20.19.0"
@@ -15,7 +15,8 @@
     "validate:source-guardrails": "node scripts/validate-source-guardrails.mjs",
     "validate:domain-ui-source": "node scripts/validate-domain-ui-source.mjs",
     "validate:card-ui-source": "node scripts/validate-card-ui-source.mjs",
-    "validate:brand-migration": "node scripts/validate-screenwhy-brand.mjs"
+    "validate:brand-migration": "node scripts/validate-screenwhy-brand.mjs",
+    "validate:article-ui-source": "node scripts/validate-article-ui-source.mjs"
   },
   "dependencies": {
     "next": "16.3.8",
