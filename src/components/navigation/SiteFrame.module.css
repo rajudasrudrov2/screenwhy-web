@@ -1,0 +1,24 @@
+.frame {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main { flex: 1 0 auto; min-width: 0; }
+
+.skipLink {
+  position: fixed;
+  z-index: calc(var(--pe-z-toast) + 1);
+  top: var(--pe-space-3);
+  left: var(--pe-space-3);
+  transform: translateY(-200%);
+  padding: 10px 14px;
+  border-radius: var(--pe-radius-md);
+  background: var(--pe-surface-canvas);
+  color: var(--pe-text-primary);
+  box-shadow: var(--pe-elevation-overlay);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skipLink:focus-visible { transform: translateY(0); }

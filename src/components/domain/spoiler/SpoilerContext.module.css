@@ -1,0 +1,180 @@
+.contextGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--pe-space-2);
+  min-width: 0;
+}
+
+.marker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pe-space-2);
+  max-width: 100%;
+  min-height: 28px;
+  padding: 4px 9px;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  border-radius: var(--pe-radius-round);
+  font-size: var(--pe-type-badge);
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.icon,
+.warningIcon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+}
+
+.markerLabel,
+.markerScope,
+.warningScope,
+.disclosureScope {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.markerScope {
+  color: var(--pe-text-secondary);
+  font-weight: 500;
+}
+
+.free {
+  background: var(--pe-success-bg);
+  color: var(--pe-success-fg);
+}
+
+.warning {
+  background: var(--pe-spoiler-bg);
+  color: var(--pe-spoiler-fg);
+}
+
+.sourceMaterial {
+  background: var(--pe-surface-amber-soft);
+  color: var(--pe-warning-fg);
+  border-style: dashed;
+}
+
+.warningPanel {
+  display: flex;
+  gap: var(--pe-space-3);
+  width: min(100%, var(--pe-compact-prose-max));
+  padding: var(--pe-space-4);
+  border: 1px solid color-mix(in srgb, var(--pe-spoiler-fg) 28%, var(--pe-border-default));
+  border-radius: var(--pe-radius-lg);
+  background: var(--pe-spoiler-bg);
+  color: var(--pe-spoiler-fg);
+}
+
+.warningPanel.scoped { padding: 12px 14px; }
+
+.freePanel {
+  border-color: color-mix(in srgb, var(--pe-success-fg) 24%, var(--pe-border-default));
+  background: var(--pe-success-bg);
+  color: var(--pe-success-fg);
+}
+
+.sourcePanel {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--pe-warning-fg) 28%, var(--pe-border-default));
+  background: var(--pe-surface-amber-soft);
+  color: var(--pe-warning-fg);
+}
+
+.warningIcon { margin-top: 2px; }
+
+.warningCopy {
+  min-width: 0;
+  color: var(--pe-text-primary);
+}
+
+.warningCopy p {
+  margin-top: var(--pe-space-1);
+  color: var(--pe-text-secondary);
+  font-size: var(--pe-type-body-small);
+  line-height: 1.55;
+}
+
+.warningHeading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--pe-space-2) var(--pe-space-3);
+  line-height: 1.4;
+}
+
+.warningHeading strong { color: currentColor; }
+.warningScope { color: var(--pe-text-secondary); font-size: var(--pe-type-metadata); }
+
+.disclosure {
+  width: min(100%, var(--pe-compact-prose-max));
+  border: 1px solid color-mix(in srgb, var(--pe-spoiler-fg) 26%, var(--pe-border-default));
+  border-radius: var(--pe-radius-lg);
+  background: var(--pe-surface-canvas);
+  overflow: clip;
+}
+
+.disclosure[open] { border-color: var(--pe-border-strong); }
+
+.disclosureSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pe-space-4);
+  min-height: var(--pe-control-md);
+  padding: 12px 14px;
+  cursor: pointer;
+  list-style: none;
+  background: var(--pe-spoiler-bg);
+}
+
+.disclosureSummary::-webkit-details-marker { display: none; }
+
+.disclosureContext {
+  display: flex;
+  align-items: center;
+  gap: var(--pe-space-2);
+  min-width: 0;
+  color: var(--pe-spoiler-fg);
+}
+
+.disclosureContext > span:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px var(--pe-space-2);
+  min-width: 0;
+}
+
+.disclosureScope { color: var(--pe-text-secondary); font-size: var(--pe-type-metadata); }
+
+.revealAction {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--pe-space-1);
+  color: var(--pe-text-primary);
+  font-size: var(--pe-type-metadata);
+  font-weight: 650;
+}
+
+.revealAction svg { transition: transform var(--pe-motion-standard) var(--pe-ease-standard); }
+.disclosure[open] .revealAction svg { transform: rotate(180deg); }
+
+.disclosureBody {
+  padding: var(--pe-space-4);
+  color: var(--pe-text-primary);
+  line-height: 1.62;
+}
+
+.disclosureSource { margin-bottom: var(--pe-space-4); }
+
+@media (max-width: 767px) {
+  .marker { white-space: normal; }
+  .disclosureSummary { align-items: flex-start; }
+  .revealAction { min-height: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revealAction svg { transition: none; }
+}

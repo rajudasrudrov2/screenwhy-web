@@ -1,0 +1,176 @@
+:root {
+  /* Brand — OWNER-LOCKED */
+  --pe-brand-ink: #121722;
+  --pe-brand-amber: #f0b44d;
+  --pe-brand-indigo: #4f5bd5;
+  --pe-brand-teal: #177e75;
+
+  /* Surfaces */
+  --pe-surface-canvas: #ffffff;
+  --pe-surface-subtle: #f7f8fa;
+  --pe-surface-soft: #f1f3f6;
+  --pe-surface-raised: #ffffff;
+  --pe-surface-dark: #121722;
+  --pe-surface-dark-raised: #1b2130;
+  --pe-surface-indigo-soft: #f3f4fd;
+  --pe-surface-teal-soft: #edf7f5;
+  --pe-surface-amber-soft: #fff7e8;
+
+  /* Text */
+  --pe-text-primary: #121722;
+  --pe-text-secondary: #414957;
+  --pe-text-muted: #687180;
+  --pe-text-disabled: #9aa2ae;
+  --pe-text-inverse: #ffffff;
+  --pe-text-link: #3f4cc4;
+  --pe-text-link-hover: #2f3897;
+  --pe-text-link-visited: #414a9e;
+
+  /* Borders / dividers */
+  --pe-border-subtle: #e6e9ee;
+  --pe-border-default: #d7dce4;
+  --pe-border-strong: #aeb6c3;
+  --pe-border-dark: #303747;
+  --pe-divider: var(--pe-border-subtle);
+
+  /* Semantic */
+  --pe-info-fg: #3f4cc4;
+  --pe-info-bg: #f3f4fd;
+  --pe-success-fg: #126d65;
+  --pe-success-bg: #edf7f5;
+  --pe-warning-fg: #70511a;
+  --pe-warning-bg: #fff7e8;
+  --pe-error-fg: #a7352a;
+  --pe-error-bg: #fff1f0;
+  --pe-spoiler-fg: #5c3e16;
+  --pe-spoiler-bg: #fff6e5;
+
+  /* Canon semantic aliases. Visual components remain deferred. */
+  --pe-canon-established-fg: var(--pe-brand-indigo);
+  --pe-canon-established-bg: var(--pe-surface-indigo-soft);
+  --pe-canon-adaptation-fg: var(--pe-brand-teal);
+  --pe-canon-adaptation-bg: var(--pe-surface-teal-soft);
+  --pe-canon-interpretation-fg: var(--pe-warning-fg);
+  --pe-canon-interpretation-bg: var(--pe-surface-amber-soft);
+  --pe-canon-unconfirmed-fg: var(--pe-text-secondary);
+  --pe-canon-unconfirmed-bg: var(--pe-surface-canvas);
+
+  /* Interaction — Master UI v1.1 exact states */
+  --pe-primary-default: #121722;
+  --pe-primary-hover: #1b2230;
+  --pe-primary-active: #0b0f17;
+  --pe-secondary-default: #ffffff;
+  --pe-tertiary-hover: #f1f3f6;
+  --pe-focus: #4f5bd5;
+  --pe-focus-ring-width: 3px;
+  --pe-focus-offset: 3px;
+  --pe-card-border-default: var(--pe-border-default);
+  --pe-card-border-hover: var(--pe-border-strong);
+
+  /* Spacing */
+  --pe-space-1: 4px;
+  --pe-space-2: 8px;
+  --pe-space-3: 12px;
+  --pe-space-4: 16px;
+  --pe-space-5: 20px;
+  --pe-space-6: 24px;
+  --pe-space-7: 32px;
+  --pe-space-8: 40px;
+  --pe-space-9: 48px;
+  --pe-space-10: 64px;
+  --pe-space-11: 80px;
+  --pe-space-12: 96px;
+
+  /* Radius */
+  --pe-radius-sm: 6px;
+  --pe-radius-md: 10px;
+  --pe-radius-lg: 14px;
+  --pe-radius-xl: 20px;
+  --pe-radius-round: 999px;
+
+  /* Elevation — Master UI v1.1 exact levels */
+  --pe-elevation-none: none;
+  --pe-elevation-raised: 0 4px 12px rgba(18, 23, 34, 0.08);
+  --pe-elevation-overlay: 0 16px 40px rgba(18, 23, 34, 0.14);
+
+  /* Typography */
+  --pe-font-body: var(--font-inter), Inter, Arial, sans-serif;
+  --pe-font-heading: var(--font-manrope), Manrope, Arial, sans-serif;
+  --pe-font-bangla: var(--font-hind-siliguri), "Noto Sans Bengali", Arial, sans-serif;
+
+  --pe-type-display-mobile: 40px;
+  --pe-type-display-desktop: 56px;
+  --pe-type-h1-mobile: 34px;
+  --pe-type-h1-desktop: 44px;
+  --pe-type-h2-mobile: 28px;
+  --pe-type-h2-desktop: 34px;
+  --pe-type-h3-mobile: 23px;
+  --pe-type-h3-desktop: 26px;
+  --pe-type-h4-mobile: 20px;
+  --pe-type-h4-desktop: 21px;
+  --pe-type-h5: 18px;
+  --pe-type-lead-mobile: 19px;
+  --pe-type-lead-desktop: 21px;
+  --pe-type-body-large: 18px;
+  --pe-type-body: 16px;
+  --pe-type-body-small: 14px;
+  --pe-type-article-mobile: 17px;
+  --pe-type-article-desktop: 18px;
+  --pe-type-navigation: 15px;
+  --pe-type-button: 15px;
+  --pe-type-metadata: 13px;
+  --pe-type-caption: 13px;
+  --pe-type-badge: 12px;
+  --pe-type-breadcrumb-mobile: 13px;
+  --pe-type-breadcrumb-desktop: 14px;
+  --pe-type-source: 14px;
+
+  /* Layout — v1.1 implementation transitions, not per-device breakpoints */
+  --pe-breakpoint-tablet: 768px;
+  --pe-breakpoint-desktop: 1024px;
+  --pe-breakpoint-wide: 1280px;
+  --pe-shell-max: 1280px;
+  --pe-editorial-wide-max: 1120px;
+  --pe-reading-max: 720px;
+  --pe-compact-prose-max: 680px;
+  --pe-toc-rail: 232px;
+  --pe-page-gutter: 16px;
+
+  /* Interaction sizing */
+  --pe-control-sm: 36px;
+  --pe-control-md: 44px;
+  --pe-control-lg: 48px;
+
+  /* Motion */
+  --pe-motion-fast: 120ms;
+  --pe-motion-standard: 180ms;
+  --pe-motion-deliberate: 240ms;
+  --pe-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Layering */
+  --pe-z-base: 0;
+  --pe-z-local-sticky: 10;
+  --pe-z-header: 20;
+  --pe-z-dropdown: 30;
+  --pe-z-backdrop: 40;
+  --pe-z-modal: 50;
+  --pe-z-toast: 60;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --pe-page-gutter: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --pe-page-gutter: 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --pe-page-gutter: 40px;
+  }
+}

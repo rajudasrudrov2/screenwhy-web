@@ -1,0 +1,27 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: fit-content;
+  min-height: 44px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--pe-radius-sm);
+}
+
+.link[data-brand-kind="mark"] {
+  min-width: 44px;
+}
+
+.horizontal {
+  width: var(--brand-width, 160px);
+  min-width: 128px;
+  height: auto;
+}
+
+.mark {
+  width: var(--brand-width, 28px);
+  min-width: 24px;
+  height: var(--brand-width, 28px);
+}

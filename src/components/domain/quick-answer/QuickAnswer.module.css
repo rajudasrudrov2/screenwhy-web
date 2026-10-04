@@ -1,0 +1,53 @@
+.quickAnswer {
+  position: relative;
+  width: min(100%, var(--pe-compact-prose-max));
+  padding: var(--pe-space-5);
+  border: 1px solid color-mix(in srgb, var(--pe-brand-indigo) 18%, var(--pe-border-default));
+  border-left: 4px solid var(--pe-brand-indigo);
+  border-radius: var(--pe-radius-lg);
+  background: var(--pe-surface-indigo-soft);
+  color: var(--pe-text-primary);
+}
+
+.label {
+  color: var(--pe-brand-indigo);
+  font-size: var(--pe-type-metadata);
+  font-weight: 800;
+  letter-spacing: 0.045em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.contexts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pe-space-2);
+  margin-top: var(--pe-space-3);
+}
+
+.answer {
+  display: grid;
+  gap: var(--pe-space-3);
+  margin-top: var(--pe-space-4);
+  font-size: var(--pe-type-article-mobile);
+  font-weight: 500;
+  line-height: 1.58;
+}
+
+.quickAnswer[lang^="bn"] .label {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.quickAnswer[lang^="bn"] .answer {
+  font-family: var(--pe-font-bangla);
+  line-height: 1.68;
+}
+
+@media (min-width: 768px) {
+  .quickAnswer { padding: var(--pe-space-6); }
+}
+
+@media (min-width: 1024px) {
+  .answer { font-size: var(--pe-type-article-desktop); }
+}
