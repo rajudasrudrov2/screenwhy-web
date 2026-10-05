@@ -55,6 +55,8 @@ export const MOCK_CHARACTERS_EN: readonly CharacterDetail<"en-US">[] = Object.fr
     primaryTitleContext: TITLE_REFERENCES.lastSignalEn,
     spoilerFreeDescription:
       "A radio engineer who returns to the closed station after a new transmission appears.",
+    fullDescription:
+      "Mara is the senior radio engineer whose return to the abandoned Northline station places her at the center of the repeating-transmission mystery. Her choices are shaped by responsibility for Elias and by what she remembers about the station before it closed.",
     verification: {
       state: "fact_checked",
       sourceIds: [
@@ -127,8 +129,12 @@ export const MOCK_CHARACTERS_EN: readonly CharacterDetail<"en-US">[] = Object.fr
     ],
     relationships: MOCK_RELATIONSHIPS,
     relatedExplanations: [
+      EXPLANATION_REFERENCES.lastSignalCharacterEn,
       EXPLANATION_REFERENCES.lastSignalMysteryEn,
+      EXPLANATION_REFERENCES.lastSignalQuestionEn,
       EXPLANATION_REFERENCES.lastSignalBookVsScreenEn,
+      EXPLANATION_REFERENCES.lastSignalEndingEn,
+      EXPLANATION_REFERENCES.lastSignalNextEn,
     ],
     importantTimelineEvents: MOCK_TIMELINE_EVENTS.filter(
       (event) => event.timelineEventId === FIXTURE_IDS.timeline.hiddenPlatformFlashback,

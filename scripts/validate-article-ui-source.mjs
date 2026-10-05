@@ -23,7 +23,7 @@ function walk(rel, predicate = () => true) {
 }
 
 const pkg = JSON.parse(read("package.json"));
-record(pkg.name === "screenwhy-web" && pkg.version === "0.3.4", "Package identity/version is ScreenWhy 0.3.4");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.4.3", "Package identity/version is ScreenWhy 0.4.3");
 
 const required = [
   "src/components/domain/article/article-types.ts",
@@ -69,7 +69,7 @@ record(preview.includes("ScreenWhy") && !preview.includes("PlotExplainer"), "New
 
 const domainFiles = walk("src/components/domain", (file) => /\.(ts|tsx)$/.test(file));
 const domainSource = domainFiles.map((file) => fs.readFileSync(file, "utf8")).join("\n");
-record(!domainSource.includes("function CitationList") && !domainSource.includes("function SourceList") && !domainSource.includes("function ClaimEvidence"), "Final citation/source UI remains deferred to SW-FE-02C-B");
+record(domainSource.includes("function ClaimEvidence") && domainSource.includes("function SourcesSection"), "SW-FE-02C-B citation/source system is now integrated without redesigning article primitives");
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"} — ${check.label}`);

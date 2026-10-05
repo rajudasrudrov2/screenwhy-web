@@ -17,7 +17,7 @@ export default function BanglaFoundationPage() {
             <dl className={styles.meta}>
               <div className={styles.row}><dt>Locale</dt><dd>bn-BD</dd></div>
               <div className={styles.row}><dt>Data source</dt><dd>{env.dataSource}</dd></div>
-              <div className={styles.row}><dt>Version</dt><dd>0.3.3</dd></div>
+              <div className={styles.row}><dt>Version</dt><dd>0.4.3</dd></div>
             </dl>
             <p className={styles.note}>Final বাংলা editorial content এবং domain components পরের frontend workstream-এ data contract অনুযায়ী যুক্ত হবে।</p>
           </Stack>

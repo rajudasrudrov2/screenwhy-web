@@ -2,10 +2,59 @@ import type { TimelineEvent } from "@/types/domain/timeline";
 import { FIXTURE_IDS } from "@/data/fixtures/ids";
 import {
   CHARACTER_REFERENCES,
+  EXPLANATION_REFERENCES,
   TITLE_REFERENCES,
 } from "@/data/fixtures/references";
 
 export const MOCK_TIMELINE_EVENTS: readonly TimelineEvent[] = Object.freeze([
+  {
+    timelineEventId: FIXTURE_IDS.timeline.stationReopens,
+    title: TITLE_REFERENCES.lastSignalEn,
+    localizedText: {
+      locale: "en-US",
+      label: "The station reopens for inspection",
+      description: "Mara returns with a small engineering team after the abandoned station reports unexpected power.",
+    },
+    chronologyOrder: 1,
+    presentationOrder: 1,
+    temporalType: "normal",
+    relativeChronologyLabel: "Before the repeating transmission",
+    characters: [CHARACTER_REFERENCES.maraValeEn],
+    canon: {
+      classification: "movie_canon",
+      scopes: [{ target: { kind: "title", titleId: FIXTURE_IDS.titles.lastSignal } }],
+    },
+    spoiler: {
+      level: "spoiler_free",
+      scope: { type: "full_title", titleId: FIXTURE_IDS.titles.lastSignal },
+    },
+    evidenceSourceIds: [FIXTURE_IDS.sources.lastSignalFilm],
+    verificationState: "approved",
+  },
+  {
+    timelineEventId: FIXTURE_IDS.timeline.firstSignalReceived,
+    title: TITLE_REFERENCES.lastSignalEn,
+    localizedText: {
+      locale: "en-US",
+      label: "The first repeating signal is received",
+      description: "The station receiver logs a burst that appears to come from its own closed transmitter room.",
+    },
+    chronologyOrder: 2,
+    presentationOrder: 2,
+    temporalType: "normal",
+    relativeChronologyLabel: "First night at the station",
+    characters: [CHARACTER_REFERENCES.maraValeEn, CHARACTER_REFERENCES.eliasValeEn],
+    canon: {
+      classification: "movie_canon",
+      scopes: [{ target: { kind: "title", titleId: FIXTURE_IDS.titles.lastSignal } }],
+    },
+    spoiler: {
+      level: "minor",
+      scope: { type: "full_title", titleId: FIXTURE_IDS.titles.lastSignal },
+    },
+    evidenceSourceIds: [FIXTURE_IDS.sources.lastSignalFilm],
+    verificationState: "fact_checked",
+  },
   {
     timelineEventId: FIXTURE_IDS.timeline.hiddenPlatformFlashback,
     title: TITLE_REFERENCES.lastSignalEn,
@@ -15,7 +64,7 @@ export const MOCK_TIMELINE_EVENTS: readonly TimelineEvent[] = Object.freeze([
       description:
         "The event happens early in the story chronology but is revealed much later as a flashback.",
     },
-    chronologyOrder: 2,
+    chronologyOrder: 3,
     presentationOrder: 7,
     temporalType: "flashback",
     relativeChronologyLabel: "Before the station closes",
@@ -39,6 +88,31 @@ export const MOCK_TIMELINE_EVENTS: readonly TimelineEvent[] = Object.freeze([
         type: "installment",
         installmentId: FIXTURE_IDS.installments.lastSignalPartOne,
       },
+    },
+    evidenceSourceIds: [FIXTURE_IDS.sources.lastSignalFilm],
+    verificationState: "approved",
+  },
+  {
+    timelineEventId: FIXTURE_IDS.timeline.finalTransmission,
+    title: TITLE_REFERENCES.lastSignalEn,
+    localizedText: {
+      locale: "en-US",
+      label: "Mara sends the final transmission",
+      description: "Mara sends the message that completes the station-system loop established by the opening signal.",
+    },
+    chronologyOrder: 4,
+    presentationOrder: 9,
+    temporalType: "normal",
+    relativeChronologyLabel: "Final station sequence",
+    characters: [CHARACTER_REFERENCES.maraValeEn],
+    relatedExplanation: EXPLANATION_REFERENCES.lastSignalEndingEn,
+    canon: {
+      classification: "movie_canon",
+      scopes: [{ target: { kind: "title", titleId: FIXTURE_IDS.titles.lastSignal } }],
+    },
+    spoiler: {
+      level: "major",
+      scope: { type: "full_title", titleId: FIXTURE_IDS.titles.lastSignal },
     },
     evidenceSourceIds: [FIXTURE_IDS.sources.lastSignalFilm],
     verificationState: "approved",

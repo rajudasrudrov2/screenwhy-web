@@ -76,11 +76,9 @@ record(!hardcodedCmsHost, "Repository/API modules contain no hardcoded CMS hostn
 record(!anyEscapeHatch, "New repository/API modules contain no any escape hatch");
 
 const packageJson = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
-record(packageJson.version === "0.3.4", "Package version is 0.3.4");
+record(packageJson.version === "0.4.3", "Package version is 0.4.3");
 
 const forbiddenComponentNames = [
-  "Citation",
-  "SourceList",
   "Timeline",
   "Relationship",
 ];
@@ -89,7 +87,7 @@ record(
   !componentFiles.some((file) =>
     forbiddenComponentNames.some((name) => path.basename(file).startsWith(name)),
   ),
-  "Deferred citation/relationship/timeline component families remain unimplemented",
+  "Relationship/timeline component families remain deferred",
 );
 
 const expected02AComponents = [

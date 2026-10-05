@@ -28,6 +28,11 @@ export const FIXTURE_IDS = Object.freeze({
       "explanation:last-signal-book-vs-screen",
     ),
     harborNineEnding: explanationLogicalId("explanation:harbor-nine-ending"),
+    lastSignalCharacter: explanationLogicalId("explanation:last-signal-character"),
+    lastSignalEnding: explanationLogicalId("explanation:last-signal-ending"),
+    lastSignalNext: explanationLogicalId("explanation:last-signal-next"),
+    lastSignalQuestion: explanationLogicalId("explanation:last-signal-question"),
+    harborNineNext: explanationLogicalId("explanation:harbor-nine-next"),
   },
   installments: {
     lastSignalPartOne: installmentId("installment:last-signal:part-1"),
@@ -42,11 +47,17 @@ export const FIXTURE_IDS = Object.freeze({
     maraEliasParentChild: relationshipStateId(
       "relationship-state:mara-elias:parent-child",
     ),
+    maraEliasAllies: relationshipStateId(
+      "relationship-state:mara-elias:allies",
+    ),
   },
   timeline: {
+    stationReopens: timelineEventId("timeline:last-signal:station-reopens"),
+    firstSignalReceived: timelineEventId("timeline:last-signal:first-signal-received"),
     hiddenPlatformFlashback: timelineEventId(
       "timeline:last-signal:hidden-platform-flashback",
     ),
+    finalTransmission: timelineEventId("timeline:last-signal:final-transmission"),
     harborBlackout: timelineEventId("timeline:harbor-nine:blackout"),
   },
   sourceWorks: {

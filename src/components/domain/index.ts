@@ -21,3 +21,4 @@ export {
 export { QuickAnswer, type QuickAnswerProps } from "@/components/domain/quick-answer/QuickAnswer";
 export * from "@/components/domain/cards";
 export * from "@/components/domain/article";
+export * from "@/components/domain/citation";

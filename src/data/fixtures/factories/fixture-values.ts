@@ -1,5 +1,6 @@
 import type { LocaleCode } from "@/lib/i18n/locales";
 import type { ArticleBodyDocument } from "@/types/domain/explanation";
+import type { LegacyMockArticleBlock, MockArticleDocumentPayload } from "@/data/article-body/mock-schema";
 import type {
   SerializedDate,
   SerializedDateTime,
@@ -89,21 +90,18 @@ export const serializedDateTime = (value: string): SerializedDateTime =>
 export const titleReleaseStatus = (value: string): TitleReleaseStatus =>
   value as TitleReleaseStatus;
 
-export interface MockArticleBlock {
-  readonly kind: "paragraph" | "heading";
-  readonly text: string;
-  readonly level?: 2 | 3;
-}
+export type MockArticleBlock = LegacyMockArticleBlock;
 
 /**
  * ArticleBodyDocument is intentionally opaque in production contracts. The
- * mock boundary stores a small development-only structure behind that opacity;
- * no renderer or CMS/Gutenberg shape is implied.
+ * fixture boundary may wrap either the original minimal block array or the
+ * richer ScreenWhy mock-article document used by Explanation Detail QA.
  */
 export function articleBodyDocument(
-  blocks: readonly MockArticleBlock[],
+  payload: readonly LegacyMockArticleBlock[] | MockArticleDocumentPayload,
 ): ArticleBodyDocument {
-  return Object.freeze({ blocks }) as unknown as ArticleBodyDocument;
+  const document = Array.isArray(payload) ? { blocks: payload } : payload;
+  return Object.freeze(document) as unknown as ArticleBodyDocument;
 }
 
 export interface FixtureVariantSeed<TKind extends LogicalEntityKind> {

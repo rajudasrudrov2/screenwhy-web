@@ -21,7 +21,21 @@
     "src/lib/http/**/*.ts",
     "src/lib/i18n/**/*.ts",
     "src/services/api/client.ts",
-    "src/types/domain/**/*.ts"
+    "src/types/domain/**/*.ts",
+    "scripts/validate-homepage-data.ts",
+    "src/features/homepage/homepage.loader.ts",
+    "src/features/homepage/homepage.config.ts",
+    "src/features/homepage/homepage.types.ts",
+    "scripts/validate-title-hub-data.ts",
+    "src/features/title-hub/title-hub.loader.ts",
+    "src/features/title-hub/title-hub.types.ts",
+    "scripts/validate-character-detail-data.ts",
+    "src/features/character-detail/character-detail.loader.ts",
+    "src/features/character-detail/character-detail.types.ts"
   ],
-  "exclude": ["node_modules", ".next", ".data-validation"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    ".data-validation"
+  ]
 }

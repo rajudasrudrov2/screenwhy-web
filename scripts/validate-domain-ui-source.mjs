@@ -28,7 +28,7 @@ function walk(relativePath, predicate = () => true) {
 }
 
 const packageJson = JSON.parse(read("package.json"));
-record(packageJson.version === "0.3.4", "Package version is 0.3.4");
+record(packageJson.version === "0.4.3", "Package version is 0.4.3");
 
 const required = [
   "src/components/domain/canon/CanonContext.tsx",
@@ -62,7 +62,7 @@ const forbiddenNames = [
   "RelationshipCard",
   "TimelineCard",
 ];
-record(forbiddenNames.every((name) => !componentSource.includes(`function ${name}`) && !componentSource.includes(`const ${name}`)), "Deferred citation/relationship/timeline component families remain unimplemented");
+record(forbiddenNames.every((name) => !componentSource.includes(`function ${name}`) && !componentSource.includes(`const ${name}`)), "Relationship/timeline component families remain deferred");
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {

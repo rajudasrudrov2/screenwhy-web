@@ -1,0 +1,84 @@
+.card {
+  min-width: 0;
+  border: 1px solid var(--pe-card-border-default);
+  border-radius: var(--pe-radius-lg);
+  background: var(--pe-surface-canvas);
+  transition:
+    border-color var(--pe-motion-standard) var(--pe-ease-standard),
+    box-shadow var(--pe-motion-standard) var(--pe-ease-standard),
+    transform var(--pe-motion-standard) var(--pe-ease-standard);
+}
+
+.link {
+  position: relative;
+  display: block;
+  height: 100%;
+  min-height: 156px;
+  padding: var(--pe-space-5);
+  color: inherit;
+  text-decoration: none;
+  border-radius: inherit;
+}
+
+.link:focus-visible {
+  outline: var(--pe-focus-ring-width) solid var(--pe-focus);
+  outline-offset: var(--pe-focus-offset);
+}
+
+.routeMark {
+  display: block;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--pe-border-default);
+  border-radius: var(--pe-radius-md);
+  background: var(--pe-surface-subtle);
+}
+
+.title {
+  margin: var(--pe-space-6) 0 0;
+  color: var(--pe-text-primary);
+  font-family: var(--pe-font-heading);
+  font-size: var(--pe-type-h5);
+  line-height: 1.35;
+}
+
+.description {
+  margin: var(--pe-space-2) 0 0;
+  color: var(--pe-text-secondary);
+  font-size: var(--pe-type-body-small);
+  line-height: 1.55;
+}
+
+.affordance {
+  position: absolute;
+  top: var(--pe-space-5);
+  right: var(--pe-space-5);
+  color: var(--pe-text-link);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: var(--pe-card-border-hover);
+    box-shadow: var(--pe-elevation-raised);
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 767px) {
+  .link {
+    min-height: 144px;
+    padding: var(--pe-space-4);
+  }
+
+  .affordance {
+    top: var(--pe-space-4);
+    right: var(--pe-space-4);
+  }
+
+  .title { margin-top: var(--pe-space-5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}

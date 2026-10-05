@@ -47,6 +47,30 @@ export const MOCK_RELATIONSHIPS: readonly CharacterRelationship[] = Object.freez
         evidenceSourceIds: [FIXTURE_IDS.sources.lastSignalFilm],
         verificationState: "fact_checked",
       },
+      {
+        relationshipStateId: FIXTURE_IDS.relationship.maraEliasAllies,
+        sequence: 2,
+        relationshipType: "ally",
+        roleA: "Partner",
+        roleB: "Partner",
+        description:
+          "After the station loop is understood, Mara and Elias coordinate the final transmission together.",
+        canon: {
+          classification: "movie_canon",
+          scopes: [
+            {
+              target: { kind: "title", titleId: FIXTURE_IDS.titles.lastSignal },
+              label: "The Last Signal — film continuity",
+            },
+          ],
+        },
+        spoiler: {
+          level: "major",
+          scope: { type: "full_title", titleId: FIXTURE_IDS.titles.lastSignal },
+        },
+        evidenceSourceIds: [FIXTURE_IDS.sources.lastSignalFilm],
+        verificationState: "approved",
+      },
     ],
   },
 ]);

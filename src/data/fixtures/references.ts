@@ -77,6 +77,30 @@ export const EXPLANATION_REFERENCES = Object.freeze({
     slug: "last-signal-book-vs-screen",
     articleTitle: "The Last Signal: Book vs Screen Differences",
   } satisfies ExplanationReference,
+  lastSignalCharacterEn: {
+    logicalId: FIXTURE_IDS.explanations.lastSignalCharacter,
+    locale: "en-US",
+    slug: "why-mara-vale-keeps-the-station-key",
+    articleTitle: "Why Mara Vale Keeps the Station Key",
+  } satisfies ExplanationReference,
+  lastSignalEndingEn: {
+    logicalId: FIXTURE_IDS.explanations.lastSignalEnding,
+    locale: "en-US",
+    slug: "the-last-signal-ending-explained",
+    articleTitle: "The Last Signal Ending Explained: What the Final Transmission Means",
+  } satisfies ExplanationReference,
+  lastSignalNextEn: {
+    logicalId: FIXTURE_IDS.explanations.lastSignalNext,
+    locale: "en-US",
+    slug: "what-happens-after-the-last-signal",
+    articleTitle: "What Happens After The Last Signal?",
+  } satisfies ExplanationReference,
+  lastSignalQuestionEn: {
+    logicalId: FIXTURE_IDS.explanations.lastSignalQuestion,
+    locale: "en-US",
+    slug: "why-did-mara-hide-the-key",
+    articleTitle: "Why Did Mara Hide the Station Key?",
+  } satisfies ExplanationReference,
   harborNineEndingEn: {
     logicalId: FIXTURE_IDS.explanations.harborNineEnding,
     locale: "en-US",

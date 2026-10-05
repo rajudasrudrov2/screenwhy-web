@@ -15,6 +15,7 @@ import { MOCK_INSTALLMENTS } from "@/data/fixtures/installments";
 import {
   CHARACTER_REFERENCES,
   EXPLANATION_REFERENCES,
+  TITLE_REFERENCES,
 } from "@/data/fixtures/references";
 import { LAST_SIGNAL_SOURCE_WORK } from "@/data/fixtures/sources";
 
@@ -102,13 +103,6 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
       { slug: "science-fiction", label: "Science Fiction" },
       { slug: "mystery", label: "Mystery" },
     ],
-    poster: {
-      role: "poster",
-      url: "/mock-media/the-last-signal-poster.jpg",
-      alt: "Illustrative poster placeholder for the fictional title The Last Signal",
-      width: 1200,
-      height: 1800,
-    },
     verification: {
       state: "approved",
       sourceIds: [FIXTURE_IDS.sources.lastSignalFilm],
@@ -142,8 +136,15 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
       CHARACTER_REFERENCES.eliasValeEn,
     ],
     relatedExplanations: [
+      EXPLANATION_REFERENCES.lastSignalEndingEn,
       EXPLANATION_REFERENCES.lastSignalMysteryEn,
       EXPLANATION_REFERENCES.lastSignalBookVsScreenEn,
+      EXPLANATION_REFERENCES.lastSignalNextEn,
+    ],
+    relatedTitles: [
+      { relationshipType: "shared_story_context", title: TITLE_REFERENCES.harborNineEn },
+      { relationshipType: "related_to", title: TITLE_REFERENCES.glassCometEn },
+      { relationshipType: "related_to", title: TITLE_REFERENCES.winterVerdictEn },
     ],
     sourceWorks: [
       { relationshipType: "adapted_from", sourceWork: LAST_SIGNAL_SOURCE_WORK },

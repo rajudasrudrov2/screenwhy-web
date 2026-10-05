@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Fictional Last Signal station diagram</title>
+  <desc id="desc">A restrained editorial diagram showing a station platform, two figures and concentric transmitter rings.</desc>
+  <rect width="1280" height="720" fill="#F1F3F6"/>
+  <rect y="470" width="1280" height="250" fill="#E6E9EE"/>
+  <path d="M0 470H1280" stroke="#D7DCE4" stroke-width="3"/>
+  <circle cx="290" cy="318" r="118" fill="#121722"/>
+  <circle cx="290" cy="318" r="82" fill="none" stroke="#4F5BD5" stroke-width="5"/>
+  <circle cx="290" cy="318" r="48" fill="none" stroke="#4F5BD5" stroke-width="4"/>
+  <circle cx="290" cy="318" r="18" fill="#F0B44D"/>
+  <path d="M716 376c0-38 30-68 68-68s68 30 68 68v94H716z" fill="#687180"/>
+  <circle cx="784" cy="278" r="38" fill="#687180"/>
+  <path d="M980 396c0-29 23-52 52-52s52 23 52 52v74H980z" fill="#9AA2AE"/>
+  <circle cx="1032" cy="321" r="29" fill="#9AA2AE"/>
+  <path d="M410 318H650" stroke="#4F5BD5" stroke-width="4" stroke-dasharray="14 14"/>
+  <path d="M650 318l-22-14v28z" fill="#4F5BD5"/>
+</svg>
