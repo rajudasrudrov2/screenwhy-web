@@ -22,7 +22,7 @@ const view = read("src/features/character-detail/CharacterDetail.tsx");
 const combined = `${route}\n${feature}`;
 const pkg = JSON.parse(read("package.json"));
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.5.2", "Package identity/version is ScreenWhy 0.5.2");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.5.3", "Package identity/version is ScreenWhy 0.5.3");
 record(exists(routeFile), "1. /characters/[slug]/ route exists");
 record(loader.includes("repositories.characters.getBySlug"), "2. CharacterRepository getBySlug() is used");
 record(route.includes("notFound()") && loader.includes('if (characterResult.status !== "available") return null'), "3. Invalid Character slug reaches not-found architecture");

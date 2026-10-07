@@ -1,6 +1,6 @@
-# ScreenWhy Web 0.5.2
+# ScreenWhy Web 0.5.3
 
-ScreenWhy is the current public brand for the frontend formerly developed under the PlotExplainer project name. Version 0.5.2 completes the public frontend source-implementation sequence: production utility/error/availability states from v0.5.1 are followed by the first complete cross-page integration, responsive, accessibility, SEO and performance hardening pass. Backend/data contracts remain unchanged and API mode remains fail-closed.
+ScreenWhy is the current public brand for the frontend formerly developed under the PlotExplainer project name. Version 0.5.3 completes the public frontend source-implementation sequence: production utility/error/availability states from v0.5.1 are followed by the first complete cross-page integration, responsive, accessibility, SEO and performance hardening pass. Backend/data contracts remain unchanged and API mode remains fail-closed.
 
 ## Current product scope
 
@@ -118,7 +118,7 @@ They are `noindex` and return 404 in production.
 
 ## Frontend hardening
 
-Version 0.5.2 completes the source-level frontend integration pass. Global Header Search is a real native GET entry point to `/search/`; the shared SiteFrame remains the sole main landmark; known public links and hash targets are source-validated; filtered/search discovery URLs retain noindex behavior; and root `robots.ts` / `sitemap.ts` use centralized `siteConfig` rather than hardcoded production domains. The static sitemap intentionally excludes Search, development UI, query variants, and fictional/mock dynamic detail entities until the real CMS inventory becomes authoritative.
+Version 0.5.3 completes the source-level frontend integration pass. Global Header Search is a real native GET entry point to `/search/`; the shared SiteFrame remains the sole main landmark; known public links and hash targets are source-validated; filtered/search discovery URLs retain noindex behavior; and root `robots.ts` / `sitemap.ts` use centralized `siteConfig` rather than hardcoded production domains. The static sitemap intentionally excludes Search, development UI, query variants, and fictional/mock dynamic detail entities until the real CMS inventory becomes authoritative.
 
 Source-level accessibility hardening preserves keyboard/focus semantics, reduced-motion treatment, labelled forms, touch-target sizing and editorial reading measure. These checks are invariants, not a claim of complete WCAG conformance or visual runtime acceptance.
 
@@ -170,7 +170,7 @@ npm run build
 - **0.4.9:** Explanation Discovery / Archive with `/explanations/`, four curated editorial routes, repository-backed local filters/search/sort/pagination, archive SEO guardrails, and Footer discovery links.
 - **0.5.0:** Reusable Trust, Editorial & Static Page system for About, Contact, editorial standards, Privacy, Terms and Copyright / DMCA, with centralized typed content and conservative accuracy safeguards.
 - **0.5.1:** Production utility, error, loading, empty and unavailable-state foundation with real Search/Browse recovery and resilient global error fallback.
-- **0.5.2:** Complete public frontend source hardening: functional global Header Search, landmark/copy cleanup, source-level navigation/accessibility/SEO/performance audits, robots and static sitemap foundations, and deployment-readiness validation.
+- **0.5.3:** Complete public frontend source hardening: functional global Header Search, landmark/copy cleanup, source-level navigation/accessibility/SEO/performance audits, robots and static sitemap foundations, and deployment-readiness validation.
 
 ## Next deployment and runtime sequence
 

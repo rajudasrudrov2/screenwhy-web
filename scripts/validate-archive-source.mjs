@@ -61,7 +61,7 @@ check(utils.includes('params.set("page"') && utils.includes('params.set("q"'), "
 check(route.includes("availability.totalItems > 0") && route.includes("siteConfig.allowIndexing"), "Base archive indexing requires public content and site indexing permission");
 check(route.includes("filtered ? `${siteConfig.origin}${baseRoute}`") && route.includes("filtered ? `${siteConfig.origin}${PUBLIC_HUB_ROUTES.characters}`"), "Filtered variants canonicalize to clean base archives");
 check(!archivePage.match(/IMDb|rating|stars|Watch Now|Stream on/), "Ratings and watch-provider CTAs are absent");
-check(packageJson.name === "screenwhy-web" && packageJson.version === "0.5.2", "Package identity/version is ScreenWhy 0.5.2");
+check(packageJson.name === "screenwhy-web" && packageJson.version === "0.5.3", "Package identity/version is ScreenWhy 0.5.3");
 check(exists("src/app/(en)/movies/[slug]/page.tsx") && exists("src/app/(en)/characters/[slug]/page.tsx"), "Existing dynamic Title/Character routes remain intact");
 
 console.log(`\nArchive source guardrails: ${pass}/${pass + fail} PASS`);

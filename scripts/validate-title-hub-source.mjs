@@ -21,7 +21,7 @@ const feature = featureFiles.map(read).join("\n");
 const combined = `${routes}\n${feature}`;
 const pkg = JSON.parse(read("package.json"));
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.5.2", "Package identity/version is ScreenWhy 0.5.2");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.5.3", "Package identity/version is ScreenWhy 0.5.3");
 record(routeFiles.every(exists), "1. All five dynamic Title routes exist");
 record(routeFiles.every((file) => read(file).includes("renderTitleHubRoute")), "2. All Title routes delegate to the shared Title Hub implementation");
 record(feature.includes("repositories.titles.getBySlug"), "3. Repository Title lookup is used");

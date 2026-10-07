@@ -9,6 +9,8 @@ const checks = [];
 const check = (condition, label) => checks.push({ ok: Boolean(condition), label });
 
 const notFound = read("src/app/(en)/not-found.tsx");
+const globalNotFound = read("src/app/global-not-found.tsx");
+const nextConfig = read("next.config.ts");
 const errorBoundary = read("src/app/(en)/error.tsx");
 const loading = read("src/app/(en)/loading.tsx");
 const utility = read("src/features/utility-states/UtilityState.tsx");
@@ -20,7 +22,7 @@ const routes = read("src/config/routes.ts");
 const repositoryBoundary = read("src/data/repositories/create-repository.ts");
 const cardMedia = read("src/components/domain/cards/CardMedia.tsx");
 const mediaFrame = read("src/components/layout/MediaFrame.tsx");
-const newSource = [notFound, errorBoundary, loading, utility, utilityCss].join("\n");
+const newSource = [notFound, globalNotFound, errorBoundary, loading, utility, utilityCss].join("\n");
 
 check(notFound.includes('title="Page not found"') && notFound.includes('eyebrow="404"'), "1. Final public Page not found experience exists");
 check(!notFound.includes("Return to foundation"), "2. Old Return to foundation action is absent");
@@ -51,6 +53,8 @@ check(Object.keys(pkg.dependencies ?? {}).length === 3 && !/d3|framer-motion|lot
 check(exists("src/app/global-error.tsx") && read("src/app/global-error.tsx").includes('"use client"') && read("src/app/global-error.tsx").includes("<html") && read("src/app/global-error.tsx").includes("ScreenWhy"), "23. Minimal resilient global error fallback exists");
 check(cardMedia.includes("fallbackLabel") && cardMedia.includes('role="img"') && mediaFrame.includes("styles[ratio]"), "24. Existing media fallback and stable MediaFrame behavior remain in place");
 check(routes.includes("searchRoute") && routes.includes("PUBLIC_HUB_ROUTES"), "25. Central route helpers remain the utility navigation source");
+check(globalNotFound.includes('title="Page not found"') && globalNotFound.includes("RecoverySearch") && globalNotFound.includes("BrowseRecovery"), "26. Unmatched global routes use the ScreenWhy 404 recovery experience");
+check(nextConfig.includes("globalNotFound: true"), "27. Next.js global unmatched-route handling is enabled for the route-group root layout architecture");
 
 const failed = checks.filter((item) => !item.ok);
 for (const item of checks) console.log(`${item.ok ? "PASS" : "FAIL"} — ${item.label}`);

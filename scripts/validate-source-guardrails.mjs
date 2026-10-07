@@ -76,7 +76,7 @@ record(!hardcodedCmsHost, "Repository/API modules contain no hardcoded CMS hostn
 record(!anyEscapeHatch, "New repository/API modules contain no any escape hatch");
 
 const packageJson = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
-record(packageJson.version === "0.5.2", "Package version is 0.5.2");
+record(packageJson.version === "0.5.3", "Package version is 0.5.3");
 
 const forbiddenComponentNames = [
   "Timeline",
