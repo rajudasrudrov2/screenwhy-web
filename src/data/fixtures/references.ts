@@ -13,13 +13,6 @@ export const TITLE_REFERENCES = Object.freeze({
     displayTitle: "The Last Signal",
     publicRouteFamily: "movies",
   } satisfies TitleReference,
-  lastSignalBn: {
-    logicalId: FIXTURE_IDS.titles.lastSignal,
-    locale: "bn-BD",
-    slug: "shesh-songket",
-    displayTitle: "শেষ সংকেত",
-    publicRouteFamily: "movies",
-  } satisfies TitleReference,
   harborNineEn: {
     logicalId: FIXTURE_IDS.titles.harborNine,
     locale: "en-US",
@@ -64,12 +57,6 @@ export const EXPLANATION_REFERENCES = Object.freeze({
     locale: "en-US",
     slug: "why-the-final-signal-repeats",
     articleTitle: "Why the Final Signal Repeats",
-  } satisfies ExplanationReference,
-  lastSignalMysteryBn: {
-    logicalId: FIXTURE_IDS.explanations.lastSignalMystery,
-    locale: "bn-BD",
-    slug: "shesh-songket-keno-fire-ase",
-    articleTitle: "শেষ সংকেতটি কেন আবার ফিরে আসে",
   } satisfies ExplanationReference,
   lastSignalBookVsScreenEn: {
     logicalId: FIXTURE_IDS.explanations.lastSignalBookVsScreen,

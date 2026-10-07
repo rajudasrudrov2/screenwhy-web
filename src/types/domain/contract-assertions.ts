@@ -18,7 +18,6 @@ import type {
 import type {
   LocalizationContext,
   PublishedLocalizedVariant,
-  UnavailableLocalizedVariant,
 } from "@/types/domain/localization";
 import type { RelationshipState } from "@/types/domain/relationship";
 import type {
@@ -44,39 +43,14 @@ export type ContractInvariantA = Assert<
   >
 >;
 
-// B. English-only Title: BN counterpart is explicitly unavailable.
-type EnglishOnlyTitleLocalization = {
+// B. Current public Title localization is a published English variant.
+type CurrentTitleLocalization = {
   readonly requestedLocale: "en-US";
   readonly primaryLocale: "en-US";
   readonly currentVariant: PublishedLocalizedVariant<"title", "en-US">;
-  readonly counterpart: UnavailableLocalizedVariant<"title", "bn-BD"> & {
-    readonly publicationState: "not-created";
-  };
 };
 export type ContractInvariantB = Assert<
-  Extends<EnglishOnlyTitleLocalization, LocalizationContext<"title", "en-US">>
->;
-
-// Critical localization safeguard: a BN request cannot carry an EN current variant.
-type InvalidBanglaFallback = {
-  readonly requestedLocale: "bn-BD";
-  readonly primaryLocale: "en-US";
-  readonly currentVariant: PublishedLocalizedVariant<"title", "en-US">;
-  readonly counterpart: PublishedLocalizedVariant<"title", "en-US">;
-};
-export type ContractInvariantBNoFallback = Assert<
-  Not<Extends<InvalidBanglaFallback, LocalizationContext<"title", "bn-BD">>>
->;
-
-// C. EN + BN localized Title: the counterpart is a published BN variant.
-type BilingualTitleLocalization = {
-  readonly requestedLocale: "en-US";
-  readonly primaryLocale: "en-US";
-  readonly currentVariant: PublishedLocalizedVariant<"title", "en-US">;
-  readonly counterpart: PublishedLocalizedVariant<"title", "bn-BD">;
-};
-export type ContractInvariantC = Assert<
-  Extends<BilingualTitleLocalization, LocalizationContext<"title", "en-US">>
+  Extends<CurrentTitleLocalization, LocalizationContext<"title", "en-US">>
 >;
 
 // D. One Character can carry distinct status records in distinct Canon contexts.

@@ -22,10 +22,8 @@ export function TitleCard({ title, variant = "standard", explanationSignal }: Ti
   const routeLabel = routeFamilyLabel(title.publicRouteFamily, locale);
   const typeLabel = titleTypeLabel(title.titleType, locale);
   const contextLabel = routeLabel === typeLabel ? routeLabel : `${routeLabel} · ${typeLabel}`;
-  const missingMediaLabel = locale === "bn-BD" ? "পোস্টার নেই" : "Poster unavailable";
-  const accessibleName = locale === "bn-BD"
-    ? `${title.displayTitle} সম্পর্কে ব্যাখ্যা দেখুন`
-    : `Explore explanations for ${title.displayTitle}`;
+  const missingMediaLabel = "Poster unavailable";
+  const accessibleName = `Explore explanations for ${title.displayTitle}`;
 
   return (
     <article className={`${styles.card} ${styles[variant]}`} lang={locale}>
@@ -45,7 +43,7 @@ export function TitleCard({ title, variant = "standard", explanationSignal }: Ti
           </div>
           <h3 className={styles.title}>{title.displayTitle}</h3>
           {variant === "standard" && title.genres?.length ? (
-            <div className={styles.badges} aria-label={locale === "bn-BD" ? "ধরন" : "Genres"}>
+            <div className={styles.badges} aria-label="Genres">
               {title.genres.slice(0, 2).map((genre) => <Badge key={genre.slug}>{genre.label}</Badge>)}
             </div>
           ) : null}

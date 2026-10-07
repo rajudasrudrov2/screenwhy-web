@@ -30,5 +30,6 @@ let exitCode = await run("validate-data-foundation.js");
 if (exitCode === 0) exitCode = await run("validate-homepage-data.js");
 if (exitCode === 0) exitCode = await run("validate-title-hub-data.js");
 if (exitCode === 0) exitCode = await run("validate-character-detail-data.js");
+if (exitCode === 0) exitCode = await run("validate-search-data.js");
 await rm(outputRoot, { recursive: true, force: true });
 process.exitCode = exitCode;

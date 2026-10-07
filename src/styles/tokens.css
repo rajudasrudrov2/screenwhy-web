@@ -96,7 +96,6 @@
   /* Typography */
   --pe-font-body: var(--font-inter), Inter, Arial, sans-serif;
   --pe-font-heading: var(--font-manrope), Manrope, Arial, sans-serif;
-  --pe-font-bangla: var(--font-hind-siliguri), "Noto Sans Bengali", Arial, sans-serif;
 
   --pe-type-display-mobile: 40px;
   --pe-type-display-desktop: 56px;

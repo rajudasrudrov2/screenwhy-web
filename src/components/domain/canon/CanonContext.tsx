@@ -20,18 +20,12 @@ function toneFor(classification: CanonClassification) {
   return "established";
 }
 
-function scopeFallback(scope: CanonScope, locale: LocaleCode) {
-  if (scope.target.kind === "source_work") {
-    return locale === "bn-BD" ? "উৎসকর্মের ক্যানন" : "Source-work canon";
-  }
-  return locale === "bn-BD" ? "স্ক্রিন ক্যানন" : "Screen canon";
+function scopeFallback(scope: CanonScope, _locale: LocaleCode) {
+  return scope.target.kind === "source_work" ? "Source-work canon" : "Screen canon";
 }
 
-function scopeKind(scope: CanonScope, locale: LocaleCode) {
-  if (scope.target.kind === "source_work") {
-    return locale === "bn-BD" ? "উৎসকর্ম" : "Source material";
-  }
-  return locale === "bn-BD" ? "স্ক্রিন" : "Screen";
+function scopeKind(scope: CanonScope, _locale: LocaleCode) {
+  return scope.target.kind === "source_work" ? "Source material" : "Screen";
 }
 
 function CanonIcon({ classification }: { readonly classification: CanonClassification }) {
@@ -73,8 +67,8 @@ export function CanonContext({
     );
   }
 
-  const defaultHeading = locale === "bn-BD" ? "ক্যানন প্রসঙ্গ" : "Canon context";
-  const comparisonLabel = locale === "bn-BD" ? "তুলনা করা ধারাবাহিকতা" : "Compared continuities";
+  const defaultHeading = "Canon context";
+  const comparisonLabel = "Compared continuities";
 
   return (
     <aside className={`${styles.expanded} ${styles[tone]}`} lang={locale} aria-label={heading || defaultHeading}>

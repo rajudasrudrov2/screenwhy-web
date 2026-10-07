@@ -51,17 +51,15 @@ export default async function DomainUiPreviewPage() {
     runtimeEnvironment: "development",
   });
 
-  const [mysteryResult, adaptationResult, finaleResult, banglaResult] = await Promise.all([
+  const [mysteryResult, adaptationResult, finaleResult] = await Promise.all([
     repositories.explanations.getBySlug({ locale: "en-US", slug: "why-the-final-signal-repeats" }),
     repositories.explanations.getBySlug({ locale: "en-US", slug: "last-signal-book-vs-screen" }),
     repositories.explanations.getBySlug({ locale: "en-US", slug: "harbor-nine-ending-explained" }),
-    repositories.explanations.getBySlug({ locale: "bn-BD", slug: "shesh-songket-keno-fire-ase" }),
   ]);
 
   const mystery = requireExplanation(mysteryResult);
   const adaptation = requireExplanation(adaptationResult);
   const finale = requireExplanation(finaleResult);
-  const bangla = requireExplanation(banglaResult);
 
   const movieScope: CanonScope = {
     ...mystery.canon.scopes[0],
@@ -222,28 +220,7 @@ export default async function DomainUiPreviewPage() {
                 spoiler={mystery.spoiler}
                 spoilerScopeLabel="The Last Signal"
               />
-              <div className={styles.banglaBlock} lang="bn-BD">
-                <p className={styles.sampleLabel}>বাংলা নমুনা</p>
-                <QuickAnswer
-                  answer={bangla.quickAnswer}
-                  locale="bn-BD"
-                  canon={canonWithScope(bangla.canon.classification, {
-                    ...bangla.canon.scopes[0],
-                    label: bangla.primaryTitle.displayTitle,
-                  })}
-                  spoiler={bangla.spoiler}
-                  spoilerScopeLabel={bangla.primaryTitle.displayTitle}
-                />
-                <EditorialMetadata
-                  locale="bn-BD"
-                  dates={bangla.dates}
-                  author={bangla.author}
-                  reviewerEditor={bangla.reviewerEditor}
-                  explanationType={bangla.explanationType}
-                  primaryTitle={bangla.primaryTitle}
-                  variant="stacked"
-                />
-              </div>
+
             </ReadingColumn>
           </section>
 

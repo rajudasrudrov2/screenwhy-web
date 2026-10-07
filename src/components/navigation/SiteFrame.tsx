@@ -8,14 +8,13 @@ type SiteFrameProps = {
   locale: LocaleCode;
   children: ReactNode;
   activePath?: string;
-  alternateLocaleHref?: string;
 };
 
-export function SiteFrame({ locale, children, activePath, alternateLocaleHref }: SiteFrameProps) {
+export function SiteFrame({ locale, children, activePath }: SiteFrameProps) {
   return (
     <div className={styles.frame}>
       <a className={styles.skipLink} href="#main-content">Skip to content</a>
-      <SiteHeader locale={locale} activePath={activePath} alternateLocaleHref={alternateLocaleHref} />
+      <SiteHeader locale={locale} activePath={activePath} />
       <main id="main-content" className={styles.main}>{children}</main>
       <SiteFooter locale={locale} />
     </div>

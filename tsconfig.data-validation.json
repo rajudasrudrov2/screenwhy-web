@@ -31,7 +31,11 @@
     "src/features/title-hub/title-hub.types.ts",
     "scripts/validate-character-detail-data.ts",
     "src/features/character-detail/character-detail.loader.ts",
-    "src/features/character-detail/character-detail.types.ts"
+    "src/features/character-detail/character-detail.types.ts",
+    "scripts/validate-search-data.ts",
+    "src/features/search/search.loader.ts",
+    "src/features/search/search.types.ts",
+    "src/features/search/search.utils.ts"
   ],
   "exclude": [
     "node_modules",

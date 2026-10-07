@@ -10,29 +10,12 @@ const routeFamilyLabels: Record<LocaleCode, Record<PublicRouteFamily, string>> =
     "k-drama": "K-Drama",
     documentaries: "Documentaries",
   },
-  "bn-BD": {
-    movies: "মুভি",
-    tv: "টিভি",
-    anime: "অ্যানিমে",
-    "k-drama": "কে-ড্রামা",
-    documentaries: "ডকুমেন্টারি",
-  },
-};
-
-const bnTitleTypeLabels: Record<TitleType, string> = {
-  movie: "মুভি",
-  tv_series: "টিভি সিরিজ",
-  miniseries: "মিনিসিরিজ",
-  documentary: "ডকুমেন্টারি",
-  tv_special: "টিভি স্পেশাল",
-  web_series: "ওয়েব সিরিজ",
-  other_screen_story: "অন্যান্য স্ক্রিন গল্প",
 };
 
 export function routeFamilyLabel(routeFamily: PublicRouteFamily, locale: LocaleCode) {
   return routeFamilyLabels[locale][routeFamily];
 }
 
-export function titleTypeLabel(titleType: TitleType, locale: LocaleCode) {
-  return locale === "bn-BD" ? bnTitleTypeLabels[titleType] : TITLE_TYPE_LABELS[titleType];
+export function titleTypeLabel(titleType: TitleType, _locale: LocaleCode) {
+  return TITLE_TYPE_LABELS[titleType];
 }

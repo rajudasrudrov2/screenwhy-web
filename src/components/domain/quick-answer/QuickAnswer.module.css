@@ -34,16 +34,6 @@
   line-height: 1.58;
 }
 
-.quickAnswer[lang^="bn"] .label {
-  letter-spacing: normal;
-  text-transform: none;
-}
-
-.quickAnswer[lang^="bn"] .answer {
-  font-family: var(--pe-font-bangla);
-  line-height: 1.68;
-}
-
 @media (min-width: 768px) {
   .quickAnswer { padding: var(--pe-space-6); }
 }

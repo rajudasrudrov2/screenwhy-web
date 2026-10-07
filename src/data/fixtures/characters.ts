@@ -1,9 +1,7 @@
 import type { CharacterDetail } from "@/types/domain/character";
-import type { UnavailableLocalizedVariant } from "@/types/domain/localization";
 import {
   localizedIdentity,
   publishedVariant,
-  unavailableVariant,
 } from "@/data/fixtures/factories/localization";
 import { serializedDateTime } from "@/data/fixtures/factories/fixture-values";
 import { FIXTURE_IDS } from "@/data/fixtures/ids";
@@ -22,24 +20,12 @@ const maraEnVariant = publishedVariant({
   slug: "mara-vale",
 });
 
-const maraBnUnavailable = unavailableVariant({
-  kind: "character",
-  locale: "bn-BD",
-  publicationState: "not-created",
-});
-
 const eliasEnVariant = publishedVariant({
   kind: "character",
   locale: "en-US",
   variantKey: "variant:character:elias-vale:en-US",
   postId: 5002,
   slug: "elias-vale",
-});
-
-const eliasBnUnavailable = unavailableVariant({
-  kind: "character",
-  locale: "bn-BD",
-  publicationState: "not-created",
 });
 
 export const MOCK_CHARACTERS_EN: readonly CharacterDetail<"en-US">[] = Object.freeze([
@@ -49,7 +35,6 @@ export const MOCK_CHARACTERS_EN: readonly CharacterDetail<"en-US">[] = Object.fr
       logicalId: FIXTURE_IDS.characters.maraVale,
       requestedLocale: "en-US",
       currentVariant: maraEnVariant,
-      counterpart: maraBnUnavailable,
     }),
     displayName: "Mara Vale",
     primaryTitleContext: TITLE_REFERENCES.lastSignalEn,
@@ -156,7 +141,6 @@ export const MOCK_CHARACTERS_EN: readonly CharacterDetail<"en-US">[] = Object.fr
       logicalId: FIXTURE_IDS.characters.eliasVale,
       requestedLocale: "en-US",
       currentVariant: eliasEnVariant,
-      counterpart: eliasBnUnavailable,
     }),
     displayName: "Elias Vale",
     primaryTitleContext: TITLE_REFERENCES.lastSignalEn,
@@ -181,22 +165,3 @@ export const MOCK_CHARACTERS_EN: readonly CharacterDetail<"en-US">[] = Object.fr
     },
   },
 ]);
-
-export const MOCK_CHARACTERS_BN: readonly CharacterDetail<"bn-BD">[] = Object.freeze([]);
-
-export const MOCK_CHARACTER_UNAVAILABLE_LOOKUPS = Object.freeze([
-  {
-    locale: "bn-BD",
-    slug: "mara-vale",
-    variant: maraBnUnavailable,
-  },
-  {
-    locale: "bn-BD",
-    slug: "elias-vale",
-    variant: eliasBnUnavailable,
-  },
-] as const satisfies readonly {
-  readonly locale: "bn-BD";
-  readonly slug: string;
-  readonly variant: UnavailableLocalizedVariant<"character", "bn-BD">;
-}[]);

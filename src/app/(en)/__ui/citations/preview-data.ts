@@ -58,14 +58,6 @@ export const previewSources = {
     url: "https://example.com/screenwhy-preview/secondary-analysis",
     verificationState: "unverified",
   },
-  bangla: {
-    sourceId: sourceId("preview:bangla-source"),
-    sourceType: "official_creator_source",
-    sourceTitle: "কাল্পনিক নির্মাতা নোট: সংকেতটি কারণের আগে কেন শোনা যায়",
-    creatorAuthor: "মারা ভেন",
-    publisher: "নর্থলাইন পিকচার্স — ডেমো আর্কাইভ",
-    verificationState: "approved",
-  },
 } as const satisfies Record<string, PublicSource>;
 
 export const englishCitations = [
@@ -109,22 +101,5 @@ export const englishCitations = [
     claimSummary: "A secondary reading compares the chronology cue with the repeated visual motif.",
     publicVisibility: true,
     verificationState: "unverified",
-  },
-] as const satisfies readonly PublicCitation[];
-
-export const banglaCitations = [
-  {
-    source: previewSources.bangla,
-    claimSummary: "কাল্পনিক নির্মাতা নোটে বলা হয়েছে যে সংকেতটি ইচ্ছাকৃতভাবে তার দৃশ্যমান কারণের আগে রাখা হয়েছে।",
-    sectionAnchor: "section-bn-signal-order",
-    publicVisibility: true,
-    verificationState: "approved",
-  },
-  {
-    source: previewSources.novel,
-    claimSummary: "মূল উৎসকর্মে একই সতর্কবার্তার জন্য ভিন্ন একটি কাল্পনিক ব্যাখ্যা ব্যবহৃত হয়েছে।",
-    sectionAnchor: "section-bn-adaptation",
-    publicVisibility: true,
-    verificationState: "source_checked",
   },
 ] as const satisfies readonly PublicCitation[];

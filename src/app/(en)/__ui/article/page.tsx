@@ -32,7 +32,6 @@ import type { ExplanationDetail } from "@/types/domain/explanation";
 import type { LocaleCode } from "@/lib/i18n/locales";
 import {
   articlePreviewImage,
-  banglaArticleSections,
   englishArticleSections,
 } from "./preview-data";
 import styles from "./article-preview.module.css";
@@ -68,21 +67,13 @@ export default async function ArticleUiPreviewPage() {
     runtimeEnvironment: "development",
   });
 
-  const [englishResult, banglaResult] = await Promise.all([
-    repositories.explanations.getBySlug({
-      locale: "en-US",
-      slug: "last-signal-book-vs-screen",
-    }),
-    repositories.explanations.getBySlug({
-      locale: "bn-BD",
-      slug: "shesh-songket-keno-fire-ase",
-    }),
-  ]);
+  const englishResult = await repositories.explanations.getBySlug({
+    locale: "en-US",
+    slug: "last-signal-book-vs-screen",
+  });
 
   const explanation = requireExplanation(englishResult);
-  const bangla = requireExplanation(banglaResult);
   const englishToc = buildArticleTocItems(englishArticleSections);
-  const banglaToc = buildArticleTocItems(banglaArticleSections);
 
   if (explanation.canon.classification !== "adaptation_difference") {
     throw new Error("The development article preview requires its adaptation-difference fixture.");
@@ -244,67 +235,6 @@ export default async function ArticleUiPreviewPage() {
                       This revealed paragraph is still illustrative. It demonstrates the composition boundary only; it is not a claim about a real film, series, novel, or production.
                     </ArticleParagraph>
                   </ArticleSpoilerSection>
-                </ArticleSection>
-              </ArticleProse>
-            </ArticleReadingLayout>
-          </section>
-
-          <section className={styles.board} aria-labelledby="bangla-article-preview" lang="bn-BD">
-            <div className={styles.sectionHeading}>
-              <span>02</span>
-              <div>
-                <h2 id="bangla-article-preview">বাংলা দীর্ঘ-পাঠ নমুনা</h2>
-                <p>Hind Siliguri, আরামদায়ক লাইন-হাইট, বাংলা TOC ও দীর্ঘ শিরোনাম র‌্যাপিং যাচাইয়ের জন্য।</p>
-              </div>
-            </div>
-
-            <ArticleReadingLayout
-              toc={<ArticleTableOfContents items={banglaToc} locale="bn-BD" />}
-            >
-              <ArticleProse locale="bn-BD">
-                <ArticleLead>
-                  এটি সম্পূর্ণ কাল্পনিক গল্পের উদাহরণ। উদ্দেশ্য হলো বাংলা ব্যাখ্যামূলক লেখায় শিরোনাম, অনুচ্ছেদ, তালিকা, ক্যানন প্রসঙ্গ এবং নেভিগেশন কীভাবে পড়তে স্বচ্ছন্দ থাকে তা যাচাই করা।
-                </ArticleLead>
-
-                <ArticleSection
-                  id={banglaArticleSections[0].id}
-                  heading={banglaArticleSections[0].heading}
-                  locale="bn-BD"
-                >
-                  <ArticleParagraph>
-                    গল্পের শুরুতে একটি সতর্ক সংকেত শোনা যায়, কিন্তু তখনও দর্শক জানে না সেটি কোথা থেকে এসেছে। পরের ঘটনাগুলো আগের দৃশ্যটির অর্থ বদলে দেয়, তবে আগের তথ্যকে বাতিল করে না। এই ধরনের ব্যাখ্যায় <ArticleStrong>ঘটনার ক্রম</ArticleStrong> এবং <ArticleStrong>দেখানোর ক্রম</ArticleStrong> আলাদা করে বোঝানো জরুরি।
-                  </ArticleParagraph>
-                  <ArticleList
-                    items={[
-                      <>প্রথমে সংকেতটি শোনা যায়।</>,
-                      <>পরে তার উৎস সম্পর্কে নতুন তথ্য পাওয়া যায়।</>,
-                      <>সবশেষে আগের দৃশ্যটির নতুন অর্থ স্পষ্ট হয়।</>,
-                    ]}
-                  />
-                </ArticleSection>
-
-                <ArticleSection
-                  id={banglaArticleSections[0].sections?.[0]?.id ?? banglaArticleSections[0].id}
-                  heading={banglaArticleSections[0].sections?.[0]?.heading ?? "ঘटनাগুলোর ক্রম কেন গুরুত্বপূর্ণ"}
-                  level={3}
-                  locale="bn-BD"
-                >
-                  <ArticleParagraph>
-                    দীর্ঘ বাংলা শিরোনাম ও বাক্য যেন কাটাছেঁড়া না হয়, তাই এই নমুনায় টেক্সট স্বাভাবিকভাবে একাধিক লাইনে যেতে পারে। কোনো ইংরেজি-নির্ভর letter-spacing বাংলা লেখায় প্রয়োগ করা হয় না।
-                  </ArticleParagraph>
-                </ArticleSection>
-
-                <ArticleSection
-                  id={banglaArticleSections[1].id}
-                  heading={banglaArticleSections[1].heading}
-                  locale="bn-BD"
-                >
-                  <ArticleCanonNote context={bangla.canon} locale="bn-BD">
-                    <p>যেটি গল্পে নিশ্চিতভাবে প্রতিষ্ঠিত এবং যেটি বিশ্লেষণ, দুটিকে একইভাবে উপস্থাপন করা হয় না।</p>
-                  </ArticleCanonNote>
-                  <ArticleParagraph>
-                    এই নমুনা <ArticleLink href="/__ui/domain/">ডোমেইন UI প্রিভিউ</ArticleLink>-এর বিদ্যমান ক্যানন ও স্পয়লার সিস্টেমই ব্যবহার করে; নতুন কোনো সমান্তরাল ট্যাক্সোনমি তৈরি করে না।
-                  </ArticleParagraph>
                 </ArticleSection>
               </ArticleProse>
             </ArticleReadingLayout>

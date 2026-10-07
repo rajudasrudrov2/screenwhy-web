@@ -8,7 +8,7 @@ import { createRepositories } from "@/data";
 import type { CharacterSummary } from "@/types/domain/character";
 import type { ExplanationSummary } from "@/types/domain/explanation";
 import type { TitleSummary } from "@/types/domain/title";
-import { previewBanglaCharacter, previewPortrait, previewPoster } from "./preview-data";
+import { previewPortrait, previewPoster } from "./preview-data";
 import styles from "./cards-preview.module.css";
 
 export const metadata: Metadata = { title: "Card UI Preview", robots: { index: false, follow: false, nocache: true } };
@@ -23,27 +23,22 @@ export default async function CardsPreviewPage() {
   if (process.env.NODE_ENV === "production") notFound();
 
   const repositories = createRepositories({ dataSource: "mock", runtimeEnvironment: "development" });
-  const [titlesEn, titlesBn, explanationsEn, explanationsBn, charactersEn] = await Promise.all([
+  const [titlesEn, explanationsEn, charactersEn] = await Promise.all([
     repositories.titles.list({ locale: "en-US", page: 1, pageSize: 20 }),
-    repositories.titles.list({ locale: "bn-BD", page: 1, pageSize: 20 }),
     repositories.explanations.list({ locale: "en-US", page: 1, pageSize: 20 }),
-    repositories.explanations.list({ locale: "bn-BD", page: 1, pageSize: 20 }),
     repositories.characters.list({ locale: "en-US", page: 1, pageSize: 20 }),
   ]);
 
   const movie = requireItem(titlesEn.items.filter((item) => item.publicRouteFamily === "movies"));
   const anime = requireItem(titlesEn.items.filter((item) => item.publicRouteFamily === "anime"));
-  const banglaTitle = requireItem(titlesBn.items);
   const explanation = requireItem(explanationsEn.items);
   const majorExplanation = requireItem(explanationsEn.items.filter((item) => item.spoiler.screen.level === "major"));
   const canonExplanation = requireItem(explanationsEn.items.filter((item) => item.canon.classification === "adaptation_difference"));
-  const banglaExplanation = requireItem(explanationsBn.items);
   const character = requireItem(charactersEn.items);
 
   const movieWithMedia: TitleSummary = { ...movie, poster: previewPoster(movie.displayTitle) };
   const animeWithMedia: TitleSummary = { ...anime, poster: previewPoster(anime.displayTitle, "#177E75") };
   const longTitle: TitleSummary = { ...movieWithMedia, displayTitle: "The Last Signal and the Deliberately Long Observatory Transmission Mystery" };
-  const bnWithMedia: TitleSummary<"bn-BD"> = { ...banglaTitle, poster: previewPoster(banglaTitle.displayTitle, "#F0B44D") };
   const longExplanation: ExplanationSummary = { ...explanation, articleTitle: "Why the Last Signal Keeps Returning Even After Every Known Transmitter Has Gone Silent" };
   const characterWithMedia: CharacterSummary = { ...character, portrait: previewPortrait(character.displayName) };
   const longCharacter: CharacterSummary = { ...characterWithMedia, displayName: "Mara Vale of the North Coast Signal Observatory" };
@@ -71,7 +66,7 @@ export default async function CardsPreviewPage() {
             </div>
             <div className={styles.compactGrid}>
               <TitleCard title={movieWithMedia} variant="compact" explanationSignal="Related title" />
-              <TitleCard title={bnWithMedia} variant="compact" explanationSignal="বাংলা ব্যাখ্যা উপলভ্য" />
+              <TitleCard title={longTitle} variant="compact" explanationSignal="Long-title compact wrapping check" />
             </div>
           </section>
 
@@ -82,7 +77,6 @@ export default async function CardsPreviewPage() {
               <ExplanationCard explanation={majorExplanation} />
               <ExplanationCard explanation={canonExplanation} showCanon />
               <ExplanationCard explanation={longExplanation} />
-              <ExplanationCard explanation={banglaExplanation} />
             </div>
             <div className={styles.compactGrid}>
               <ExplanationCard explanation={majorExplanation} variant="compact" />
@@ -96,11 +90,10 @@ export default async function CardsPreviewPage() {
               <CharacterCard character={characterWithMedia} discoverySignal="2 related explanations" />
               <CharacterCard character={{ ...character, portrait: undefined }} discoverySignal="Missing portrait" />
               <CharacterCard character={longCharacter} discoverySignal="Long-name wrapping check" />
-              <CharacterCard character={previewBanglaCharacter} discoverySignal="স্পয়লার-মুক্ত চরিত্র পরিচিতি" />
             </div>
             <div className={styles.compactGrid}>
               <CharacterCard character={characterWithMedia} variant="compact" discoverySignal="Related character" />
-              <CharacterCard character={previewBanglaCharacter} variant="compact" discoverySignal="বাংলা চরিত্র" />
+              <CharacterCard character={longCharacter} variant="compact" discoverySignal="Long-name compact wrapping check" />
             </div>
           </section>
         </PageContainer>

@@ -29,9 +29,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-html[lang^="bn"] body {
-  font-family: var(--pe-font-bangla);
-}
 
 h1,
 h2,
@@ -159,16 +156,6 @@ a {
   font-family: var(--pe-font-heading);
 }
 
-[lang^="bn"] {
-  font-family: var(--pe-font-bangla);
-  letter-spacing: normal;
-}
-
-[lang^="bn"] :is(h1, h2, h3, h4, h5, h6),
-html[lang^="bn"] :is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--pe-font-bangla);
-  letter-spacing: normal;
-}
 
 .pe-display {
   font-family: var(--pe-font-heading);
@@ -178,11 +165,6 @@ html[lang^="bn"] :is(h1, h2, h3, h4, h5, h6) {
   letter-spacing: -0.03em;
 }
 
-[lang^="bn"].pe-display,
-html[lang^="bn"] .pe-display {
-  font-family: var(--pe-font-bangla);
-  letter-spacing: normal;
-}
 
 .pe-lead {
   max-width: var(--pe-compact-prose-max);
@@ -197,11 +179,6 @@ html[lang^="bn"] .pe-display {
   line-height: 1.62;
 }
 
-[lang^="bn"].pe-article-body,
-html[lang^="bn"] .pe-article-body {
-  font-family: var(--pe-font-bangla);
-  letter-spacing: normal;
-}
 
 .pe-metadata {
   color: var(--pe-text-muted);

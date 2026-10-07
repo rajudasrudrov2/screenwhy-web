@@ -29,16 +29,6 @@ const labels = {
     title: "Title",
     group: "Editorial metadata",
   },
-  "bn-BD": {
-    author: "লেখক",
-    reviewer: "রিভিউ করেছেন",
-    published: "প্রকাশিত",
-    modified: "সংশোধিত",
-    reviewed: "সর্বশেষ রিভিউ",
-    type: "ব্যাখ্যার ধরন",
-    title: "শিরোনাম",
-    group: "সম্পাদকীয় তথ্য",
-  },
 } as const;
 
 function formatDate(value: string, locale: LocaleCode) {

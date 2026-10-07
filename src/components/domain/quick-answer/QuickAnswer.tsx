@@ -24,7 +24,7 @@ export function QuickAnswer({
   sourceWorkLabel,
   label,
 }: QuickAnswerProps) {
-  const resolvedLabel = label || (locale === "bn-BD" ? "সংক্ষিপ্ত উত্তর" : "Quick Answer");
+  const resolvedLabel = label || "Quick Answer";
   const paragraphs = answer.split(/\n{2,}/).map((part) => part.trim()).filter(Boolean);
 
   return (

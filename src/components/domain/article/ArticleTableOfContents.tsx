@@ -53,8 +53,7 @@ export function ArticleTableOfContents({
   label,
   mobileDefaultOpen = false,
 }: ArticleTableOfContentsProps) {
-  const resolvedLabel =
-    label ?? (locale === "bn-BD" ? "এই ব্যাখ্যায়" : "In this explanation");
+  const resolvedLabel = label ?? "In this explanation";
 
   return (
     <div className={styles.wrapper} lang={locale}>

@@ -1,4 +1,4 @@
-import { Hind_Siliguri, Inter, Manrope } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 
 export const inter = Inter({
   variable: "--font-inter",
@@ -16,17 +16,4 @@ export const manrope = Manrope({
   fallback: ["Arial", "sans-serif"],
 });
 
-export const hindSiliguri = Hind_Siliguri({
-  variable: "--font-hind-siliguri",
-  subsets: ["bengali", "latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  preload: true,
-  fallback: ["Noto Sans Bengali", "Arial", "sans-serif"],
-});
-
-export const fontVariableClassName = [
-  inter.variable,
-  manrope.variable,
-  hindSiliguri.variable,
-].join(" ");
+export const fontVariableClassName = [inter.variable, manrope.variable].join(" ");

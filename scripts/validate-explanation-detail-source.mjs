@@ -27,7 +27,7 @@ const adapter = adapterFiles.map(read).join("\n");
 const combined = [route, feature, adapter].join("\n");
 const pkg = JSON.parse(read("package.json"));
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.4.3", "Package identity/version is ScreenWhy 0.4.3");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.4.6", "Package identity/version is ScreenWhy 0.4.6");
 record(exists(routePath), "/explain/[slug]/ App Router route exists");
 record(feature.includes("getRepositories") && feature.includes("repositories.explanations.getBySlug"), "Explanation loader uses the public repository lookup boundary");
 record(!/@\/data\/(fixtures|mock)/.test(feature), "Explanation page feature imports no raw fixture/mock internals");
@@ -60,7 +60,7 @@ record(adapter.includes("assertArticleEvidenceIntegrity") && adapter.includes("p
 record(adapter.includes("sectionAnchor") && adapter.includes("sectionIds"), "Citation section anchors are validated against renderable article sections");
 record(feature.includes("ArticleReadingLayout") && feature.includes("ArticleProse") && feature.includes("ArticleSection"), "Completed article reading primitives are composed rather than recreated");
 record(exists("src/app/(en)/movies/[slug]/page.tsx") && exists("src/app/(en)/tv/[slug]/page.tsx"), "Explanation Detail remains compatible after the planned Title Hub stage was added");
-record(!exists("src/app/(en)/search/page.tsx"), "Search results page remains deferred");
+record(!feature.includes("SearchPage") && !feature.includes("loadSearchPage"), "Explanation Detail remains isolated from the later Search Results feature");
 record(exists("src/app/(en)/characters/[slug]/page.tsx"), "Character Detail route is now available without changing the Explanation Detail architecture");
 
 const failed = checks.filter((check) => !check.ok);

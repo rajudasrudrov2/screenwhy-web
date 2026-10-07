@@ -33,16 +33,6 @@
   list-style: none;
 }
 
-.section[lang^="bn"] {
-  font-family: var(--pe-font-bangla);
-  letter-spacing: normal;
-}
-
-.section[lang^="bn"] .headingRow h2 {
-  font-family: var(--pe-font-bangla);
-  line-height: 1.35;
-}
-
 @media (min-width: 1024px) {
   .headingRow h2 {
     font-size: var(--pe-type-h2-desktop);

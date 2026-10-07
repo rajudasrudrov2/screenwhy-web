@@ -14,9 +14,6 @@ export type LocalizedVariantPublicationState =
   | "published"
   | "unpublished";
 
-export type CounterpartLocale<TLocale extends LocaleCode> =
-  TLocale extends "en-US" ? "bn-BD" : "en-US";
-
 export interface PublishedLocalizedVariant<
   TKind extends LogicalEntityKind,
   TLocale extends LocaleCode,
@@ -58,9 +55,9 @@ export type LocalizedVariantAvailability<
   | UnavailableLocalizedVariant<TKind, TLocale>;
 
 /**
- * Context attached to every public localized Title/Character/Explanation.
- * A public entity can only carry a published variant for its requested locale.
- * Therefore a bn-BD model cannot point at an en-US variant as its current copy.
+ * Current public localization context. Logical identity remains independent
+ * from the concrete release locale, while this frontend currently supports
+ * only the published English variant.
  */
 export interface LocalizationContext<
   TKind extends LogicalEntityKind,
@@ -69,10 +66,6 @@ export interface LocalizationContext<
   readonly requestedLocale: TLocale;
   readonly primaryLocale: PrimaryLocale;
   readonly currentVariant: PublishedLocalizedVariant<TKind, TLocale>;
-  readonly counterpart: LocalizedVariantAvailability<
-    TKind,
-    CounterpartLocale<TLocale>
-  >;
 }
 
 export interface LocalizedEntityIdentity<

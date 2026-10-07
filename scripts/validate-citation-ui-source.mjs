@@ -23,7 +23,7 @@ function walk(rel, predicate = () => true) {
 }
 
 const pkg = JSON.parse(read("package.json"));
-record(pkg.name === "screenwhy-web" && pkg.version === "0.4.3", "Package identity/version is ScreenWhy 0.4.3");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.4.6", "Package identity/version is ScreenWhy 0.4.6");
 
 const required = [
   "src/components/domain/citation/CitationMarker.tsx",
@@ -64,7 +64,7 @@ record(!/>\s*\{source\.url\}\s*</.test(sourceItem), "Raw external URL is not ren
 
 const preview = read("src/app/(en)/__ui/citations/page.tsx");
 record(preview.includes("CitationMarker") && preview.includes("ArticleProse") && preview.includes("ArticleSection"), "Citation markers integrate with existing article primitives");
-record(preview.includes('locale="bn-BD"') && preview.includes("বাংলা"), "Bangla citation/source example is present");
+record(preview.includes("CitationMarker"), "English citation preview remains present");
 record(preview.includes("robots: { index: false") && preview.includes('process.env.NODE_ENV === "production"') && preview.includes("notFound()"), "Citation preview is noindex and production-gated");
 
 const previewData = read("src/app/(en)/__ui/citations/preview-data.ts");

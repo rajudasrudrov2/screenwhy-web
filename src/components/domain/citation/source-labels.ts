@@ -15,22 +15,13 @@ export const sourceTypeLabels: Record<LocaleCode, Record<SourceType, string>> = 
     database_reference: "Reference database",
     community_research: "Community research",
   },
-  "bn-BD": {
-    primary_screen_work: "প্রাথমিক পর্দার কাজ",
-    episode: "এপিসোড",
-    official_creator_source: "অফিশিয়াল নির্মাতা উৎস",
-    official_studio_network_source: "অফিশিয়াল স্টুডিও / নেটওয়ার্ক উৎস",
-    creator_interview: "নির্মাতার সাক্ষাৎকার",
-    cast_interview: "অভিনয়শিল্পীর সাক্ষাৎকার",
-    source_material: "মূল উৎসকর্ম",
-    official_script_or_transcript: "অফিশিয়াল স্ক্রিপ্ট / ট্রান্সক্রিপ্ট",
-    reputable_secondary: "বিশ্বস্ত দ্বিতীয়িক উৎস",
-    database_reference: "রেফারেন্স ডেটাবেস",
-    community_research: "কমিউনিটি গবেষণা",
-  },
 };
 
-export const citationLabels = {
+export const citationLabels: Record<LocaleCode, {
+  readonly sources: string; readonly source: string; readonly claim: string; readonly openSource: string;
+  readonly published: string; readonly accessed: string; readonly reference: string; readonly citation: string;
+  readonly citations: string; readonly sourceChecked: string; readonly factChecked: string; readonly approved: string;
+}> = {
   "en-US": {
     sources: "Sources",
     source: "Source",
@@ -45,18 +36,4 @@ export const citationLabels = {
     factChecked: "Fact checked",
     approved: "Editorially approved",
   },
-  "bn-BD": {
-    sources: "উৎসসমূহ",
-    source: "উৎস",
-    claim: "যে দাবিটি সমর্থন করে",
-    openSource: "উৎস খুলুন",
-    published: "প্রকাশিত",
-    accessed: "দেখা হয়েছে",
-    reference: "রেফারেন্স",
-    citation: "উদ্ধৃতি",
-    citations: "উদ্ধৃতিসমূহ",
-    sourceChecked: "উৎস যাচাই করা হয়েছে",
-    factChecked: "তথ্য যাচাই করা হয়েছে",
-    approved: "সম্পাদকীয়ভাবে অনুমোদিত",
-  },
-} as const;
+};

@@ -5,8 +5,7 @@ import type {
   ExplanationLookupQuery,
 } from "@/data/repositories/queries";
 import {
-  explanationFixturesForLocale,
-  unavailableExplanationVariant,
+  explanationFixturesForLocale
 } from "@/data/mock/fixture-selectors";
 import { paginate } from "@/data/mock/paginate";
 
@@ -24,16 +23,6 @@ export const mockExplanationRepository: ExplanationRepository = {
         status: "available",
         requestedLocale: query.locale,
         value: match,
-      };
-    }
-
-    const unavailable = unavailableExplanationVariant(query);
-    if (unavailable) {
-      return {
-        status: "unavailable",
-        requestedLocale: query.locale,
-        value: null,
-        variant: unavailable,
       };
     }
 

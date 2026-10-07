@@ -19,13 +19,13 @@ export function ClaimEvidence({
   const registry = createCitationRegistry(citations);
   if (registry.citations.length === 0) return null;
 
-  const resolvedHeading = heading ?? (locale === "bn-BD" ? "প্রমাণ ও উৎস" : "Evidence & sources");
+  const resolvedHeading = heading ?? "Evidence & sources";
 
   return (
     <aside className={styles.evidence} lang={locale} aria-label={resolvedHeading}>
       <div className={styles.headingRow}>
         <h3>{resolvedHeading}</h3>
-        <div className={styles.markers} aria-label={locale === "bn-BD" ? "উৎস নির্দেশক" : "Source markers"}>
+        <div className={styles.markers} aria-label="Source markers">
           {registry.citations.map((entry) => (
             <CitationMarker
               key={entry.markerId}

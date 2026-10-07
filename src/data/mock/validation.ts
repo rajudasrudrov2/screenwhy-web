@@ -5,7 +5,7 @@ import { MOCK_INSTALLMENTS } from "@/data/fixtures/installments";
 import { MOCK_RELATIONSHIPS } from "@/data/fixtures/relationships";
 import { MOCK_SOURCES, LAST_SIGNAL_SOURCE_WORK } from "@/data/fixtures/sources";
 import { MOCK_TIMELINE_EVENTS } from "@/data/fixtures/timeline";
-import { MOCK_TITLES_BN, MOCK_TITLES_EN } from "@/data/fixtures/titles";
+import { MOCK_TITLES_EN } from "@/data/fixtures/titles";
 import { mockRepositories } from "@/data/mock/create-mock-repositories";
 
 export interface MockValidationResult {
@@ -198,39 +198,7 @@ export async function runMockDataValidation(): Promise<MockValidationResult> {
     failures,
   );
 
-  const bnTitle = await mockRepositories.titles.getBySlug({
-    locale: "bn-BD",
-    routeFamily: "movies",
-    slug: "shesh-songket",
-  });
-  requireCheck(
-    bnTitle.status === "available" &&
-      bnTitle.value.identity.localization.requestedLocale === "bn-BD" &&
-      bnTitle.value.displayTitle === "শেষ সংকেত",
-    "2. Published BN lookup returns BN content",
-    checks,
-    failures,
-  );
 
-  const unavailableBn = await mockRepositories.titles.getBySlug({
-    locale: "bn-BD",
-    routeFamily: "tv",
-    slug: "harbor-nine",
-  });
-  requireCheck(
-    unavailableBn.status === "unavailable" && unavailableBn.value === null,
-    "3. Missing BN returns explicit unavailable result",
-    checks,
-    failures,
-  );
-  requireCheck(
-    unavailableBn.status === "unavailable" &&
-      unavailableBn.requestedLocale === "bn-BD" &&
-      !("displayTitle" in (unavailableBn.value ?? {})),
-    "4. Missing BN does not fall back to EN editorial content",
-    checks,
-    failures,
-  );
 
   const anime = await mockRepositories.titles.getBySlug({
     locale: "en-US",
@@ -241,7 +209,7 @@ export async function runMockDataValidation(): Promise<MockValidationResult> {
     anime.status === "available" &&
       anime.value.publicRouteFamily === "anime" &&
       anime.value.titleType === "tv_series",
-    "5. Anime route family stays independent from fundamental Title Type",
+    "2. Anime route family stays independent from fundamental Title Type",
     checks,
     failures,
   );
@@ -252,7 +220,7 @@ export async function runMockDataValidation(): Promise<MockValidationResult> {
   requireCheck(
     adaptation?.canon.classification === "adaptation_difference" &&
       adaptation.canon.scopes.length >= 2,
-    "6. Adaptation Difference preserves at least two Canon scopes",
+    "3. Adaptation Difference preserves at least two Canon scopes",
     checks,
     failures,
   );
@@ -262,7 +230,7 @@ export async function runMockDataValidation(): Promise<MockValidationResult> {
     relationship.states[0]?.relationshipType === "parent_child" &&
       relationship.states[0].roleA === "Parent" &&
       relationship.states[0].roleB === "Child",
-    "7. Parent/Child directional roles survive retrieval",
+    "4. Parent/Child directional roles survive retrieval",
     checks,
     failures,
   );
@@ -274,7 +242,7 @@ export async function runMockDataValidation(): Promise<MockValidationResult> {
   );
   requireCheck(
     !reverseDuplicate,
-    "8. Canonical relationship has no duplicated reverse edge",
+    "5. Canonical relationship has no duplicated reverse edge",
     checks,
     failures,
   );
@@ -284,7 +252,7 @@ export async function runMockDataValidation(): Promise<MockValidationResult> {
   );
   requireCheck(
     !!nonlinear && nonlinear.chronologyOrder !== nonlinear.presentationOrder,
-    "9. Chronology and presentation ordering remain independent",
+    "6. Chronology and presentation ordering remain independent",
     checks,
     failures,
   );
@@ -293,7 +261,7 @@ export async function runMockDataValidation(): Promise<MockValidationResult> {
     !!adaptation?.spoiler.sourceMaterial &&
       adaptation.spoiler.sourceMaterial.level === "major" &&
       adaptation.spoiler.screen.level === "minor",
-    "10. Source-material spoiler remains separate from screen spoiler",
+    "7. Source-material spoiler remains separate from screen spoiler",
     checks,
     failures,
   );
@@ -306,7 +274,7 @@ export async function runMockDataValidation(): Promise<MockValidationResult> {
   const resultKinds = new Set(search.items.map((item) => item.kind));
   requireCheck(
     resultKinds.has("title") && resultKinds.has("explanation"),
-    "11. Search results are discriminated by entity kind",
+    "8. Search results are discriminated by entity kind",
     checks,
     failures,
   );
@@ -314,19 +282,13 @@ export async function runMockDataValidation(): Promise<MockValidationResult> {
   const referenceFailures = validateReferentialIntegrity();
   requireCheck(
     referenceFailures.length === 0,
-    "12. Fixture references resolve to declared fixture records",
+    "9. Fixture references resolve to declared fixture records",
     checks,
     failures,
   );
   failures.push(...referenceFailures);
 
-  requireCheck(
-    MOCK_TITLES_BN.length === 1 &&
-      MOCK_TITLES_BN[0].identity.logicalId === FIXTURE_IDS.titles.lastSignal,
-    "13. BN fixture inventory contains only explicitly published BN data",
-    checks,
-    failures,
-  );
+
 
   const logicalIdStrings = [
     ...MOCK_TITLES_EN.map((item) => `title:${item.identity.logicalId}`),
@@ -335,7 +297,7 @@ export async function runMockDataValidation(): Promise<MockValidationResult> {
   ];
   requireCheck(
     new Set(logicalIdStrings).size === logicalIdStrings.length,
-    "14. Fixture logical IDs are unique within their entity namespaces",
+    "10. Fixture logical IDs are unique within their entity namespaces",
     checks,
     failures,
   );

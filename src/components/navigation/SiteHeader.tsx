@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
-import { ChevronDownIcon, CloseIcon, MenuIcon, SearchIcon } from "@/components/icons/Icons";
+import { CloseIcon, MenuIcon, SearchIcon } from "@/components/icons/Icons";
 import { SearchInput } from "@/components/ui/FormControls";
 import { PUBLIC_HUB_ROUTES, localizedRoute } from "@/config/routes";
 import type { LocaleCode } from "@/lib/i18n/locales";
@@ -12,10 +12,9 @@ import styles from "./SiteHeader.module.css";
 type SiteHeaderProps = {
   locale: LocaleCode;
   activePath?: string;
-  alternateLocaleHref?: string;
 };
 
-type OpenPanel = "search" | "language" | "menu" | null;
+type OpenPanel = "search" | "menu" | null;
 
 const navItems = [
   ["Movies", PUBLIC_HUB_ROUTES.movies],
@@ -30,17 +29,14 @@ function isNavActive(activePath: string | undefined, href: string) {
   return activePath === href || activePath.startsWith(href);
 }
 
-export function SiteHeader({ locale, activePath, alternateLocaleHref }: SiteHeaderProps) {
-  const isBangla = locale === "bn-BD";
+export function SiteHeader({ locale, activePath }: SiteHeaderProps) {
   const homeHref = localizedRoute(PUBLIC_HUB_ROUTES.home, locale);
   const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
   const headerRef = useRef<HTMLElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const languagePanelRef = useRef<HTMLDivElement>(null);
   const menuPanelRef = useRef<HTMLElement>(null);
   const triggerRefs = {
     search: useRef<HTMLButtonElement>(null),
-    language: useRef<HTMLButtonElement>(null),
     menu: useRef<HTMLButtonElement>(null),
   };
 
@@ -54,14 +50,8 @@ export function SiteHeader({ locale, activePath, alternateLocaleHref }: SiteHead
 
   useEffect(() => {
     if (!openPanel) return;
-
-    if (openPanel === "search") {
-      searchInputRef.current?.focus();
-    } else if (openPanel === "language") {
-      languagePanelRef.current?.focus();
-    } else {
-      menuPanelRef.current?.focus();
-    }
+    if (openPanel === "search") searchInputRef.current?.focus();
+    else menuPanelRef.current?.focus();
   }, [openPanel]);
 
   useEffect(() => {
@@ -76,9 +66,7 @@ export function SiteHeader({ locale, activePath, alternateLocaleHref }: SiteHead
     function onPointerDown(event: PointerEvent) {
       if (!openPanel) return;
       const target = event.target;
-      if (target instanceof Node && !headerRef.current?.contains(target)) {
-        setOpenPanel(null);
-      }
+      if (target instanceof Node && !headerRef.current?.contains(target)) setOpenPanel(null);
     }
 
     document.addEventListener("keydown", onKeyDown);
@@ -106,11 +94,7 @@ export function SiteHeader({ locale, activePath, alternateLocaleHref }: SiteHead
               const active = isNavActive(activePath, localizedHref);
               return (
                 <li key={href}>
-                  <Link
-                    className={`${styles.navLink} ${active ? styles.navLinkActive : ""}`.trim()}
-                    href={localizedHref}
-                    aria-current={active ? "page" : undefined}
-                  >
+                  <Link className={`${styles.navLink} ${active ? styles.navLinkActive : ""}`.trim()} href={localizedHref} aria-current={active ? "page" : undefined}>
                     {label}
                   </Link>
                 </li>
@@ -136,54 +120,13 @@ export function SiteHeader({ locale, activePath, alternateLocaleHref }: SiteHead
             {openPanel === "search" ? (
               <div id="site-search-panel" className={`${styles.panel} ${styles.searchPanel}`} role="dialog" aria-label="Search ScreenWhy">
                 <SearchInput
-                  id={`header-search-${isBangla ? "bn" : "en"}`}
+                  id="header-search-en"
                   inputRef={searchInputRef}
                   label="Search ScreenWhy"
                   placeholder="Ending, character, mystery, scene…"
                   autoComplete="off"
                 />
-                <p className={styles.panelNote}>Search shell only. Results and discovery behavior are implemented in a later frontend task.</p>
-              </div>
-            ) : null}
-          </div>
-
-          <div className={styles.actionWrap}>
-            <button
-              ref={triggerRefs.language}
-              type="button"
-              className={styles.actionButton}
-              aria-label="Choose language"
-              aria-expanded={openPanel === "language"}
-              aria-controls="site-language-panel"
-              onClick={() => toggle("language")}
-            >
-              <span>{isBangla ? <span lang="bn-BD">বাংলা</span> : "EN"}</span>
-              <ChevronDownIcon size={15} />
-            </button>
-            {openPanel === "language" ? (
-              <div id="site-language-panel" ref={languagePanelRef} className={`${styles.panel} ${styles.languagePanel}`} tabIndex={-1}>
-                <ul className={styles.panelList}>
-                  <li>
-                    {isBangla ? (
-                      alternateLocaleHref ? (
-                        <Link className={styles.panelLink} href={alternateLocaleHref} onClick={() => close("language")}>English</Link>
-                      ) : (
-                        <span className={styles.panelDisabled}>English<small>English counterpart is not published for this page.</small></span>
-                      )
-                    ) : (
-                      <span className={styles.panelCurrent} aria-current="true">English</span>
-                    )}
-                  </li>
-                  <li>
-                    {isBangla ? (
-                      <span className={styles.panelCurrent} aria-current="true" lang="bn-BD">বাংলা</span>
-                    ) : alternateLocaleHref ? (
-                      <Link className={styles.panelLink} href={alternateLocaleHref} onClick={() => close("language")} lang="bn-BD">বাংলা</Link>
-                    ) : (
-                      <span className={styles.panelDisabled} lang="bn-BD">বাংলা<small>বাংলা সংস্করণ এখনও প্রকাশিত হয়নি</small></span>
-                    )}
-                  </li>
-                </ul>
+                <p className={styles.panelNote}>Search shell only. Results and discovery behavior are implemented in the dedicated search experience.</p>
               </div>
             ) : null}
           </div>

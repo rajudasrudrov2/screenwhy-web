@@ -17,10 +17,8 @@ export function CharacterCard({ character, variant = "standard", discoverySignal
   const locale = character.identity.localization.requestedLocale;
   const slug = character.identity.localization.currentVariant.slug;
   const href = characterRoute(slug, locale);
-  const missingMediaLabel = locale === "bn-BD" ? "পোর্ট্রেট নেই" : "Portrait unavailable";
-  const accessibleName = locale === "bn-BD"
-    ? `${character.displayName} চরিত্র সম্পর্কে দেখুন`
-    : `Explore ${character.displayName}`;
+  const missingMediaLabel = "Portrait unavailable";
+  const accessibleName = `Explore ${character.displayName}`;
 
   return (
     <article className={`${styles.card} ${styles[variant]}`} lang={locale}>

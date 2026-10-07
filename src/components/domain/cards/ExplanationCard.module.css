@@ -28,7 +28,6 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
-:global([lang="bn-BD"]) .type { letter-spacing: 0; text-transform: none; }
 
 .headline {
   margin: var(--pe-space-2) 0 0;

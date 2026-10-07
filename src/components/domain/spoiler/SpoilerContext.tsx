@@ -52,24 +52,22 @@ function screenScopeText(scope: SpoilerScope | undefined, locale: LocaleCode, ov
   if (override) return override;
   if (!scope) return undefined;
 
-  if (scope.type === "full_title") return locale === "bn-BD" ? "পুরো শিরোনাম" : "Full title";
-  if (scope.type === "season") return locale === "bn-BD" ? `সিজন ${scope.seasonNumber}` : `Season ${scope.seasonNumber}`;
-  if (scope.type === "installment") return locale === "bn-BD" ? "নির্দিষ্ট পর্ব" : "Specific installment";
-  if (scope.type === "source_work") return locale === "bn-BD" ? "উৎসকর্ম" : "Source work";
+  if (scope.type === "full_title") return "Full title";
+  if (scope.type === "season") return `Season ${scope.seasonNumber}`;
+  if (scope.type === "installment") return "Specific installment";
+  if (scope.type === "source_work") return "Source work";
 
-  const volume = scope.volume !== undefined
-    ? locale === "bn-BD" ? `ভলিউম ${scope.volume}, ` : `Volume ${scope.volume}, `
-    : "";
-  const chapter = locale === "bn-BD" ? `অধ্যায় ${scope.chapter}` : `Chapter ${scope.chapter}`;
+  const volume = scope.volume !== undefined ? `Volume ${scope.volume}, ` : "";
+  const chapter = `Chapter ${scope.chapter}`;
   return `${volume}${chapter}`;
 }
 
 function sourceScopeText(metadata: SourceMaterialSpoilerMetadata, locale: LocaleCode, sourceWorkLabel?: string) {
   const parts: string[] = [];
   if (sourceWorkLabel) parts.push(sourceWorkLabel);
-  if (metadata.volume !== undefined) parts.push(locale === "bn-BD" ? `ভলিউম ${metadata.volume}` : `Volume ${metadata.volume}`);
-  if (metadata.chapter !== undefined) parts.push(locale === "bn-BD" ? `অধ্যায় ${metadata.chapter}` : `Chapter ${metadata.chapter}`);
-  return parts.length > 0 ? parts.join(" · ") : locale === "bn-BD" ? "উৎসকর্ম" : "Source material";
+  if (metadata.volume !== undefined) parts.push(`Volume ${metadata.volume}`);
+  if (metadata.chapter !== undefined) parts.push(`Chapter ${metadata.chapter}`);
+  return parts.length > 0 ? parts.join(" · ") : "Source material";
 }
 
 function ScreenSpoilerIcon({ level }: { readonly level: SpoilerMetadata["level"] }) {
@@ -115,7 +113,7 @@ export function SpoilerContext({
   sourceWorkLabel,
 }: SpoilerContextProps) {
   return (
-    <div className={styles.contextGroup} role="group" aria-label={locale === "bn-BD" ? "স্পয়লার প্রসঙ্গ" : "Spoiler context"}>
+    <div className={styles.contextGroup} role="group" aria-label="Spoiler context">
       <SpoilerMarker metadata={context.screen} locale={locale} scopeLabel={screenScopeLabel} />
       {context.sourceMaterial ? (
         <SourceMaterialSpoilerMarker metadata={context.sourceMaterial} locale={locale} sourceWorkLabel={sourceWorkLabel} />
@@ -135,12 +133,8 @@ export function SpoilerWarning({
   const scope = screenScopeText(metadata.scope, locale, scopeLabel);
   const free = metadata.level === "spoiler_free";
   const defaultDescription = free
-    ? locale === "bn-BD"
-      ? "এই অংশটি গুরুত্বপূর্ণ কাহিনি প্রকাশ না করেই পড়া যাবে।"
-      : "This section can be read without revealing important story events."
-    : locale === "bn-BD"
-      ? "এগিয়ে গেলে গুরুত্বপূর্ণ কাহিনি প্রকাশ হতে পারে।"
-      : "Continue only if you are comfortable with the stated spoiler scope.";
+    ? "This section can be read without revealing important story events."
+    : "Continue only if you are comfortable with the stated spoiler scope.";
 
   return (
     <aside className={`${styles.warningPanel} ${free ? styles.freePanel : ""} ${variant === "scoped" ? styles.scoped : ""}`} lang={locale} aria-label={label}>
@@ -165,12 +159,8 @@ export function SourceMaterialSpoilerWarning({
   const label = sourceMaterialSpoilerLabels[locale][metadata.level];
   const scope = sourceScopeText(metadata, locale, sourceWorkLabel);
   const defaultDescription = metadata.level === "none"
-    ? locale === "bn-BD"
-      ? "এই ব্যাখ্যায় উৎসকর্মের অতিরিক্ত কাহিনি প্রকাশ করা হয় না।"
-      : "This explanation does not reveal additional source-material events."
-    : locale === "bn-BD"
-      ? "স্ক্রিন সংস্করণের স্পয়লার স্তর থেকে এটি আলাদা উৎসকর্মের সতর্কতা।"
-      : "This source-material warning is separate from the screen-version spoiler level.";
+    ? "This explanation does not reveal additional source-material events."
+    : "This source-material warning is separate from the screen-version spoiler level.";
 
   return (
     <aside className={`${styles.warningPanel} ${styles.sourcePanel}`} lang={locale} aria-label={label}>
@@ -197,7 +187,7 @@ export function SpoilerDisclosure({
 }: SpoilerDisclosureProps) {
   const level = spoilerLabels[locale][metadata.level];
   const scope = screenScopeText(metadata.scope, locale, scopeLabel);
-  const reveal = locale === "bn-BD" ? "ব্যাখ্যা দেখুন" : "Reveal explanation";
+  const reveal = "Reveal explanation";
 
   return (
     <details className={styles.disclosure} open={defaultOpen || undefined} lang={locale}>

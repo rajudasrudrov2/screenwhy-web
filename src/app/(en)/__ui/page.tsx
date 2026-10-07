@@ -106,7 +106,6 @@ export default function UiFoundationPreviewPage() {
               <h3>H3 · Story context remains readable</h3>
               <p className="pe-lead">Lead text supports context without competing with the primary explanation.</p>
               <p>Inter is the English body/UI foundation. <a className="pe-inline-link" href="#controls">Inline editorial links remain recognizable.</a></p>
-              <p lang="bn-BD" className={styles.banglaSample}>বাংলা UI এবং কনটেন্ট Hind Siliguri ব্যবহার করে। বাংলা টেক্সটে ইংরেজি heading-এর negative letter-spacing প্রয়োগ করা হয় না।</p>
             </div>
           </section>
 

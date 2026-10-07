@@ -1,9 +1,7 @@
 import type { ExplanationDetail } from "@/types/domain/explanation";
-import type { UnavailableLocalizedVariant } from "@/types/domain/localization";
 import {
   localizedIdentity,
   publishedVariant,
-  unavailableVariant,
 } from "@/data/fixtures/factories/localization";
 import {
   articleBodyDocument,
@@ -33,26 +31,12 @@ const lastSignalMysteryEnVariant = publishedVariant({
   slug: "why-the-final-signal-repeats",
 });
 
-const lastSignalMysteryBnVariant = publishedVariant({
-  kind: "explanation",
-  locale: "bn-BD",
-  variantKey: "variant:explanation:last-signal-mystery:bn-BD",
-  postId: 4001,
-  slug: "shesh-songket-keno-fire-ase",
-});
-
 const lastSignalBookEnVariant = publishedVariant({
   kind: "explanation",
   locale: "en-US",
   variantKey: "variant:explanation:last-signal-book-vs-screen:en-US",
   postId: 3002,
   slug: "last-signal-book-vs-screen",
-});
-
-const lastSignalBookBnUnavailable = unavailableVariant({
-  kind: "explanation",
-  locale: "bn-BD",
-  publicationState: "not-created",
 });
 
 const harborEndingEnVariant = publishedVariant({
@@ -63,27 +47,12 @@ const harborEndingEnVariant = publishedVariant({
   slug: "harbor-nine-ending-explained",
 });
 
-export const HARBOR_ENDING_BN_UNAVAILABLE = unavailableVariant({
-  kind: "explanation",
-  locale: "bn-BD",
-  publicationState: "draft",
-  variantKey: "variant:explanation:harbor-nine-ending:bn-BD",
-  postId: 4003,
-  slug: "harbor-nine-ending-bn-draft",
-});
-
 const lastSignalCharacterEnVariant = publishedVariant({
   kind: "explanation",
   locale: "en-US",
   variantKey: "variant:explanation:last-signal-character:en-US",
   postId: 3004,
   slug: "why-mara-vale-keeps-the-station-key",
-});
-
-const lastSignalCharacterBnUnavailable = unavailableVariant({
-  kind: "explanation",
-  locale: "bn-BD",
-  publicationState: "not-created",
 });
 
 const lastSignalEndingEnVariant = publishedVariant({
@@ -94,24 +63,12 @@ const lastSignalEndingEnVariant = publishedVariant({
   slug: "the-last-signal-ending-explained",
 });
 
-const lastSignalEndingBnUnavailable = unavailableVariant({
-  kind: "explanation",
-  locale: "bn-BD",
-  publicationState: "not-created",
-});
-
 const lastSignalNextEnVariant = publishedVariant({
   kind: "explanation",
   locale: "en-US",
   variantKey: "variant:explanation:last-signal-next:en-US",
   postId: 3007,
   slug: "what-happens-after-the-last-signal",
-});
-
-const lastSignalNextBnUnavailable = unavailableVariant({
-  kind: "explanation",
-  locale: "bn-BD",
-  publicationState: "not-created",
 });
 
 const lastSignalQuestionEnVariant = publishedVariant({
@@ -122,24 +79,12 @@ const lastSignalQuestionEnVariant = publishedVariant({
   slug: "why-did-mara-hide-the-key",
 });
 
-const lastSignalQuestionBnUnavailable = unavailableVariant({
-  kind: "explanation",
-  locale: "bn-BD",
-  publicationState: "not-created",
-});
-
 const harborNineNextEnVariant = publishedVariant({
   kind: "explanation",
   locale: "en-US",
   variantKey: "variant:explanation:harbor-nine-next:en-US",
   postId: 3005,
   slug: "what-harbor-nine-sets-up-after-the-blackout",
-});
-
-const harborNineNextBnUnavailable = unavailableVariant({
-  kind: "explanation",
-  locale: "bn-BD",
-  publicationState: "not-created",
 });
 
 const author = {
@@ -161,7 +106,6 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
       logicalId: FIXTURE_IDS.explanations.lastSignalMystery,
       requestedLocale: "en-US",
       currentVariant: lastSignalMysteryEnVariant,
-      counterpart: lastSignalMysteryBnVariant,
     }),
     articleTitle: "Why the Final Signal Repeats",
     excerpt:
@@ -232,13 +176,6 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
         "https://screenwhy.com/explain/why-the-final-signal-repeats/",
       index: false,
       breadcrumbLabel: "Why the Final Signal Repeats",
-      publishedLocaleAlternates: [
-        {
-          locale: "bn-BD",
-          url: "https://screenwhy.com/bn/explain/shesh-songket-keno-fire-ase/",
-          published: true,
-        },
-      ],
     },
   },
   {
@@ -247,7 +184,6 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
       logicalId: FIXTURE_IDS.explanations.lastSignalBookVsScreen,
       requestedLocale: "en-US",
       currentVariant: lastSignalBookEnVariant,
-      counterpart: lastSignalBookBnUnavailable,
     }),
     articleTitle: "The Last Signal: Book vs Screen Differences",
     excerpt:
@@ -515,7 +451,6 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
       logicalId: FIXTURE_IDS.explanations.lastSignalEnding,
       requestedLocale: "en-US",
       currentVariant: lastSignalEndingEnVariant,
-      counterpart: lastSignalEndingBnUnavailable,
     }),
     articleTitle: "The Last Signal Ending Explained: What the Final Transmission Means",
     excerpt:
@@ -584,7 +519,6 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
       logicalId: FIXTURE_IDS.explanations.lastSignalNext,
       requestedLocale: "en-US",
       currentVariant: lastSignalNextEnVariant,
-      counterpart: lastSignalNextBnUnavailable,
     }),
     articleTitle: "What Happens After The Last Signal?",
     excerpt:
@@ -650,7 +584,6 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
       logicalId: FIXTURE_IDS.explanations.lastSignalQuestion,
       requestedLocale: "en-US",
       currentVariant: lastSignalQuestionEnVariant,
-      counterpart: lastSignalQuestionBnUnavailable,
     }),
     articleTitle: "Why Did Mara Hide the Station Key?",
     excerpt:
@@ -715,7 +648,6 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
       logicalId: FIXTURE_IDS.explanations.harborNineEnding,
       requestedLocale: "en-US",
       currentVariant: harborEndingEnVariant,
-      counterpart: HARBOR_ENDING_BN_UNAVAILABLE,
     }),
     articleTitle: "Harbor Nine Ending Explained",
     excerpt:
@@ -785,7 +717,6 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
       logicalId: FIXTURE_IDS.explanations.lastSignalCharacter,
       requestedLocale: "en-US",
       currentVariant: lastSignalCharacterEnVariant,
-      counterpart: lastSignalCharacterBnUnavailable,
     }),
     articleTitle: "Why Mara Vale Keeps the Station Key",
     excerpt:
@@ -850,7 +781,6 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
       logicalId: FIXTURE_IDS.explanations.harborNineNext,
       requestedLocale: "en-US",
       currentVariant: harborNineNextEnVariant,
-      counterpart: harborNineNextBnUnavailable,
     }),
     articleTitle: "What Harbor Nine Sets Up After the Blackout",
     excerpt:
@@ -909,124 +839,3 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
     },
   },
 ]);
-
-export const MOCK_EXPLANATIONS_BN: readonly ExplanationDetail<"bn-BD">[] = Object.freeze([
-  {
-    identity: localizedIdentity({
-      kind: "explanation",
-      logicalId: FIXTURE_IDS.explanations.lastSignalMystery,
-      requestedLocale: "bn-BD",
-      currentVariant: lastSignalMysteryBnVariant,
-      counterpart: lastSignalMysteryEnVariant,
-    }),
-    articleTitle: "শেষ সংকেতটি কেন আবার ফিরে আসে",
-    excerpt:
-      "কাল্পনিক ছবি ‘শেষ সংকেত’-এর পুনরাবৃত্ত ট্রান্সমিশন নিয়ে স্পয়লার-মুক্ত ডেমো ব্যাখ্যা।",
-    explanationType: "mystery_explained",
-    primaryTitle: TITLE_REFERENCES.lastSignalBn,
-    spoiler: {
-      screen: {
-        level: "spoiler_free",
-        scope: {
-          type: "full_title",
-          titleId: FIXTURE_IDS.titles.lastSignal,
-        },
-      },
-    },
-    canon: {
-      classification: "movie_canon",
-      scopes: [
-        {
-          target: { kind: "title", titleId: FIXTURE_IDS.titles.lastSignal },
-        },
-      ],
-    },
-    verification: {
-      state: "approved",
-      sourceIds: [FIXTURE_IDS.sources.lastSignalFilm],
-    },
-    dates: {
-      datePublished: serializedDateTime("2026-09-06T10:00:00+00:00"),
-      dateModified: serializedDateTime("2026-09-13T08:30:00+00:00"),
-      lastReviewed: serializedDateTime("2026-09-20T11:00:00+00:00"),
-    },
-    quickAnswer:
-      "পুনরাবৃত্ত সংকেতটি স্টেশন সিস্টেমের ইচ্ছাকৃত লুপ; সময় নিজে পুনরাবৃত্ত হচ্ছে—এমন প্রমাণ নয়।",
-    body: {
-      format: "structured_document",
-      document: articleBodyDocument([
-        {
-          kind: "paragraph",
-          text: "এটি কেবল opaque article boundary যাচাইয়ের জন্য কাল্পনিক ডেমো কনটেন্ট।",
-        },
-      ]),
-    },
-    author,
-    reviewerEditor: reviewer,
-    publicationState: "published",
-    editorialStage: "published",
-    citations: [
-      {
-        source: sourceById(FIXTURE_IDS.sources.lastSignalFilm),
-        claimSummary: "কাল্পনিক ছবির signal-loop সম্পর্কিত ডেমো evidence।",
-        publicVisibility: true,
-        verificationState: "approved",
-      },
-    ],
-    seo: {
-      canonicalUrl:
-        "https://screenwhy.com/bn/explain/shesh-songket-keno-fire-ase/",
-      index: false,
-      breadcrumbLabel: "শেষ সংকেতটি কেন আবার ফিরে আসে",
-      publishedLocaleAlternates: [
-        {
-          locale: "en-US",
-          url: "https://screenwhy.com/explain/why-the-final-signal-repeats/",
-          published: true,
-        },
-      ],
-    },
-  },
-]);
-
-export const MOCK_EXPLANATION_UNAVAILABLE_LOOKUPS = Object.freeze([
-  {
-    locale: "bn-BD",
-    slug: "last-signal-book-vs-screen",
-    variant: lastSignalBookBnUnavailable,
-  },
-  {
-    locale: "bn-BD",
-    slug: "harbor-nine-ending-explained",
-    variant: HARBOR_ENDING_BN_UNAVAILABLE,
-  },
-  {
-    locale: "bn-BD",
-    slug: "why-mara-vale-keeps-the-station-key",
-    variant: lastSignalCharacterBnUnavailable,
-  },
-  {
-    locale: "bn-BD",
-    slug: "what-harbor-nine-sets-up-after-the-blackout",
-    variant: harborNineNextBnUnavailable,
-  },
-  {
-    locale: "bn-BD",
-    slug: "the-last-signal-ending-explained",
-    variant: lastSignalEndingBnUnavailable,
-  },
-  {
-    locale: "bn-BD",
-    slug: "what-happens-after-the-last-signal",
-    variant: lastSignalNextBnUnavailable,
-  },
-  {
-    locale: "bn-BD",
-    slug: "why-did-mara-hide-the-key",
-    variant: lastSignalQuestionBnUnavailable,
-  },
-] as const satisfies readonly {
-  readonly locale: "bn-BD";
-  readonly slug: string;
-  readonly variant: UnavailableLocalizedVariant<"explanation", "bn-BD">;
-}[]);

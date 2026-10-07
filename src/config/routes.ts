@@ -1,8 +1,4 @@
-import {
-  LOCALE_PATH_PREFIX,
-  stripLocalePrefix,
-  type LocaleCode,
-} from "@/lib/i18n/locales";
+import type { LocaleCode } from "@/lib/i18n/locales";
 
 // Editorial/public discovery classification; intentionally not a taxonomy.
 export const PUBLIC_ROUTE_FAMILIES = [
@@ -55,16 +51,8 @@ function ensureTrailingSlash(pathname: string): string {
   return pathname.endsWith("/") ? pathname : `${pathname}/`;
 }
 
-export function localizedRoute(pathname: string, locale: LocaleCode): string {
-  const normalized = ensureTrailingSlash(
-    stripLocalePrefix(pathname.startsWith("/") ? pathname : `/${pathname}`),
-  );
-  const prefix = LOCALE_PATH_PREFIX[locale];
-
-  if (!prefix) return normalized;
-  if (normalized === "/") return `${prefix}/`;
-
-  return `${prefix}${normalized}`;
+export function localizedRoute(pathname: string, _locale: LocaleCode): string {
+  return ensureTrailingSlash(pathname.startsWith("/") ? pathname : `/${pathname}`);
 }
 
 export function titleHubRoute(

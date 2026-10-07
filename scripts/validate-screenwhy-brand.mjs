@@ -32,7 +32,7 @@ function read(file) {
 
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
 record(packageJson.name === "screenwhy-web", "Package identity is screenwhy-web");
-record(packageJson.version === "0.4.3", "Package version is 0.4.3");
+record(packageJson.version === "0.4.6", "Package version is 0.4.6");
 
 const brandConfig = fs.readFileSync(path.join(root, "src/config/brand.ts"), "utf8");
 record(

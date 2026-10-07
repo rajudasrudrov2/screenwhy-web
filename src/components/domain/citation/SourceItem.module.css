@@ -139,16 +139,6 @@
   white-space: nowrap;
 }
 
-.source[lang^="bn"] {
-  font-family: var(--pe-font-bangla);
-  letter-spacing: normal;
-}
-
-.source[lang^="bn"] .title {
-  font-family: var(--pe-font-bangla);
-  line-height: 1.55;
-}
-
 @media (max-width: 767px) {
   .source {
     grid-template-columns: 1.75rem minmax(0, 1fr);

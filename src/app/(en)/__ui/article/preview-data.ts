@@ -41,6 +41,11 @@ export const englishArticleSections = [
         heading: "Why the timing matters more than the timestamp",
         level: 3,
       },
+      {
+        id: createArticleSectionId("long-heading-stress"),
+        heading: "Why the deliberately long sequence of transmitter clues still needs to wrap cleanly across narrow reading widths",
+        level: 3,
+      },
     ],
   },
   {
@@ -51,26 +56,6 @@ export const englishArticleSections = [
   {
     id: createArticleSectionId("spoiler-reveal"),
     heading: "A later reveal that changes how the first scene reads",
-    level: 2,
-  },
-] as const satisfies readonly ArticleSectionDescriptor[];
-
-export const banglaArticleSections = [
-  {
-    id: createArticleSectionId("bn-signal-meaning"),
-    heading: "বারবার ফিরে আসা সংকেতটি আসলে কী বোঝায়",
-    level: 2,
-    sections: [
-      {
-        id: createArticleSectionId("bn-clue-order"),
-        heading: "ঘटनাগুলোর ক্রম কেন গুরুত্বপূর্ণ",
-        level: 3,
-      },
-    ],
-  },
-  {
-    id: createArticleSectionId("bn-canon-context"),
-    heading: "ক্যানন ও ব্যাখ্যার সীমা",
     level: 2,
   },
 ] as const satisfies readonly ArticleSectionDescriptor[];

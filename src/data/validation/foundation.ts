@@ -40,7 +40,7 @@ export async function runDataFoundationValidation(): Promise<DataFoundationValid
   const b1 = await runMockDataValidation();
   requireCheck(
     b1.passed,
-    "B1 mock behavior remains intact (including exact EN/BN localization)",
+    "B1 mock behavior remains intact for the current English-only frontend scope",
     checks,
     failures,
   );
@@ -59,32 +59,9 @@ export async function runDataFoundationValidation(): Promise<DataFoundationValid
     routeFamily: "movies",
     slug: "the-last-signal",
   });
-  const bn = await mock.titles.getBySlug({
-    locale: "bn-BD",
-    routeFamily: "movies",
-    slug: "shesh-songket",
-  });
-  const unavailableBn = await mock.titles.getBySlug({
-    locale: "bn-BD",
-    routeFamily: "tv",
-    slug: "harbor-nine",
-  });
-
   requireCheck(
     en.status === "available" && en.requestedLocale === "en-US",
-    "Mock resolver returns EN repository behavior",
-    checks,
-    failures,
-  );
-  requireCheck(
-    bn.status === "available" && bn.requestedLocale === "bn-BD",
-    "Mock resolver returns published BN repository behavior",
-    checks,
-    failures,
-  );
-  requireCheck(
-    unavailableBn.status === "unavailable" && unavailableBn.value === null,
-    "Mock resolver preserves explicit unavailable BN with no EN fallback",
+    "Mock resolver returns current English repository behavior",
     checks,
     failures,
   );
@@ -137,13 +114,13 @@ export async function runDataFoundationValidation(): Promise<DataFoundationValid
   );
 
   const serialized = serializeApiQuery({
-    locale: "bn-BD",
+    locale: "en-US",
     page: 2,
     pageSize: undefined,
     kinds: ["title", "character"],
   });
   requireCheck(
-    serialized === "kinds=title&kinds=character&locale=bn-BD&page=2" &&
+    serialized === "kinds=title&kinds=character&locale=en-US&page=2" &&
       !serialized.includes("undefined"),
     "Central query serialization is deterministic and omits undefined values",
     checks,

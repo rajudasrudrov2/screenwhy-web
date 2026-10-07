@@ -6,12 +6,6 @@
   overflow-wrap: break-word;
 }
 
-.prose[lang^="bn"] {
-  font-family: var(--pe-font-bangla);
-  letter-spacing: normal;
-  line-height: 1.72;
-}
-
 .prose :where(strong) {
   font-weight: 700;
 }

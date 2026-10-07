@@ -1,12 +1,6 @@
 import type { LocaleCode } from "@/lib/i18n/locales";
 import type { MediaAsset } from "@/types/domain/media";
 
-export interface PublishedLocaleAlternate {
-  readonly locale: LocaleCode;
-  readonly url: string;
-  readonly published: true;
-}
-
 export interface OpenGraphMetadata {
   readonly title?: string;
   readonly description?: string;
@@ -22,6 +16,4 @@ export interface SeoMetadata {
   readonly openGraph?: OpenGraphMetadata;
   readonly socialImage?: MediaAsset;
   readonly breadcrumbLabel?: string;
-  /** Published variants only. Hreflang generation is deferred. */
-  readonly publishedLocaleAlternates?: readonly PublishedLocaleAlternate[];
 }

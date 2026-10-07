@@ -30,15 +30,6 @@
   margin-top: var(--pe-space-2);
 }
 
-.evidence[lang^="bn"] {
-  font-family: var(--pe-font-bangla);
-  letter-spacing: normal;
-}
-
-.evidence[lang^="bn"] .headingRow h3 {
-  font-family: var(--pe-font-bangla);
-}
-
 @media (max-width: 767px) {
   .evidence {
     padding: var(--pe-space-4);

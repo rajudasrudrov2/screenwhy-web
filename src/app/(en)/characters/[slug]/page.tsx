@@ -30,18 +30,12 @@ export async function generateMetadata({ params }: CharacterRouteProps): Promise
   const title = seo.title ?? `${character.displayName}, Explained`;
   const description = seo.metaDescription ?? character.spoilerFreeDescription ?? `Understand ${character.displayName} on ScreenWhy.`;
   const socialImage = seo.openGraph?.image ?? seo.socialImage ?? character.portrait;
-  const publishedAlternates = Object.fromEntries(
-    (seo.publishedLocaleAlternates ?? [])
-      .filter((alternate) => alternate.published)
-      .map((alternate) => [alternate.locale, alternate.url]),
-  );
 
   return {
     title,
     description,
     alternates: {
       canonical: seo.canonicalUrl,
-      ...(Object.keys(publishedAlternates).length > 0 ? { languages: publishedAlternates } : {}),
     },
     robots: {
       index: seo.index,

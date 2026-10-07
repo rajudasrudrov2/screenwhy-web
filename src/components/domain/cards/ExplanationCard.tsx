@@ -15,7 +15,7 @@ export interface ExplanationCardProps {
   readonly showCanon?: boolean;
 }
 
-function reviewedLabel(explanation: ExplanationSummary, locale: "en-US" | "bn-BD") {
+function reviewedLabel(explanation: ExplanationSummary, locale: ExplanationSummary["identity"]["localization"]["requestedLocale"]) {
   if (!explanation.dates.lastReviewed) return null;
   const date = new Date(explanation.dates.lastReviewed);
   if (Number.isNaN(date.valueOf())) return null;
@@ -28,9 +28,7 @@ export function ExplanationCard({ explanation, variant = "standard", showCanon =
   const href = explanationRoute(slug, locale);
   const typeLabel = explanationTypeLabels[locale][explanation.explanationType];
   const reviewed = reviewedLabel(explanation, locale);
-  const accessibleName = locale === "bn-BD"
-    ? `${explanation.articleTitle} ব্যাখ্যা পড়ুন`
-    : `Read ${explanation.articleTitle}`;
+  const accessibleName = `Read ${explanation.articleTitle}`;
 
   return (
     <article className={`${styles.card} ${styles[variant]}`} lang={locale}>
@@ -45,7 +43,7 @@ export function ExplanationCard({ explanation, variant = "standard", showCanon =
             {showCanon ? <CanonContext context={explanation.canon} locale={locale} presentation="compact" /> : null}
           </div>
           {reviewed ? (
-            <p className={styles.reviewed}>{locale === "bn-BD" ? "সর্বশেষ পর্যালোচনা" : "Reviewed"} · {reviewed}</p>
+            <p className={styles.reviewed}>Reviewed · {reviewed}</p>
           ) : null}
           <span className={styles.affordance} aria-hidden="true"><ArrowRightIcon size={17} /></span>
         </div>

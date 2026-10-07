@@ -1,9 +1,7 @@
 import type { TitleDetail } from "@/types/domain/title";
-import type { UnavailableLocalizedVariant } from "@/types/domain/localization";
 import {
   localizedIdentity,
   publishedVariant,
-  unavailableVariant,
 } from "@/data/fixtures/factories/localization";
 import {
   serializedDate,
@@ -27,26 +25,12 @@ const lastSignalEnVariant = publishedVariant({
   slug: "the-last-signal",
 });
 
-const lastSignalBnVariant = publishedVariant({
-  kind: "title",
-  locale: "bn-BD",
-  variantKey: "variant:title:last-signal:bn-BD",
-  postId: 2001,
-  slug: "shesh-songket",
-});
-
 const harborNineEnVariant = publishedVariant({
   kind: "title",
   locale: "en-US",
   variantKey: "variant:title:harbor-nine:en-US",
   postId: 1002,
   slug: "harbor-nine",
-});
-
-export const HARBOR_NINE_BN_UNAVAILABLE = unavailableVariant({
-  kind: "title",
-  locale: "bn-BD",
-  publicationState: "not-created",
 });
 
 const glassCometEnVariant = publishedVariant({
@@ -57,27 +41,12 @@ const glassCometEnVariant = publishedVariant({
   slug: "the-glass-comet",
 });
 
-const glassCometBnUnavailable = unavailableVariant({
-  kind: "title",
-  locale: "bn-BD",
-  publicationState: "unpublished",
-  variantKey: "variant:title:glass-comet:bn-BD",
-  postId: 2003,
-  slug: "glass-comet-bn-draft",
-});
-
 const winterVerdictEnVariant = publishedVariant({
   kind: "title",
   locale: "en-US",
   variantKey: "variant:title:winter-verdict:en-US",
   postId: 1004,
   slug: "winter-verdict",
-});
-
-const winterVerdictBnUnavailable = unavailableVariant({
-  kind: "title",
-  locale: "bn-BD",
-  publicationState: "not-created",
 });
 
 const commonEditorDates = {
@@ -93,7 +62,6 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
       logicalId: FIXTURE_IDS.titles.lastSignal,
       requestedLocale: "en-US",
       currentVariant: lastSignalEnVariant,
-      counterpart: lastSignalBnVariant,
     }),
     displayTitle: "The Last Signal",
     titleType: "movie",
@@ -157,13 +125,6 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
       canonicalUrl: "https://screenwhy.com/movies/the-last-signal/",
       index: false,
       breadcrumbLabel: "The Last Signal",
-      publishedLocaleAlternates: [
-        {
-          locale: "bn-BD",
-          url: "https://screenwhy.com/bn/movies/shesh-songket/",
-          published: true,
-        },
-      ],
     },
   },
   {
@@ -172,7 +133,6 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
       logicalId: FIXTURE_IDS.titles.harborNine,
       requestedLocale: "en-US",
       currentVariant: harborNineEnVariant,
-      counterpart: HARBOR_NINE_BN_UNAVAILABLE,
     }),
     displayTitle: "Harbor Nine",
     titleType: "tv_series",
@@ -225,7 +185,6 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
       logicalId: FIXTURE_IDS.titles.glassComet,
       requestedLocale: "en-US",
       currentVariant: glassCometEnVariant,
-      counterpart: glassCometBnUnavailable,
     }),
     displayTitle: "The Glass Comet",
     titleType: "tv_series",
@@ -256,7 +215,6 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
       logicalId: FIXTURE_IDS.titles.winterVerdict,
       requestedLocale: "en-US",
       currentVariant: winterVerdictEnVariant,
-      counterpart: winterVerdictBnUnavailable,
     }),
     displayTitle: "Winter Verdict",
     titleType: "tv_series",
@@ -282,92 +240,3 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
     },
   },
 ]);
-
-export const MOCK_TITLES_BN: readonly TitleDetail<"bn-BD">[] = Object.freeze([
-  {
-    identity: localizedIdentity({
-      kind: "title",
-      logicalId: FIXTURE_IDS.titles.lastSignal,
-      requestedLocale: "bn-BD",
-      currentVariant: lastSignalBnVariant,
-      counterpart: lastSignalEnVariant,
-    }),
-    displayTitle: "শেষ সংকেত",
-    titleType: "movie",
-    publicRouteFamily: "movies",
-    releaseYear: 2026,
-    genres: [
-      { slug: "science-fiction", label: "বিজ্ঞান কল্পকাহিনি" },
-      { slug: "mystery", label: "রহস্য" },
-    ],
-    verification: {
-      state: "approved",
-      sourceIds: [FIXTURE_IDS.sources.lastSignalFilm],
-    },
-    spoilerFreePremise:
-      "একজন রেডিও প্রকৌশলী বহু বছর আগে বন্ধ হয়ে যাওয়া একটি স্টেশন থেকে বারবার একই সংকেত পেতে শুরু করেন।",
-    originalTitle: "The Last Signal",
-    release: {
-      releaseDate: serializedDate("2026-03-14"),
-      releaseYear: 2026,
-      releaseStatus: titleReleaseStatus("released"),
-      runtimeMinutes: 118,
-    },
-    classifications: {
-      genres: [
-        { slug: "science-fiction", label: "বিজ্ঞান কল্পকাহিনি" },
-        { slug: "mystery", label: "রহস্য" },
-      ],
-      originalLanguages: [{ slug: "english", label: "ইংরেজি" }],
-    },
-    installments: MOCK_INSTALLMENTS.filter(
-      (item) => item.titleId === FIXTURE_IDS.titles.lastSignal,
-    ),
-    relatedExplanations: [EXPLANATION_REFERENCES.lastSignalMysteryBn],
-    sourceWorks: [
-      { relationshipType: "adapted_from", sourceWork: LAST_SIGNAL_SOURCE_WORK },
-    ],
-    editorialDates: commonEditorDates,
-    seo: {
-      title: "শেষ সংকেত — ScreenWhy ডেমো",
-      metaDescription:
-        "ScreenWhy frontend contract যাচাইয়ের জন্য কাল্পনিক ডেমো শিরোনাম।",
-      canonicalUrl: "https://screenwhy.com/bn/movies/shesh-songket/",
-      index: false,
-      breadcrumbLabel: "শেষ সংকেত",
-      publishedLocaleAlternates: [
-        {
-          locale: "en-US",
-          url: "https://screenwhy.com/movies/the-last-signal/",
-          published: true,
-        },
-      ],
-    },
-  },
-]);
-
-export const MOCK_TITLE_UNAVAILABLE_LOOKUPS = Object.freeze([
-  {
-    locale: "bn-BD",
-    routeFamily: "tv",
-    slug: "harbor-nine",
-    variant: HARBOR_NINE_BN_UNAVAILABLE,
-  },
-  {
-    locale: "bn-BD",
-    routeFamily: "anime",
-    slug: "the-glass-comet",
-    variant: glassCometBnUnavailable,
-  },
-  {
-    locale: "bn-BD",
-    routeFamily: "k-drama",
-    slug: "winter-verdict",
-    variant: winterVerdictBnUnavailable,
-  },
-] as const satisfies readonly {
-  readonly locale: "bn-BD";
-  readonly routeFamily: "tv" | "anime" | "k-drama";
-  readonly slug: string;
-  readonly variant: UnavailableLocalizedVariant<"title", "bn-BD">;
-}[]);

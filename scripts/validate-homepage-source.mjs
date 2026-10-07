@@ -15,7 +15,7 @@ const gateway = read("src/features/homepage/RouteGatewayCard.tsx");
 const combined = [page, homepage, loader, config, gateway].join("\n");
 const pkg = JSON.parse(read("package.json"));
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.4.3", "Package identity/version is ScreenWhy 0.4.3");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.4.6", "Package identity/version is ScreenWhy 0.4.6");
 record(!page.includes("FrontendFoundationPage") && page.includes("ScreenWhyHomepage"), "Root foundation/status page is replaced by the production Homepage");
 record(homepage.includes("brandConfig.recommendedHomepageH1"), "Homepage H1 uses centralized ScreenWhy brand configuration");
 record(!combined.includes("Finished Watching?") && !combined.includes("Let’s Make Sense of It."), "Superseded PlotExplainer hero copy is absent");
@@ -31,13 +31,13 @@ record(["movies", "tv", "anime", "k-drama"].every((route) => config.includes(`ro
 record(!/\bviews\b|\blikes\b|\bratings\b|trending score/i.test(combined), "Homepage does not invent analytics/popularity metrics");
 record(!/carousel|swiper|slick|autoplay/i.test(combined), "Homepage adds no poster-wall/carousel/autoplay dependency");
 record((homepage.match(/<h1\b/g) ?? []).length === 1, "Homepage renders exactly one H1");
-record(!fs.existsSync(path.join(root, "src/app/(en)/search/page.tsx")) && !fs.existsSync(path.join(root, "src/app/(en)/search/page.jsx")), "Search results page is not implemented in SW-FE-03A");
+record(!combined.includes("SearchPage") && !combined.includes("loadSearchPage"), "Homepage remains compositionally isolated from the later Search Results feature");
 record(!/REST controller|wp-json|acf_fields|post_meta|WP[A-Z]\w*Response/.test(combined), "Homepage introduces no backend/CMS payload contract");
 record(homepage.includes("<RouteGatewayCard") && fs.existsSync(path.join(root, "src/features/homepage/RouteGatewayCard.tsx")), "Approved Homepage-only RouteGatewayCard is implemented");
 record(loader.includes("getRepositories") && !loader.includes("createMockRepositories"), "Homepage loader consumes the public repository boundary without source branching");
 record(loader.includes("datePublished") && loader.includes("lastReviewed") && loader.includes("dateModified"), "Latest and Recently Updated ordering uses real editorial date semantics");
 record(loader.includes("intendedSubjectQuestion"), "Viewer Questions derive from answered Explanation detail data");
-record(page.includes('canonical: "/"') && !page.includes("/bn/"), "Homepage metadata sets root canonical without advertising an unpublished BN alternate");
+record(page.includes('canonical: "/"'), "Homepage metadata keeps the root canonical URL");
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"} — ${check.label}`);

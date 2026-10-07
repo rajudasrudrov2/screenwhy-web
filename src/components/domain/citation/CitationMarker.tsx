@@ -14,19 +14,12 @@ export function CitationMarker({
   sourceAnchorId,
   markerId = `citation-${number}`,
   sourceTitle,
-  locale = "en-US",
 }: CitationMarkerProps) {
-  const accessibleName = locale === "bn-BD"
-    ? `উদ্ধৃতি ${number}${sourceTitle ? `: ${sourceTitle}` : ""}`
-    : `Citation ${number}${sourceTitle ? `: ${sourceTitle}` : ""}`;
+  const accessibleName = `Citation ${number}${sourceTitle ? `: ${sourceTitle}` : ""}`;
 
   return (
     <sup className={styles.markerWrap} id={markerId}>
-      <a
-        className={styles.marker}
-        href={`#${sourceAnchorId}`}
-        aria-label={accessibleName}
-      >
+      <a className={styles.marker} href={`#${sourceAnchorId}`} aria-label={accessibleName}>
         [{number}]
       </a>
     </sup>

@@ -14,10 +14,25 @@ export interface TitleLookupQuery<TLocale extends LocaleCode = LocaleCode> {
   readonly slug: string;
 }
 
+export const TITLE_ARCHIVE_SORTS = [
+  "title_asc",
+  "title_desc",
+  "release_newest",
+  "release_oldest",
+] as const;
+
+export type TitleArchiveSort = (typeof TITLE_ARCHIVE_SORTS)[number];
+
 export interface TitleListQuery<TLocale extends LocaleCode = LocaleCode>
   extends PaginationQuery {
   readonly locale: TLocale;
   readonly routeFamily?: PublicRouteFamily;
+  readonly query?: string;
+  readonly genreSlug?: string;
+  readonly releaseYear?: number;
+  readonly countrySlug?: string;
+  readonly platformSlug?: string;
+  readonly sort?: TitleArchiveSort;
 }
 
 export interface ExplanationLookupQuery<
@@ -43,10 +58,16 @@ export interface CharacterLookupQuery<
   readonly slug: string;
 }
 
+export const CHARACTER_ARCHIVE_SORTS = ["name_asc", "name_desc"] as const;
+
+export type CharacterArchiveSort = (typeof CHARACTER_ARCHIVE_SORTS)[number];
+
 export interface CharacterListQuery<TLocale extends LocaleCode = LocaleCode>
   extends PaginationQuery {
   readonly locale: TLocale;
   readonly titleLogicalId?: TitleLogicalGroupId;
+  readonly query?: string;
+  readonly sort?: CharacterArchiveSort;
 }
 
 export const SEARCH_ENTITY_KINDS = [

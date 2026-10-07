@@ -1,6 +1,6 @@
 {
   "name": "screenwhy-web",
-  "version": "0.4.3",
+  "version": "0.4.6",
   "private": true,
   "engines": {
     "node": ">=20.19.0"
@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "validate:data-foundation": "tsc -p tsconfig.data-validation.json && node scripts/run-data-validation.mjs && node scripts/validate-source-guardrails.mjs",
-    "validate:source-guardrails": "node scripts/validate-source-guardrails.mjs",
+    "validate:source-guardrails": "node scripts/validate-source-guardrails.mjs && node scripts/validate-english-only.mjs",
     "validate:domain-ui-source": "node scripts/validate-domain-ui-source.mjs",
     "validate:card-ui-source": "node scripts/validate-card-ui-source.mjs",
     "validate:brand-migration": "node scripts/validate-screenwhy-brand.mjs",
@@ -21,7 +21,11 @@
     "validate:homepage-source": "node scripts/validate-homepage-source.mjs",
     "validate:explanation-detail-source": "node scripts/validate-explanation-detail-source.mjs",
     "validate:title-hub-source": "node scripts/validate-title-hub-source.mjs",
-    "validate:character-detail-source": "node scripts/validate-character-detail-source.mjs"
+    "validate:character-detail-source": "node scripts/validate-character-detail-source.mjs",
+    "validate:search-source": "node scripts/validate-search-source.mjs",
+    "validate:search-data": "tsc -p tsconfig.data-validation.json && node scripts/run-data-validation.mjs",
+    "validate:archive-source": "node scripts/validate-archive-source.mjs",
+    "validate:english-only": "node scripts/validate-english-only.mjs"
   },
   "dependencies": {
     "next": "16.3.8",

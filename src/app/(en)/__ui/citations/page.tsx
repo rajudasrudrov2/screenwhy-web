@@ -15,7 +15,7 @@ import {
 import { PageContainer, Stack } from "@/components/layout/Layout";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { SiteFrame } from "@/components/navigation/SiteFrame";
-import { banglaCitations, englishCitations } from "./preview-data";
+import { englishCitations } from "./preview-data";
 import styles from "./citations-preview.module.css";
 
 export const metadata: Metadata = {
@@ -27,7 +27,6 @@ export default function CitationPreviewPage() {
   if (process.env.NODE_ENV === "production") notFound();
 
   const registry = createCitationRegistry(englishCitations);
-  const banglaRegistry = createCitationRegistry(banglaCitations);
   const finaleId = createArticleSectionId("what-the-finale-establishes");
   const timingId = createArticleSectionId("why-the-timing-matters");
   const adaptationId = createArticleSectionId("adaptation-difference");
@@ -111,46 +110,6 @@ export default function CitationPreviewPage() {
             <div className={styles.readingColumn}>
               <ClaimEvidence citations={[englishCitations[0], englishCitations[1]]} />
               <SourcesSection citations={englishCitations} showVerification id="english-sources" />
-            </div>
-          </section>
-
-          <section className={styles.board} aria-labelledby="bangla-citation-heading" lang="bn-BD">
-            <div className={styles.sectionHeading}>
-              <span>02</span>
-              <div>
-                <h2 id="bangla-citation-heading">বাংলা উদ্ধৃতি ও উৎস</h2>
-                <p>Hind Siliguri, বাংলা উৎস-ধরন, দীর্ঘ লেখা ও স্থিতিশীল citation numbering যাচাইয়ের নমুনা।</p>
-              </div>
-            </div>
-
-            <ArticleProse locale="bn-BD">
-              <ArticleSection id={createArticleSectionId("bn-signal-order")} heading="সংকেতের ক্রম" locale="bn-BD">
-                <ArticleParagraph>
-                  এই কাল্পনিক উদাহরণে নির্মাতা নোট সংকেতটির ক্রম সম্পর্কে একটি নির্দিষ্ট ব্যাখ্যা দেয়
-                  <CitationMarker
-                    number={banglaRegistry.citations[0].number}
-                    markerId={banglaRegistry.citations[0].markerId}
-                    sourceAnchorId={banglaRegistry.citations[0].sourceAnchorId}
-                    sourceTitle={banglaRegistry.citations[0].citation.source.sourceTitle}
-                    locale="bn-BD"
-                  />।
-                </ArticleParagraph>
-              </ArticleSection>
-              <ArticleSection id={createArticleSectionId("bn-adaptation")} heading="রূপান্তরের পার্থক্য" locale="bn-BD">
-                <ArticleParagraph>
-                  মূল উৎসকর্মের কাল্পনিক সংস্করণটি একই সতর্কবার্তার জন্য ভিন্ন প্রক্রিয়া ব্যবহার করে
-                  <CitationMarker
-                    number={banglaRegistry.citations[1].number}
-                    markerId={banglaRegistry.citations[1].markerId}
-                    sourceAnchorId={banglaRegistry.citations[1].sourceAnchorId}
-                    sourceTitle={banglaRegistry.citations[1].citation.source.sourceTitle}
-                    locale="bn-BD"
-                  />।
-                </ArticleParagraph>
-              </ArticleSection>
-            </ArticleProse>
-            <div className={styles.readingColumn}>
-              <SourcesSection citations={banglaCitations} locale="bn-BD" id="bangla-sources" />
             </div>
           </section>
 

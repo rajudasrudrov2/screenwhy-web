@@ -114,7 +114,7 @@ export function SourceItem({
                   <span><strong>{labels.claim}:</strong> {citation.citation.claimSummary}</span>
                   {citation.citation.sectionAnchor ? (
                     <a className={styles.sectionLink} href={`#${citation.citation.sectionAnchor}`}>
-                      {locale === "bn-BD" ? "প্রাসঙ্গিক অংশ" : "Relevant section"}
+                      Relevant section
                     </a>
                   ) : null}
                 </li>

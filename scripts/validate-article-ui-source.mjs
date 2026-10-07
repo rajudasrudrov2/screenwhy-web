@@ -23,7 +23,7 @@ function walk(rel, predicate = () => true) {
 }
 
 const pkg = JSON.parse(read("package.json"));
-record(pkg.name === "screenwhy-web" && pkg.version === "0.4.3", "Package identity/version is ScreenWhy 0.4.3");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.4.6", "Package identity/version is ScreenWhy 0.4.6");
 
 const required = [
   "src/components/domain/article/article-types.ts",

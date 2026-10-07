@@ -61,8 +61,6 @@
 .swatchText code { color: var(--pe-text-muted); }
 
 .typography { display: grid; gap: var(--pe-space-4); }
-.banglaSample { font-size: 18px; line-height: 1.65; }
-
 .containerDemo,
 .wideDemo,
 .readingDemoBox {

@@ -22,7 +22,7 @@ const view = read("src/features/character-detail/CharacterDetail.tsx");
 const combined = `${route}\n${feature}`;
 const pkg = JSON.parse(read("package.json"));
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.4.3", "Package identity/version is ScreenWhy 0.4.3");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.4.6", "Package identity/version is ScreenWhy 0.4.6");
 record(exists(routeFile), "1. /characters/[slug]/ route exists");
 record(loader.includes("repositories.characters.getBySlug"), "2. CharacterRepository getBySlug() is used");
 record(route.includes("notFound()") && loader.includes('if (characterResult.status !== "available") return null'), "3. Invalid Character slug reaches not-found architecture");
@@ -61,8 +61,8 @@ record(view.includes("<Breadcrumbs"), "Existing Breadcrumb component is reused")
 record(view.includes("<ExplanationCard"), "Existing ExplanationCard is reused");
 record(view.includes("<CanonContext"), "Existing Canon UI is reused");
 record(view.includes("<SpoilerDisclosure") && view.includes("<SpoilerMarker"), "Existing Spoiler UI is reused");
-record(!exists("src/app/(en)/characters/page.tsx"), "Character archive remains deferred");
-record(!exists("src/app/(en)/search/page.tsx"), "Search Results page remains deferred");
+record(exists("src/app/(en)/characters/page.tsx"), "Character archive is supplied by the later SW-FE-03F milestone");
+record(!feature.includes("SearchPage") && !feature.includes("loadSearchPage"), "Character Detail remains isolated from the later Search Results feature");
 record(!/wp-json|acf_fields|post_meta|REST controller|WP[A-Z]\w*Response/.test(combined), "Character Detail introduces no backend/CMS payload assumptions");
 
 const failed = checks.filter((check) => !check.ok);

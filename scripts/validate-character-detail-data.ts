@@ -39,9 +39,6 @@ async function run() {
   ));
   invariant(!reverseDuplicate, "No reverse-duplicate Character relationship edge exists");
 
-  const bn = await repositories.characters.getBySlug({ locale: "bn-BD", slug: "mara-vale" });
-  invariant(bn.status === "unavailable", "Mara Vale BN lookup remains unavailable with no EN fallback");
-
   const invalid = await loadCharacterDetail("not-a-real-character");
   invariant(invalid === null, "Invalid Character slug resolves to null for not-found routing");
 }

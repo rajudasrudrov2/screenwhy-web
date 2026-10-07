@@ -11,44 +11,75 @@ import {
 } from "@/data/mock/fixture-selectors";
 import { paginate } from "@/data/mock/paginate";
 
+const STOP_WORDS = new Set([
+  "a", "an", "and", "are", "at", "be", "did", "do", "does", "for", "from",
+  "how", "in", "is", "it", "of", "on", "or", "the", "to", "was", "what",
+  "when", "where", "which", "who", "why", "with",
+]);
+
 function normalize(value: string): string {
-  return value.trim().toLocaleLowerCase();
+  return value
+    .normalize("NFKC")
+    .toLocaleLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
-function includesNeedle(haystack: string, needle: string): boolean {
-  return normalize(haystack).includes(needle);
+function meaningfulTokens(value: string): readonly string[] {
+  const tokens = normalize(value).split(" ").filter(Boolean);
+  const meaningful = tokens.filter((token) => token.length > 1 && !STOP_WORDS.has(token));
+  return meaningful.length ? meaningful : tokens;
+}
+
+function matchScore(candidate: string, rawQuery: string): number {
+  const haystack = normalize(candidate);
+  const needle = normalize(rawQuery);
+  if (!needle || !haystack) return 0;
+  if (haystack === needle) return 1000;
+  if (haystack.startsWith(needle)) return 850;
+  if (haystack.includes(needle)) return 760;
+  const queryTokens = meaningfulTokens(needle);
+  const candidateTokens = new Set(meaningfulTokens(haystack));
+  const matches = queryTokens.filter((token) => candidateTokens.has(token)).length;
+  if (!matches) return 0;
+  const coverage = matches / Math.max(queryTokens.length, 1);
+  return Math.round(300 + coverage * 400 + matches * 15);
 }
 
 export const mockSearchRepository: SearchRepository = {
   async search<TLocale extends LocaleCode>(query: SearchQuery<TLocale>) {
-    const needle = normalize(query.query);
     const enabled = new Set(query.kinds ?? ["title", "explanation", "character"]);
-    const results: SearchResult<TLocale>[] = [];
+    const scored: Array<{ readonly result: SearchResult<TLocale>; readonly score: number; readonly label: string }> = [];
 
-    if (needle && enabled.has("title")) {
+    if (query.query.trim() && enabled.has("title")) {
       for (const title of titleFixturesForLocale(query.locale)) {
-        if (includesNeedle(title.displayTitle, needle)) {
-          results.push({ kind: "title", item: title });
-        }
+        const score = matchScore(title.displayTitle, query.query);
+        if (score > 0) scored.push({ result: { kind: "title", item: title }, score, label: title.displayTitle });
       }
     }
 
-    if (needle && enabled.has("explanation")) {
+    if (query.query.trim() && enabled.has("explanation")) {
       for (const explanation of explanationFixturesForLocale(query.locale)) {
-        if (includesNeedle(explanation.articleTitle, needle)) {
-          results.push({ kind: "explanation", item: explanation });
-        }
+        const score = Math.max(
+          matchScore(explanation.articleTitle, query.query),
+          matchScore(explanation.primaryTitle.displayTitle, query.query),
+        );
+        if (score > 0) scored.push({ result: { kind: "explanation", item: explanation }, score, label: explanation.articleTitle });
       }
     }
 
-    if (needle && enabled.has("character")) {
+    if (query.query.trim() && enabled.has("character")) {
       for (const character of characterFixturesForLocale(query.locale)) {
-        if (includesNeedle(character.displayName, needle)) {
-          results.push({ kind: "character", item: character });
-        }
+        const score = Math.max(
+          matchScore(character.displayName, query.query),
+          matchScore(character.primaryTitleContext.displayTitle, query.query),
+        );
+        if (score > 0) scored.push({ result: { kind: "character", item: character }, score, label: character.displayName });
       }
     }
 
-    return paginate(results, query);
+    scored.sort((left, right) => right.score - left.score || left.label.localeCompare(right.label));
+    return paginate(scored.map(({ result }) => result), query);
   },
 };

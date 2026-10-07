@@ -66,13 +66,7 @@ export interface ArticleSpoilerSectionProps {
   readonly children: ReactNode;
 }
 
-function noteTitle(locale: LocaleCode, kind: "canon" | "adaptation" | "interpretation") {
-  if (locale === "bn-BD") {
-    if (kind === "adaptation") return "অ্যাডাপ্টেশন পার্থক্য";
-    if (kind === "interpretation") return "ব্যাখ্যা ও অনিশ্চয়তা";
-    return "ক্যানন প্রসঙ্গ";
-  }
-
+function noteTitle(_locale: LocaleCode, kind: "canon" | "adaptation" | "interpretation") {
   if (kind === "adaptation") return "Adaptation difference";
   if (kind === "interpretation") return "Interpretation context";
   return "Canon note";

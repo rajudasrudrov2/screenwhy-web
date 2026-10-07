@@ -23,18 +23,12 @@ export async function generateTitleHubMetadata(
   const metadataTitle = seo.title ?? `${title.displayTitle}, Explained`;
   const description = seo.metaDescription ?? title.spoilerFreePremise;
   const socialImage = seo.openGraph?.image ?? seo.socialImage;
-  const publishedAlternates = Object.fromEntries(
-    (seo.publishedLocaleAlternates ?? [])
-      .filter((alternate) => alternate.published)
-      .map((alternate) => [alternate.locale, alternate.url]),
-  );
 
   return {
     title: metadataTitle,
     description,
     alternates: {
       canonical: seo.canonicalUrl,
-      ...(Object.keys(publishedAlternates).length > 0 ? { languages: publishedAlternates } : {}),
     },
     robots: { index: seo.index, follow: seo.follow ?? seo.index },
     openGraph: {
