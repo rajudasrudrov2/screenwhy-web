@@ -166,7 +166,7 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
         source: sourceById(FIXTURE_IDS.sources.lastSignalFilm),
         claimSummary:
           "The fictional film establishes the signal loop as a station-system behavior.",
-        sectionAnchor: "signal-loop",
+        sectionAnchor: "section-what-the-signal-pattern-establishes",
         publicVisibility: true,
         verificationState: "approved",
       },

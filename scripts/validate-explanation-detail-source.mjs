@@ -26,6 +26,7 @@ const feature = featureFiles.map(read).join("\n");
 const adapter = adapterFiles.map(read).join("\n");
 const combined = [route, feature, adapter].join("\n");
 const pkg = JSON.parse(read("package.json"));
+const explanations = read("src/data/fixtures/explanations.ts");
 
 record(pkg.name === "screenwhy-web" && pkg.version === "0.5.3", "Package identity/version is ScreenWhy 0.5.3");
 record(exists(routePath), "/explain/[slug]/ App Router route exists");
@@ -62,6 +63,7 @@ record(feature.includes("ArticleReadingLayout") && feature.includes("ArticlePros
 record(exists("src/app/(en)/movies/[slug]/page.tsx") && exists("src/app/(en)/tv/[slug]/page.tsx"), "Explanation Detail remains compatible after the planned Title Hub stage was added");
 record(!feature.includes("SearchPage") && !feature.includes("loadSearchPage"), "Explanation Detail remains isolated from the later Search Results feature");
 record(exists("src/app/(en)/characters/[slug]/page.tsx"), "Character Detail route is now available without changing the Explanation Detail architecture");
+record(explanations.includes('sectionAnchor: "section-what-the-signal-pattern-establishes"'), "Representative Explanation citation anchor matches its rendered article section ID");
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"} — ${check.label}`);
