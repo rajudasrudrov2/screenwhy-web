@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { CloseIcon, MenuIcon, SearchIcon } from "@/components/icons/Icons";
 import { SearchInput } from "@/components/ui/FormControls";
-import { PUBLIC_HUB_ROUTES, localizedRoute } from "@/config/routes";
+import { PUBLIC_HUB_ROUTES, localizedRoute, searchRoute } from "@/config/routes";
 import type { LocaleCode } from "@/lib/i18n/locales";
 import styles from "./SiteHeader.module.css";
 
@@ -119,14 +119,18 @@ export function SiteHeader({ locale, activePath }: SiteHeaderProps) {
             </button>
             {openPanel === "search" ? (
               <div id="site-search-panel" className={`${styles.panel} ${styles.searchPanel}`} role="dialog" aria-label="Search ScreenWhy">
-                <SearchInput
-                  id="header-search-en"
-                  inputRef={searchInputRef}
-                  label="Search ScreenWhy"
-                  placeholder="Ending, character, mystery, scene…"
-                  autoComplete="off"
-                />
-                <p className={styles.panelNote}>Search shell only. Results and discovery behavior are implemented in the dedicated search experience.</p>
+                <form className={styles.searchForm} action={searchRoute(locale)} method="get" role="search">
+                  <SearchInput
+                    id="header-search-en"
+                    inputRef={searchInputRef}
+                    label="Search ScreenWhy"
+                    name="q"
+                    placeholder="Ending, character, mystery, scene…"
+                    autoComplete="off"
+                    maxLength={180}
+                  />
+                  <button className={styles.searchSubmit} type="submit">Search</button>
+                </form>
               </div>
             ) : null}
           </div>

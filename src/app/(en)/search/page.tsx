@@ -20,7 +20,7 @@ export async function generateMetadata({ searchParams }: SearchRouteProps): Prom
     title,
     description: "Search ScreenWhy for explanations, titles, characters and answered post-watch questions.",
     alternates: { canonical: `${siteConfig.origin}${searchRoute("en-US")}` },
-    robots: { index: false, follow: true },
+    robots: { index: false, follow: siteConfig.allowIndexing },
     openGraph: {
       title: `${title} | ScreenWhy`,
       description: "Search ScreenWhy for clear post-watch answers.",

@@ -90,13 +90,13 @@ const harborNineNextEnVariant = publishedVariant({
 const author = {
   userId: FIXTURE_IDS.users.editorAvery,
   displayName: "Avery Quinn",
-  roleTitle: "Demo Editor",
+  roleTitle: "Sample Editor",
 } as const;
 
 const reviewer = {
   userId: FIXTURE_IDS.users.reviewerNoor,
   displayName: "Noor Hale",
-  roleTitle: "Demo Reviewer",
+  roleTitle: "Sample Reviewer",
 } as const;
 
 export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Object.freeze([
@@ -146,7 +146,7 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
       document: articleBodyDocument([
         {
           kind: "paragraph",
-          text: "This fictional demo body exists only to exercise the opaque article boundary.",
+          text: "This fictional sample article illustrates ScreenWhy’s explanation structure.",
         },
         {
           kind: "heading",
@@ -269,9 +269,9 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
                   alt: "Illustrative diagram of the fictional Last Signal station platform and repeating transmitter pulse",
                   width: 1280,
                   height: 720,
-                  caption: "Illustrative ScreenWhy demo image for the fictional station sequence.",
+                  caption: "Illustrative ScreenWhy sample image for the fictional station sequence.",
                 },
-                credit: "ScreenWhy fictional demo artwork",
+                credit: "ScreenWhy fictional sample artwork",
               },
               {
                 kind: "canon_note",
@@ -487,7 +487,7 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
     body: {
       format: "structured_document",
       document: articleBodyDocument([
-        { kind: "paragraph", text: "This fictional ending explanation exists to support ScreenWhy Title Hub demonstration data." },
+        { kind: "paragraph", text: "This fictional ending explanation supports ScreenWhy sample story coverage." },
       ]),
     },
     relatedCharacters: [CHARACTER_REFERENCES.maraValeEn, CHARACTER_REFERENCES.eliasValeEn],
@@ -555,7 +555,7 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
     body: {
       format: "structured_document",
       document: articleBodyDocument([
-        { kind: "paragraph", text: "This fictional future-story analysis is demonstration content only." },
+        { kind: "paragraph", text: "This is fictional sample future-story analysis." },
       ]),
     },
     relatedCharacters: [CHARACTER_REFERENCES.maraValeEn],
@@ -620,7 +620,7 @@ export const MOCK_EXPLANATIONS_EN: readonly ExplanationDetail<"en-US">[] = Objec
     body: {
       format: "structured_document",
       document: articleBodyDocument([
-        { kind: "paragraph", text: "This fictional viewer-question explanation is demonstration content only." },
+        { kind: "paragraph", text: "This is a fictional sample viewer-question explanation." },
       ]),
     },
     relatedCharacters: [CHARACTER_REFERENCES.maraValeEn, CHARACTER_REFERENCES.eliasValeEn],

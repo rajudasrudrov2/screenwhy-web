@@ -123,8 +123,8 @@ function AboutIdentity() {
 function ContactNotice() {
   return (
     <aside className={styles.contactNotice} aria-label="Contact availability">
-      <strong>Verified public contact channel not yet published</strong>
-      <p>This frontend intentionally does not show a made-up email address, phone number, office address or working submission form.</p>
+      <strong>Public contact details are not listed yet</strong>
+      <p>This page does not publish an email address, phone number, office address or message form until a verified public contact channel is available.</p>
     </aside>
   );
 }
@@ -152,7 +152,7 @@ export function EditorialPage({ pageKey }: { readonly pageKey: EditorialPageKey 
       {page.variant === "about" ? <AboutIdentity /> : null}
       {page.variant === "contact" ? <ContactNotice /> : null}
 
-      <main className={styles.body}>
+      <div className={styles.body}>
         {page.useToc ? (
           <ArticleReadingLayout toc={<ArticleTableOfContents items={toc} label="On this page" />}>
             {content}
@@ -160,7 +160,7 @@ export function EditorialPage({ pageKey }: { readonly pageKey: EditorialPageKey 
         ) : (
           <div className={styles.readingOnly}>{content}</div>
         )}
-      </main>
+      </div>
 
       <RelatedPolicies page={page} />
     </PageContainer>

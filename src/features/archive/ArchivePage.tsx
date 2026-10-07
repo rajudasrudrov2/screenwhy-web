@@ -3,6 +3,7 @@ import { CharacterCard, TitleCard } from "@/components/domain/cards";
 import { PageContainer } from "@/components/layout/Layout";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { PUBLIC_HUB_ROUTES } from "@/config/routes";
+import { CompactEmptyState } from "@/features/utility-states";
 import type { CharacterArchiveViewModel, TitleArchiveViewModel } from "./archive.types";
 import {
   archiveBaseRoute,
@@ -99,7 +100,11 @@ export function TitleArchivePage({ model }: { readonly model: TitleArchiveViewMo
         {results.items.length ? (
           <div className={styles.titleGrid}>{results.items.map((title) => <TitleCard key={String(title.identity.logicalId)} title={title} variant="standard" />)}</div>
         ) : (
-          <div className={styles.emptyState}><h3>No titles found</h3><p>Try a broader search or clear the current filters. ScreenWhy will show this archive as new coverage is published.</p>{titleArchiveHasFilters(filters) ? <Link href={archiveBaseRoute(definition.routeFamily)}>Clear filters</Link> : null}</div>
+          <CompactEmptyState
+            title="No titles found"
+            description={<p>Try a broader search or adjust the current filters.</p>}
+            actions={titleArchiveHasFilters(filters) ? <Link className={styles.emptyAction} href={archiveBaseRoute(definition.routeFamily)}>Clear filters</Link> : <Link className={styles.emptyAction} href={PUBLIC_HUB_ROUTES.explanations}>Browse Explanations</Link>}
+          />
         )}
         <PageNumbers page={results.page} totalPages={results.totalPages} hrefForPage={(page) => titleArchiveHref(definition.routeFamily, filters, page)} label={`${definition.heading} pages`} />
       </section>
@@ -129,7 +134,13 @@ export function CharacterArchivePage({ model }: { readonly model: CharacterArchi
       </div>
       <section className={styles.results} aria-labelledby="character-results-heading">
         <div className={styles.resultsHeading}><h2 id="character-results-heading">{filters.query ? `Results for “${filters.query}”` : "All Characters"}</h2><span>{results.totalItems} {results.totalItems === 1 ? "character" : "characters"}</span></div>
-        {results.items.length ? <div className={styles.characterGrid}>{results.items.map((character) => <CharacterCard key={String(character.identity.logicalId)} character={character} variant="standard" />)}</div> : <div className={styles.emptyState}><h3>No characters found</h3><p>Try another name or alias, or clear the current search.</p>{characterArchiveHasFilters(filters) ? <Link href={PUBLIC_HUB_ROUTES.characters}>Clear filters</Link> : null}</div>}
+        {results.items.length ? <div className={styles.characterGrid}>{results.items.map((character) => <CharacterCard key={String(character.identity.logicalId)} character={character} variant="standard" />)}</div> : (
+          <CompactEmptyState
+            title="No characters found"
+            description={<p>Try another name or alias, or adjust the current search.</p>}
+            actions={characterArchiveHasFilters(filters) ? <Link className={styles.emptyAction} href={PUBLIC_HUB_ROUTES.characters}>Clear filters</Link> : <Link className={styles.emptyAction} href={PUBLIC_HUB_ROUTES.explanations}>Browse Explanations</Link>}
+          />
+        )}
         <PageNumbers page={results.page} totalPages={results.totalPages} hrefForPage={(page) => characterArchiveHref(filters, page)} label="Character pages" />
       </section>
     </PageContainer>

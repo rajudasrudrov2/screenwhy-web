@@ -35,7 +35,7 @@ const routeMap = {
 const routeFiles = Object.keys(routeMap).map((slug) => `src/app/(en)/${slug}/page.tsx`);
 const routeSources = routeFiles.map(read);
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.5.0", "Package identity/version is ScreenWhy 0.5.0");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.5.2", "Package identity/version is ScreenWhy 0.5.2");
 record(routeFiles.every(exists), "1. All nine trust/editorial/static routes exist");
 record(routeSources.every((source) => source.includes("renderEditorialPageRoute") && source.includes("createEditorialPageMetadata")), "2. All route wrappers use the shared editorial page renderer/metadata boundary");
 record(routeSources.every((source) => source.split("\n").length <= 6), "3. Static route files remain thin");

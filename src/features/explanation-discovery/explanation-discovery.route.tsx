@@ -85,7 +85,7 @@ export async function createExplanationDiscoveryMetadata(
     title,
     description: definition.description,
     alternates: { canonical },
-    robots: { index, follow: true },
+    robots: { index, follow: siteConfig.allowIndexing },
     openGraph: {
       title: `${title} | ScreenWhy`,
       description: definition.description,

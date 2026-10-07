@@ -1,15 +1,22 @@
 import { PageContainer, Section } from "@/components/layout/Layout";
-import { ButtonLink } from "@/components/ui/Button";
-import { StateShell } from "@/components/ui/Primitives";
+import { SiteFrame } from "@/components/navigation/SiteFrame";
+import { BrowseRecovery, RecoverySearch, UtilityState } from "@/features/utility-states";
 
 export default function NotFound() {
   return (
-    <Section>
-      <PageContainer>
-        <StateShell title="Page not found" action={<ButtonLink href="/" variant="secondary">Return to foundation</ButtonLink>}>
-          This route is not implemented in the PE-FE-01B foundation. Final branded 404 design is intentionally deferred.
-        </StateShell>
-      </PageContainer>
-    </Section>
+    <SiteFrame locale="en-US">
+      <Section>
+        <PageContainer>
+          <UtilityState
+            eyebrow="404"
+            title="Page not found"
+            description={<p>The page you're looking for doesn't exist or may have moved.</p>}
+          >
+            <RecoverySearch />
+            <BrowseRecovery />
+          </UtilityState>
+        </PageContainer>
+      </Section>
+    </SiteFrame>
   );
 }

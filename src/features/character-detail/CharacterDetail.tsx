@@ -392,7 +392,7 @@ export function CharacterDetailPage({ model }: { readonly model: CharacterDetail
         <div>
           <p className={styles.eyebrow}>Ask the Screen</p>
           <h2 id="ask-character-heading">Still have a question about {character.displayName}?</h2>
-          <p>Search a scene, relationship, mystery or another post-watch question. Nothing is submitted to a database here.</p>
+          <p>Search a scene, relationship, mystery or another post-watch question. Your question opens ScreenWhy search.</p>
         </div>
         <form className={styles.askForm} action={searchRoute(model.locale)} method="get" role="search">
           <label className="pe-visually-hidden" htmlFor="character-question">Your question</label>

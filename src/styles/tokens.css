@@ -48,7 +48,7 @@
   /* Canon semantic aliases. Visual components remain deferred. */
   --pe-canon-established-fg: var(--pe-brand-indigo);
   --pe-canon-established-bg: var(--pe-surface-indigo-soft);
-  --pe-canon-adaptation-fg: var(--pe-brand-teal);
+  --pe-canon-adaptation-fg: var(--pe-success-fg);
   --pe-canon-adaptation-bg: var(--pe-surface-teal-soft);
   --pe-canon-interpretation-fg: var(--pe-warning-fg);
   --pe-canon-interpretation-bg: var(--pe-surface-amber-soft);

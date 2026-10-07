@@ -42,7 +42,7 @@ check(!archivePage.includes("Popular") && !queries.includes('"popular"'), "Fake 
 check(!archivePage.match(/Alive|Dead|Deceased/), "Character archive exposes no global status");
 check(routeFiles.some((file) => file.includes("documentaries")), "Documentaries archive route is handled");
 check(archivePage.includes("No titles found") && archivePage.includes("No characters found"), "Intentional empty states are implemented");
-check(route.includes("robots: { index, follow: true }") && route.includes("hasFacetOrSearch"), "Filtered/search archive SEO is noindex-capable");
+check(route.includes("robots: { index, follow: siteConfig.allowIndexing }") && route.includes("hasFacetOrSearch"), "Filtered/search archive SEO is noindex-capable");
 check(route.includes("paginationCanonical") && route.includes("?page=${page}"), "Pagination-only canonical strategy is implemented");
 check(!exists("src/app/(en)/genres") && !exists("src/app/(en)/platforms") && !exists("src/app/(en)/countries"), "No raw taxonomy archive routes are added");
 check(exists("src/app/(en)/page.tsx") && exists("src/app/(en)/explain/[slug]/page.tsx") && exists("src/app/(en)/characters/[slug]/page.tsx"), "Completed public pages remain present");
@@ -61,7 +61,7 @@ check(utils.includes('params.set("page"') && utils.includes('params.set("q"'), "
 check(route.includes("availability.totalItems > 0") && route.includes("siteConfig.allowIndexing"), "Base archive indexing requires public content and site indexing permission");
 check(route.includes("filtered ? `${siteConfig.origin}${baseRoute}`") && route.includes("filtered ? `${siteConfig.origin}${PUBLIC_HUB_ROUTES.characters}`"), "Filtered variants canonicalize to clean base archives");
 check(!archivePage.match(/IMDb|rating|stars|Watch Now|Stream on/), "Ratings and watch-provider CTAs are absent");
-check(packageJson.name === "screenwhy-web" && packageJson.version === "0.5.0", "Package identity/version is ScreenWhy 0.5.0");
+check(packageJson.name === "screenwhy-web" && packageJson.version === "0.5.2", "Package identity/version is ScreenWhy 0.5.2");
 check(exists("src/app/(en)/movies/[slug]/page.tsx") && exists("src/app/(en)/characters/[slug]/page.tsx"), "Existing dynamic Title/Character routes remain intact");
 
 console.log(`\nArchive source guardrails: ${pass}/${pass + fail} PASS`);

@@ -1,14 +1,15 @@
 import { PageContainer, Section } from "@/components/layout/Layout";
-import { Skeleton, StateShell } from "@/components/ui/Primitives";
+import { SiteFrame } from "@/components/navigation/SiteFrame";
+import { PageLoadingState } from "@/features/utility-states";
 
 export default function Loading() {
   return (
-    <Section>
-      <PageContainer>
-        <StateShell title="Loading ScreenWhy…" tone="loading">
-          <Skeleton width="min(100%, 28rem)" />
-        </StateShell>
-      </PageContainer>
-    </Section>
+    <SiteFrame locale="en-US">
+      <Section>
+        <PageContainer>
+          <PageLoadingState />
+        </PageContainer>
+      </Section>
+    </SiteFrame>
   );
 }

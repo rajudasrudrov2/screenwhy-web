@@ -37,7 +37,7 @@ export async function generateTimelineMetadata(
     title: metadataTitle,
     description,
     alternates: { canonical },
-    robots: { index, follow: index || model.indexable },
+    robots: { index, follow: siteConfig.allowIndexing && model.indexable },
     openGraph: {
       title: `${metadataTitle} | ${brandConfig.name}`,
       description,

@@ -28,7 +28,7 @@ function walk(relativePath, predicate = () => true) {
 }
 
 const packageJson = JSON.parse(read("package.json"));
-record(packageJson.version === "0.5.0", "Package version is 0.5.0");
+record(packageJson.version === "0.5.2", "Package version is 0.5.2");
 
 const required = [
   "src/components/domain/canon/CanonContext.tsx",

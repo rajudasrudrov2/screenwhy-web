@@ -295,3 +295,5 @@
   .searchForm button { width: 100%; }
   .resultsHeading { align-items: start; flex-direction: column; gap: var(--pe-space-1); }
 }
+
+.emptyAction { display: inline-flex; align-items: center; min-height: 44px; color: var(--pe-text-link); font-weight: 700; text-decoration: none; }

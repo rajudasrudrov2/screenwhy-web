@@ -9,6 +9,7 @@ import {
 } from "@/types/domain/explanation";
 import { CANON_CLASSIFICATIONS } from "@/types/domain/canon";
 import { PUBLIC_HUB_ROUTES, PUBLIC_ROUTE_FAMILIES } from "@/config/routes";
+import { CompactEmptyState } from "@/features/utility-states";
 import {
   curatedExplanationHref,
   explanationDiscoveryHasFilters,
@@ -201,11 +202,11 @@ export function ExplanationDiscovery({ model }: { readonly model: ExplanationDis
             ))}
           </div>
         ) : (
-          <div className={styles.emptyState}>
-            <h3>No explanations found</h3>
-            <p>Try a broader question or clear the current filters. ScreenWhy will show new editorial coverage here as it is published.</p>
-            {definition.key === "all" && explanationDiscoveryHasFilters(filters) ? <Link href={PUBLIC_HUB_ROUTES.explanations}>Clear filters</Link> : <Link href={PUBLIC_HUB_ROUTES.explanations}>Browse all Explanations</Link>}
-          </div>
+          <CompactEmptyState
+            title="No explanations found"
+            description={<p>Try a broader question or adjust the current filters.</p>}
+            actions={definition.key === "all" && explanationDiscoveryHasFilters(filters) ? <Link className={styles.emptyAction} href={PUBLIC_HUB_ROUTES.explanations}>Clear filters</Link> : <Link className={styles.emptyAction} href={PUBLIC_HUB_ROUTES.explanations}>Browse all Explanations</Link>}
+          />
         )}
         <Pagination model={model} />
       </section>

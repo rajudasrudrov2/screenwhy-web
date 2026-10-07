@@ -18,7 +18,6 @@ export const PUBLIC_HUB_ROUTES = {
   anime: "/anime/",
   kDrama: "/k-drama/",
   documentaries: "/documentaries/",
-  titles: "/titles/",
   characters: "/characters/",
   explanations: "/explanations/",
   search: "/search/",
@@ -43,6 +42,22 @@ export const EDITORIAL_ROUTES = {
   terms: "/terms/",
   copyrightDmca: "/copyright-dmca/",
 } as const;
+
+export const PUBLIC_INDEXABLE_STATIC_ROUTES = [
+  PUBLIC_HUB_ROUTES.home,
+  PUBLIC_HUB_ROUTES.movies,
+  PUBLIC_HUB_ROUTES.tv,
+  PUBLIC_HUB_ROUTES.anime,
+  PUBLIC_HUB_ROUTES.kDrama,
+  PUBLIC_HUB_ROUTES.documentaries,
+  PUBLIC_HUB_ROUTES.characters,
+  PUBLIC_HUB_ROUTES.explanations,
+  EXPLANATION_DISCOVERY_ROUTES.endingExplained,
+  EXPLANATION_DISCOVERY_ROUTES.characterExplained,
+  EXPLANATION_DISCOVERY_ROUTES.mysteryExplained,
+  EXPLANATION_DISCOVERY_ROUTES.bookVsScreen,
+  ...Object.values(EDITORIAL_ROUTES),
+] as const;
 
 function cleanSegment(value: string, label: string): string {
   const segment = value.trim().replace(/^\/+|\/+$/g, "");

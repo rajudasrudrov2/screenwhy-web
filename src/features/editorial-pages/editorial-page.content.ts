@@ -5,7 +5,7 @@ const LAST_UPDATED = "October 7, 2026";
 
 /**
  * Verified public contact configuration.
- * Null means the current frontend has no OWNER-approved public destination.
+ * Null means no verified public destination is currently configured.
  * Keep these empty until authoritative details are supplied.
  */
 export const PUBLIC_CONTACT_CONFIG = Object.freeze({
@@ -80,7 +80,7 @@ const pages: Record<EditorialPageKey, EditorialPageDefinition> = {
         key: "contact-availability",
         heading: "Current contact availability",
         paragraphs: [
-          "ScreenWhy does not currently publish an OWNER-verified public email address, phone number, office address or contact-submission endpoint in this frontend. Rather than inventing a destination or pretending a message was sent, the site keeps this page informational until a verified public channel is approved.",
+          "ScreenWhy does not currently publish a verified public email address, phone number, office address or message-submission destination. Rather than inventing a contact route or pretending a message was sent, this page remains informational until a verified public channel is published.",
         ],
         callout: {
           title: "No public contact destination is published yet",
@@ -107,7 +107,7 @@ const pages: Record<EditorialPageKey, EditorialPageDefinition> = {
       {
         key: "editorial-questions",
         heading: "Editorial or sourcing questions",
-        paragraphs: ["For a question about how ScreenWhy distinguishes evidence, Canon and interpretation, see the editorial and sourcing standards first. Those pages describe the current frontend's intended editorial model without claiming processes that have not been established."],
+        paragraphs: ["For a question about how ScreenWhy distinguishes evidence, Canon and interpretation, see the editorial and sourcing standards first. Those pages describe ScreenWhy’s editorial model without claiming review processes that have not been established."],
         links: [
           { label: "Editorial Policy", href: EDITORIAL_ROUTES.editorialPolicy },
           { label: "Sourcing Policy", href: EDITORIAL_ROUTES.sourcingPolicy },
@@ -144,7 +144,7 @@ const pages: Record<EditorialPageKey, EditorialPageDefinition> = {
       {
         key: "canon-interpretation",
         heading: "Canon and interpretation",
-        paragraphs: ["ScreenWhy's frontend has a structured Canon model because not every explanation has the same evidentiary status. Confirmed screen continuity, source-material continuity, adaptation differences, interpretation and speculation should not be flattened into one voice."],
+        paragraphs: ["ScreenWhy uses a structured Canon model because not every explanation has the same evidentiary status. Confirmed screen continuity, source-material continuity, adaptation differences, interpretation and speculation should not be flattened into one voice."],
       },
       {
         key: "spoilers",
@@ -246,7 +246,7 @@ const pages: Record<EditorialPageKey, EditorialPageDefinition> = {
       {
         key: "how-to-report",
         heading: "What helps when reporting an issue",
-        paragraphs: ["A useful correction report identifies the page URL, the exact statement, the reason it appears wrong, and any source or story context that supports the request. The current frontend does not publish a verified submission channel yet, so this page does not promise a response time."],
+        paragraphs: ["A useful correction report identifies the page URL, the exact statement, the reason it appears wrong, and any source or story context that supports the request. A verified public submission channel is not currently published, so this page does not promise a response time."],
         links: [{ label: "Contact guidance", href: EDITORIAL_ROUTES.contact }],
       },
     ],
@@ -295,8 +295,8 @@ const pages: Record<EditorialPageKey, EditorialPageDefinition> = {
     route: EDITORIAL_ROUTES.privacy,
     title: "Privacy Policy",
     eyebrow: "Legal & privacy",
-    intro: "A conservative description of privacy-relevant behavior that can be supported by the current ScreenWhy frontend.",
-    metaDescription: "ScreenWhy privacy information, including browser-local Recent Searches and current frontend data-collection limitations.",
+    intro: "A conservative description of privacy-relevant behavior that ScreenWhy can currently verify.",
+    metaDescription: "ScreenWhy privacy information, including browser-local Recent Searches and current data-collection limitations.",
     lastUpdated: LAST_UPDATED,
     useToc: true,
     variant: "standard",
@@ -307,23 +307,23 @@ const pages: Record<EditorialPageKey, EditorialPageDefinition> = {
         paragraphs: ["The current Search experience can store up to five Recent Searches in the user's own browser using local storage. Those values are used to show the Recent Searches module on that browser and can be cleared from the Search interface."],
         callout: {
           title: "Browser-local history",
-          body: "The current Recent Searches feature is not represented by this frontend as a server-side ScreenWhy account history.",
+          body: "Recent Searches are stored locally in the browser and are not represented as a server-side ScreenWhy account history.",
         },
       },
       {
         key: "accounts-and-submissions",
         heading: "Accounts and submissions",
-        paragraphs: ["The current public frontend does not include a ScreenWhy user-account system, comments, newsletter signup or a working Contact submission form. This policy therefore does not describe those features as active services."],
+        paragraphs: ["The current public site does not include a ScreenWhy user-account system, comments, newsletter signup or a working Contact submission form. This policy therefore does not describe those features as active services."],
       },
       {
         key: "technical-processing",
         heading: "Technical processing",
-        paragraphs: ["This frontend does not make broad promises that no cookies, infrastructure logs, network processing or third-party technical processing can ever occur. Hosting, delivery and other infrastructure may process technical request information outside the source code visible here, so this page avoids claims the frontend cannot verify."],
+        paragraphs: ["ScreenWhy does not make broad promises that no cookies, infrastructure logs, network processing or third-party technical processing can ever occur. Hosting, delivery and other infrastructure may process technical request information, so this page avoids privacy claims that cannot be verified from the current product behavior."],
       },
       {
         key: "analytics-and-future-services",
         heading: "Analytics and future services",
-        paragraphs: ["The current frontend source audited for this release does not define a public analytics integration. If analytics, advertising, accounts, comments, newsletters, contact submissions or other third-party services are introduced later, this policy should be updated before describing those services as active."],
+        paragraphs: ["No public analytics integration is currently represented by the site. If analytics, advertising, accounts, comments, newsletters, contact submissions or other third-party services are introduced later, this policy should be updated before describing those services as active."],
       },
       {
         key: "policy-updates",
@@ -376,7 +376,7 @@ const pages: Record<EditorialPageKey, EditorialPageDefinition> = {
       {
         key: "legal-scope",
         heading: "Legal scope",
-        paragraphs: ["These baseline terms intentionally do not state a governing-law jurisdiction, arbitration clause, registered company identity or paid-subscription terms because those details have not been established as authoritative public ScreenWhy information for this frontend release."],
+        paragraphs: ["These baseline terms do not state a governing-law jurisdiction, arbitration clause, registered company identity or paid-subscription terms because those details have not been established as authoritative public ScreenWhy information."],
       },
     ],
     related: ["privacy", "copyrightDmca", "contact"],
@@ -412,10 +412,10 @@ const pages: Record<EditorialPageKey, EditorialPageDefinition> = {
       {
         key: "dmca-contact",
         heading: "DMCA contact status",
-        paragraphs: ["A designated public DMCA agent name, mailing address, phone number and email address have not been verified for publication in the current ScreenWhy frontend. This page therefore does not invent or imply a formal agent designation."],
+        paragraphs: ["A designated public DMCA agent name, mailing address, phone number and email address have not been verified for publication. This page therefore does not invent or imply a formal agent designation."],
         callout: {
           title: "Verified contact slot pending",
-          body: "When OWNER-approved DMCA contact details exist, they can be inserted in the centralized static-page configuration and displayed here.",
+          body: "When verified DMCA contact details are available for publication, this page can display them.",
         },
       },
       {

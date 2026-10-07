@@ -119,9 +119,9 @@ export const MOCK_TITLES_EN: readonly TitleDetail<"en-US">[] = Object.freeze([
     ],
     editorialDates: commonEditorDates,
     seo: {
-      title: "The Last Signal — ScreenWhy Demo Title",
+      title: "The Last Signal, Explained",
       metaDescription:
-        "Fictional demonstration title used to validate ScreenWhy frontend contracts.",
+        "Fictional sample title used to exercise ScreenWhy story-explanation features.",
       canonicalUrl: "https://screenwhy.com/movies/the-last-signal/",
       index: false,
       breadcrumbLabel: "The Last Signal",

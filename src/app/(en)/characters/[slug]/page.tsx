@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { SiteFrame } from "@/components/navigation/SiteFrame";
 import { brandConfig } from "@/config/brand";
 import { characterRoute } from "@/config/routes";
+import { siteConfig } from "@/config/site";
 import { getRepositories } from "@/data";
 import { CharacterDetailPage, loadCharacterDetail } from "@/features/character-detail";
 
@@ -38,8 +39,8 @@ export async function generateMetadata({ params }: CharacterRouteProps): Promise
       canonical: seo.canonicalUrl,
     },
     robots: {
-      index: seo.index,
-      follow: seo.follow ?? seo.index,
+      index: siteConfig.allowIndexing && seo.index,
+      follow: siteConfig.allowIndexing && (seo.follow ?? seo.index),
     },
     openGraph: {
       title: seo.openGraph?.title ?? title,

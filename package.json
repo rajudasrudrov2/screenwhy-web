@@ -1,6 +1,6 @@
 {
   "name": "screenwhy-web",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "private": true,
   "engines": {
     "node": ">=20.19.0"
@@ -29,7 +29,12 @@
     "validate:relationship-source": "node scripts/validate-relationship-source.mjs",
     "validate:timeline-source": "node scripts/validate-timeline-source.mjs",
     "validate:explanation-discovery-source": "node scripts/validate-explanation-discovery-source.mjs",
-    "validate:static-pages-source": "node scripts/validate-static-pages-source.mjs"
+    "validate:static-pages-source": "node scripts/validate-static-pages-source.mjs",
+    "validate:utility-states-source": "node scripts/validate-utility-states-source.mjs",
+    "validate:frontend-integration-source": "node scripts/validate-frontend-integration-source.mjs",
+    "validate:accessibility-source": "node scripts/validate-accessibility-source.mjs",
+    "validate:seo-source": "node scripts/validate-seo-source.mjs",
+    "validate:performance-source": "node scripts/validate-performance-source.mjs"
   },
   "dependencies": {
     "next": "16.3.8",
