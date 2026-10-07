@@ -42,6 +42,15 @@ export interface ExplanationLookupQuery<
   readonly slug: string;
 }
 
+export const EXPLANATION_ARCHIVE_SORTS = [
+  "updated_newest",
+  "published_newest",
+  "title_asc",
+  "title_desc",
+] as const;
+
+export type ExplanationArchiveSort = (typeof EXPLANATION_ARCHIVE_SORTS)[number];
+
 export interface ExplanationListQuery<
   TLocale extends LocaleCode = LocaleCode,
 > extends PaginationQuery {
@@ -49,6 +58,10 @@ export interface ExplanationListQuery<
   readonly explanationType?: ExplanationType;
   readonly primaryTitleId?: TitleLogicalGroupId;
   readonly canonClassification?: CanonClassification;
+  /** Frontend discovery extension. API mode remains fail-closed until wire names are authoritative. */
+  readonly query?: string;
+  readonly routeFamily?: PublicRouteFamily;
+  readonly sort?: ExplanationArchiveSort;
 }
 
 export interface CharacterLookupQuery<

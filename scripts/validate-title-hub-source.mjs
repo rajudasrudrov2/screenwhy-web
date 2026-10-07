@@ -21,7 +21,7 @@ const feature = featureFiles.map(read).join("\n");
 const combined = `${routes}\n${feature}`;
 const pkg = JSON.parse(read("package.json"));
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.4.6", "Package identity/version is ScreenWhy 0.4.6");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.5.0", "Package identity/version is ScreenWhy 0.5.0");
 record(routeFiles.every(exists), "1. All five dynamic Title routes exist");
 record(routeFiles.every((file) => read(file).includes("renderTitleHubRoute")), "2. All Title routes delegate to the shared Title Hub implementation");
 record(feature.includes("repositories.titles.getBySlug"), "3. Repository Title lookup is used");
@@ -51,7 +51,7 @@ record(routes.includes("generateMetadata") && feature.includes("generateTitleHub
 record(feature.includes("return notFound()") && feature.includes("return null"), "27. Invalid slug reaches not-found architecture");
 record(families.every((family) => exists(`src/app/(en)/${family}/page.tsx`)), "28. Later SW-FE-03F archive/index routes coexist with Title Hub dynamic routes");
 record(exists("src/app/(en)/characters/[slug]/page.tsx"), "29. Character Detail is now implemented as the next public-page milestone");
-record(!exists("src/app/(en)/relationships/page.tsx") && !exists("src/app/(en)/timeline/page.tsx"), "30. No standalone Relationship/Timeline experience is implemented");
+record(!exists("src/app/(en)/relationships/page.tsx") && !exists("src/app/(en)/timeline/page.tsx"), "30. No global Relationship or Timeline archive is implemented");
 record((read("src/features/title-hub/TitleHub.tsx").match(/<h1\b/g) ?? []).length === 1, "Title Hub renders exactly one H1");
 record(!/\bas any\b|:\s*any\b|<any>|Array<any>|Promise<any>/.test(combined), "Title Hub adds no any escape hatch");
 record(!feature.includes("SearchPage") && !feature.includes("loadSearchPage"), "Title Hub remains isolated from the later Search Results feature");

@@ -1,6 +1,6 @@
-# ScreenWhy Web 0.4.6
+# ScreenWhy Web 0.5.0
 
-ScreenWhy is the current public brand for the frontend formerly developed under the PlotExplainer project name. Version 0.4.6 is the controlled English-only scope cleanup built directly from the authoritative 0.4.5 frontend; it does not restart or redesign the product architecture.
+ScreenWhy is the current public brand for the frontend formerly developed under the PlotExplainer project name. Version 0.5.0 completes the two-phase SW-FE-03H + SW-FE-03I frontend build: v0.4.9 added Explanation Discovery / Archive, and v0.5.0 adds the reusable Trust, Editorial & Static Page system without changing the backend contract.
 
 ## Current product scope
 
@@ -11,11 +11,56 @@ ScreenWhy is the current public brand for the frontend formerly developed under 
 - **Brand promise:** Questions After Watching, Answered.
 - **Short slogan:** Watch. Wonder. Understand.
 
-The previously implemented secondary-language frontend, route tree, UI switch, fixtures, presentation branches, font wiring, metadata alternates and development examples were removed in this release. Generic logical-identity/localization concepts remain only where they are still structurally useful and do not assume a specific secondary language.
+The concrete secondary-language frontend, route tree, UI switch, fixtures, presentation branches, font wiring, metadata alternates and development examples were removed in v0.4.6. Generic logical-identity/localization concepts remain only where they are still structurally useful and do not assume a specific secondary language.
 
 ## Preserved frontend
 
-The English Homepage, Explanation Detail, Title Hub, Character Detail, Search, Movies/TV/Anime/K-Drama/Documentaries archives, Character archive, global navigation, cards, Canon, Spoiler, Quick Answer, long-form article system, Citation/Source Evidence system, repository boundary and API fail-closed behavior remain in scope.
+The English Homepage, Explanation Detail, Explanation Discovery, Title Hub, Character Detail, Search, Movies/TV/Anime/K-Drama/Documentaries archives, Character archive, Relationship, Story Timeline, global navigation, cards, Canon, Spoiler, Quick Answer, long-form article system, Citation/Source Evidence system, repository boundary and API fail-closed behavior remain in scope.
+
+## Relationship experience
+
+Relationship pages are title-scoped under every current Title route family, for example:
+
+```text
+/movies/the-last-signal/relationships/mara-vale/elias-vale/
+```
+
+One canonical A↔B ordering is used. A valid reverse request redirects to the canonical route; there is no global `/relationships/` archive. Relationship history, current status, related story events and map discovery preserve the existing Canon and Spoiler systems.
+
+## Story Timeline experience
+
+Story Timeline pages are also title-scoped under every current Title route family, for example:
+
+```text
+/movies/the-last-signal/timeline/
+```
+
+The clean URL defaults to story chronology. Presentation order is an alternate server-rendered view using URL state:
+
+```text
+/movies/the-last-signal/timeline/?order=presentation
+```
+
+`chronologyOrder` and `presentationOrder` remain separate domain concepts. Major/full events use neutral protected labels before disclosure, and event anchors are deterministic without deriving from spoiler-heavy titles. Timeline Characters, Explanations and Relationship cross-links resolve through repository/public-route boundaries.
+
+## Explanation Discovery
+
+The primary Explanation discovery route is:
+
+```text
+/explanations/
+```
+
+It supports server-rendered URL filters for local search, Explanation type, Title route family, Canon context, deterministic sort and pagination. Four substantive curated routes are also available:
+
+```text
+/explanations/ending-explained/
+/explanations/character-explained/
+/explanations/mystery-explained/
+/explanations/book-vs-screen/
+```
+
+The discovery layer uses `ExplanationRepository.list()` rather than raw fixture imports. Mock-mode filtering occurs before sorting and pagination, while API mode remains fail-closed until an authoritative wire contract exists. Filter/search combinations are noindex and canonicalize to the clean archive or curated intent; pagination-only clean pages follow the established archive canonical strategy.
 
 Application code continues to consume the typed repository boundary:
 
@@ -25,6 +70,24 @@ const repositories = getRepositories();
 ```
 
 API mode still fails closed with `BackendContractNotReadyError` until an authoritative backend transport contract exists.
+
+## Trust, editorial and static pages
+
+Version 0.5.0 adds nine real public pages using one typed, reusable editorial-page system:
+
+```text
+/about/
+/contact/
+/editorial-policy/
+/sourcing-policy/
+/corrections-policy/
+/ai-usage-policy/
+/privacy/
+/terms/
+/copyright-dmca/
+```
+
+Long policy pages reuse the existing Article reading measure and TOC system. Contact and Copyright / DMCA intentionally publish no invented email, phone, address, company identity or agent information; the current frontend has no authoritative public contact destination or submission backend. Privacy copy documents the browser-local Recent Searches behavior without making unsupported claims about infrastructure logging, cookies or future services.
 
 ## Environment configuration
 
@@ -37,7 +100,7 @@ SCREENWHY_DATA_SOURCE
 SCREENWHY_ALLOW_INDEXING
 ```
 
-Former `PLOTEXPLAINER_*` environment names remain temporary technical compatibility fallbacks. The legacy internal REST namespace `/plotexplainer/v1` also remains intentionally unchanged; backend migration is outside this frontend-only cleanup.
+Former `PLOTEXPLAINER_*` environment names remain temporary technical compatibility fallbacks. The legacy internal REST namespace `/plotexplainer/v1` also remains intentionally unchanged; backend migration is outside this frontend-only workstream.
 
 ## Development-only previews
 
@@ -70,6 +133,10 @@ npm run validate:title-hub-source
 npm run validate:character-detail-source
 npm run validate:search-source
 npm run validate:archive-source
+npm run validate:relationship-source
+npm run validate:timeline-source
+npm run validate:explanation-discovery-source
+npm run validate:static-pages-source
 npm run validate:english-only
 npm run typecheck
 npm run lint
@@ -87,7 +154,12 @@ npm run build
 - **0.4.4:** Search production build.
 - **0.4.5:** Browse & Archive production build.
 - **0.4.6:** Controlled English-only frontend cleanup; secondary-language implementation removed while completed English pages and domain contracts are preserved.
+- **0.4.7:** Character Relationship production experience with title-scoped routes, canonical pair redirect, spoiler-safe state history, relationship-relevant Timeline events, deterministic relationship map and surgical Title Hub/Character Detail navigation.
+- **0.4.8:** Story Timeline production experience with five title-scoped route families, chronology/presentation URL views, spoiler-safe event presentation, Character/Explanation/Relationship cross-links and surgical Title Hub/Character Detail/Relationship integration.
+- **0.4.9:** Explanation Discovery / Archive with `/explanations/`, four curated editorial routes, repository-backed local filters/search/sort/pagination, archive SEO guardrails, and Footer discovery links.
+- **0.5.0:** Reusable Trust, Editorial & Static Page system for About, Contact, editorial standards, Privacy, Terms and Copyright / DMCA, with centralized typed content and conservative accuracy safeguards.
 
-## Next task
+## Next two-phase prompt
 
-`SW-FE-03G — RELATIONSHIP & TIMELINE PRODUCTION BUILD`
+- `SW-FE-03J — UTILITY, ERROR & AVAILABILITY STATES`
+- `SW-FE-03K — FRONTEND INTEGRATION, RESPONSIVE, ACCESSIBILITY, SEO & PERFORMANCE HARDENING`

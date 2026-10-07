@@ -33,9 +33,18 @@
     "src/features/character-detail/character-detail.loader.ts",
     "src/features/character-detail/character-detail.types.ts",
     "scripts/validate-search-data.ts",
+    "scripts/validate-explanation-discovery-data.ts",
     "src/features/search/search.loader.ts",
     "src/features/search/search.types.ts",
-    "src/features/search/search.utils.ts"
+    "src/features/search/search.utils.ts",
+    "scripts/validate-relationship-data.ts",
+    "src/features/relationship-experience/relationship.loader.ts",
+    "src/features/relationship-experience/relationship.types.ts",
+    "src/features/relationship-experience/relationship.utils.ts",
+    "scripts/validate-timeline-data.ts",
+    "src/features/story-timeline/timeline.loader.ts",
+    "src/features/story-timeline/timeline.types.ts",
+    "src/features/story-timeline/timeline.utils.ts"
   ],
   "exclude": [
     "node_modules",

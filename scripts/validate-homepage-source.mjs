@@ -15,7 +15,7 @@ const gateway = read("src/features/homepage/RouteGatewayCard.tsx");
 const combined = [page, homepage, loader, config, gateway].join("\n");
 const pkg = JSON.parse(read("package.json"));
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.4.6", "Package identity/version is ScreenWhy 0.4.6");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.5.0", "Package identity/version is ScreenWhy 0.5.0");
 record(!page.includes("FrontendFoundationPage") && page.includes("ScreenWhyHomepage"), "Root foundation/status page is replaced by the production Homepage");
 record(homepage.includes("brandConfig.recommendedHomepageH1"), "Homepage H1 uses centralized ScreenWhy brand configuration");
 record(!combined.includes("Finished Watching?") && !combined.includes("Let’s Make Sense of It."), "Superseded PlotExplainer hero copy is absent");

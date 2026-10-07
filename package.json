@@ -1,6 +1,6 @@
 {
   "name": "screenwhy-web",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "private": true,
   "engines": {
     "node": ">=20.19.0"
@@ -25,7 +25,11 @@
     "validate:search-source": "node scripts/validate-search-source.mjs",
     "validate:search-data": "tsc -p tsconfig.data-validation.json && node scripts/run-data-validation.mjs",
     "validate:archive-source": "node scripts/validate-archive-source.mjs",
-    "validate:english-only": "node scripts/validate-english-only.mjs"
+    "validate:english-only": "node scripts/validate-english-only.mjs",
+    "validate:relationship-source": "node scripts/validate-relationship-source.mjs",
+    "validate:timeline-source": "node scripts/validate-timeline-source.mjs",
+    "validate:explanation-discovery-source": "node scripts/validate-explanation-discovery-source.mjs",
+    "validate:static-pages-source": "node scripts/validate-static-pages-source.mjs"
   },
   "dependencies": {
     "next": "16.3.8",

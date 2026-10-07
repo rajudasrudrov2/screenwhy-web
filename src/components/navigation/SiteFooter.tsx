@@ -12,7 +12,9 @@ const groups = [
       ["TV Shows", PUBLIC_HUB_ROUTES.tv],
       ["Anime", PUBLIC_HUB_ROUTES.anime],
       ["K-Drama", PUBLIC_HUB_ROUTES.kDrama],
+      ["Documentaries", PUBLIC_HUB_ROUTES.documentaries],
       ["Characters", PUBLIC_HUB_ROUTES.characters],
+      ["Explanations", PUBLIC_HUB_ROUTES.explanations],
     ],
   },
   {

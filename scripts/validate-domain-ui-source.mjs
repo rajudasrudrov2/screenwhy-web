@@ -28,7 +28,7 @@ function walk(relativePath, predicate = () => true) {
 }
 
 const packageJson = JSON.parse(read("package.json"));
-record(packageJson.version === "0.4.6", "Package version is 0.4.6");
+record(packageJson.version === "0.5.0", "Package version is 0.5.0");
 
 const required = [
   "src/components/domain/canon/CanonContext.tsx",
@@ -62,7 +62,7 @@ const forbiddenNames = [
   "RelationshipCard",
   "TimelineCard",
 ];
-record(forbiddenNames.every((name) => !componentSource.includes(`function ${name}`) && !componentSource.includes(`const ${name}`)), "Relationship/timeline component families remain deferred");
+record(forbiddenNames.every((name) => !componentSource.includes(`function ${name}`) && !componentSource.includes(`const ${name}`)), "Generic Relationship/Timeline card families remain outside the locked domain UI primitives");
 
 const failed = checks.filter((check) => !check.ok);
 for (const check of checks) {

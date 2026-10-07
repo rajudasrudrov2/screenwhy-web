@@ -6,7 +6,7 @@ import { SpoilerDisclosure, SpoilerMarker } from "@/components/domain/spoiler/Sp
 import { ArrowRightIcon, InfoIcon, SearchIcon } from "@/components/icons/Icons";
 import { PageContainer } from "@/components/layout/Layout";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
-import { characterRoute, explanationRoute, localizedRoute, searchRoute, titleRoute } from "@/config/routes";
+import { characterRoute, explanationRoute, localizedRoute, relationshipRoute, searchRoute, timelineRoute, titleRoute } from "@/config/routes";
 import type { CharacterStatusValue } from "@/types/domain/character";
 import type { RelationshipType } from "@/types/domain/relationship";
 import type { CharacterDetailViewModel, CharacterRelationshipPreview } from "@/features/character-detail/character-detail.types";
@@ -75,6 +75,18 @@ function RelationshipItem({ model, preview }: { readonly model: CharacterDetailV
         </Link>
       </div>
       {preview.relationship.summary ? <p className={styles.relationshipSummary}>{preview.relationship.summary}</p> : null}
+      <Link
+        className={styles.relationshipExperienceLink}
+        href={relationshipRoute(
+          model.primaryTitle.publicRouteFamily,
+          model.primaryTitle.identity.localization.currentVariant.slug,
+          preview.relationship.characterA.slug,
+          preview.relationship.characterB.slug,
+          model.locale,
+        )}
+      >
+        View full relationship <ArrowRightIcon size={16} />
+      </Link>
       {preview.safeState ? (
         <div className={styles.relationshipContext}>
           <CanonContext context={preview.safeState.canon} locale={model.locale} presentation="compact" />
@@ -276,6 +288,17 @@ export function CharacterDetailPage({ model }: { readonly model: CharacterDetail
                   );
                 })}
               </ol>
+              <Link
+                className={styles.relationshipExperienceLink}
+                href={timelineRoute(
+                  model.primaryTitle.publicRouteFamily,
+                  model.primaryTitle.identity.localization.currentVariant.slug,
+                  "chronology",
+                  model.locale,
+                )}
+              >
+                View full story timeline <ArrowRightIcon size={16} />
+              </Link>
             </section>
           ) : null}
         </div>

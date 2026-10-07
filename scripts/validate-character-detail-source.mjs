@@ -22,7 +22,7 @@ const view = read("src/features/character-detail/CharacterDetail.tsx");
 const combined = `${route}\n${feature}`;
 const pkg = JSON.parse(read("package.json"));
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.4.6", "Package identity/version is ScreenWhy 0.4.6");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.5.0", "Package identity/version is ScreenWhy 0.5.0");
 record(exists(routeFile), "1. /characters/[slug]/ route exists");
 record(loader.includes("repositories.characters.getBySlug"), "2. CharacterRepository getBySlug() is used");
 record(route.includes("notFound()") && loader.includes('if (characterResult.status !== "available") return null'), "3. Invalid Character slug reaches not-found architecture");
@@ -55,7 +55,7 @@ record(!/["'`]\/en\//.test(combined), "26. No /en/ route prefix is introduced");
 record(route.includes("generateMetadata") && route.includes("character.seo"), "27. Dynamic metadata uses the Character SEO contract");
 record(!/PersonSchema|Celebrity|ActorProfile|actor filmography/i.test(feature), "28. No celebrity/person architecture is introduced");
 record(!/Jon Snow|Game of Thrones|Kit Harington|Night's Watch|Targaryen|Stark Family/.test(feature), "29. Historical Character mockup content is absent from production feature code");
-record(!exists("src/app/(en)/relationships/page.tsx") && !exists("src/app/(en)/timeline/page.tsx"), "30. No standalone Relationship/Timeline page is built");
+record(!exists("src/app/(en)/relationships/page.tsx") && !exists("src/app/(en)/timeline/page.tsx"), "30. No global Relationship or Timeline archive is built");
 record((view.match(/<h1\b/g) ?? []).length === 1, "Character Detail renders exactly one H1");
 record(view.includes("<Breadcrumbs"), "Existing Breadcrumb component is reused");
 record(view.includes("<ExplanationCard"), "Existing ExplanationCard is reused");

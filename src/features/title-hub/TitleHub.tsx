@@ -10,7 +10,7 @@ import { ArrowRightIcon, InfoIcon, SearchIcon } from "@/components/icons/Icons";
 import { PageContainer } from "@/components/layout/Layout";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { routeFamilyLabel, titleTypeLabel } from "@/components/domain/cards/card-labels";
-import { explanationRoute, localizedRoute, searchRoute, titleHubRoute } from "@/config/routes";
+import { explanationRoute, localizedRoute, relationshipRoute, searchRoute, timelineRoute, titleHubRoute } from "@/config/routes";
 import type { CharacterRelationship, RelationshipState, RelationshipType } from "@/types/domain/relationship";
 import type { TimelineEvent } from "@/types/domain/timeline";
 import type { TitleDetail } from "@/types/domain/title";
@@ -115,6 +115,18 @@ function RelationshipsPreview({ model }: { readonly model: TitleHubViewModel }) 
                   <SpoilerMarker metadata={state.spoiler} locale={model.locale} scopeLabel={model.title.displayTitle} />
                 </div>
               ) : null}
+              <Link
+                className={styles.relationshipCta}
+                href={relationshipRoute(
+                  model.routeFamily,
+                  model.title.identity.localization.currentVariant.slug,
+                  relationship.characterA.slug,
+                  relationship.characterB.slug,
+                  model.locale,
+                )}
+              >
+                View relationship <ArrowRightIcon size={16} />
+              </Link>
             </article>
           );
         })}
@@ -159,6 +171,17 @@ function TimelinePreview({ model }: { readonly model: TitleHubViewModel }) {
           );
         })}
       </ol>
+      <Link
+        className={styles.relationshipCta}
+        href={timelineRoute(
+          model.routeFamily,
+          model.title.identity.localization.currentVariant.slug,
+          "chronology",
+          model.locale,
+        )}
+      >
+        View full timeline <ArrowRightIcon size={16} />
+      </Link>
     </section>
   );
 }

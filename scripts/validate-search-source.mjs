@@ -56,7 +56,7 @@ check(/searchRoute\("en-US"\)/.test(page), "Search canonical is based on stable 
 check(!/["'`]\/en\//.test(featureText + page), "Search implementation introduces no /en/ route");
 check(!/PlotExplainer|Plot Explainer|plotexplainer\.com/.test(featureText + page), "Search implementation contains no former public brand");
 check(!(await text("src/features/search/SearchPage.tsx")).includes("@/features/archive"), "Search feature remains isolated from later archive implementation");
-check(packageJson.version === "0.4.6", "Package version is 0.4.6");
+check(packageJson.version === "0.5.0", "Package version is 0.5.0");
 
 check(/query\.length < 2/.test(featureText), "Suggestion minimum query threshold is 2 characters");
 check(/200/.test(featureText) && /setTimeout/.test(featureText), "Suggestion requests use restrained debounce");

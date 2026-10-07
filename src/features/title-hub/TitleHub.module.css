@@ -474,3 +474,16 @@
   .topicCard { transition: none; }
   .topicCard:hover { transform: none; }
 }
+
+.relationshipCta {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: var(--pe-space-2);
+  color: var(--pe-text-link);
+  font-size: var(--pe-type-body-small);
+  font-weight: 700;
+  text-decoration: none;
+}
+.relationshipCta:hover { color: var(--pe-text-link-hover); text-decoration: underline; text-underline-offset: 0.18em; }
+.relationshipCta:focus-visible { outline: var(--pe-focus-ring-width) solid var(--pe-focus); outline-offset: var(--pe-focus-offset); border-radius: var(--pe-radius-sm); }

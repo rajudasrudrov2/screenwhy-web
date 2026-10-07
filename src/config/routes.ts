@@ -24,6 +24,14 @@ export const PUBLIC_HUB_ROUTES = {
   search: "/search/",
 } as const;
 
+export const EXPLANATION_DISCOVERY_ROUTES = {
+  all: PUBLIC_HUB_ROUTES.explanations,
+  endingExplained: "/explanations/ending-explained/",
+  characterExplained: "/explanations/character-explained/",
+  mysteryExplained: "/explanations/mystery-explained/",
+  bookVsScreen: "/explanations/book-vs-screen/",
+} as const;
+
 export const EDITORIAL_ROUTES = {
   about: "/about/",
   contact: "/contact/",
@@ -71,6 +79,32 @@ export function titleRoute(
     `/${routeFamily}/${cleanSegment(slug, "Title slug")}/`,
     locale,
   );
+}
+
+export function relationshipRoute(
+  routeFamily: PublicRouteFamily,
+  titleSlug: string,
+  characterASlug: string,
+  characterBSlug: string,
+  locale: LocaleCode = "en-US",
+): string {
+  return localizedRoute(
+    `/${routeFamily}/${cleanSegment(titleSlug, "Title slug")}/relationships/${cleanSegment(characterASlug, "Character A slug")}/${cleanSegment(characterBSlug, "Character B slug")}/`,
+    locale,
+  );
+}
+
+export function timelineRoute(
+  routeFamily: PublicRouteFamily,
+  titleSlug: string,
+  order: "chronology" | "presentation" = "chronology",
+  locale: LocaleCode = "en-US",
+): string {
+  const pathname = localizedRoute(
+    `/${routeFamily}/${cleanSegment(titleSlug, "Title slug")}/timeline/`,
+    locale,
+  );
+  return order === "presentation" ? `${pathname}?order=presentation` : pathname;
 }
 
 export function characterRoute(
