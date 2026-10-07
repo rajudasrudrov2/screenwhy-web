@@ -32,7 +32,7 @@ const routeFiles = [
 ];
 const routeSources = routeFiles.map(read);
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.5.0", "Package identity/version is ScreenWhy 0.5.0");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.5.2", "Package identity/version is ScreenWhy 0.5.2");
 record(routeFiles.every(exists), "1. General Explanation Discovery and four curated routes exist");
 record(routeSources.every((source) => source.includes("renderExplanationDiscoveryRoute") && source.includes("createExplanationDiscoveryMetadata")), "2. All discovery route wrappers delegate to one shared feature");
 record(exists(featureDir) && exists(`${featureDir}/explanation-discovery.loader.ts`) && exists(`${featureDir}/ExplanationDiscovery.tsx`), "3. One reusable Explanation Discovery feature owns composition");

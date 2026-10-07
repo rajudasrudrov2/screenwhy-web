@@ -26,7 +26,7 @@ const families = ["movies", "tv", "anime", "k-drama", "documentaries"];
 const routeFiles = families.map((family) => `src/app/(en)/${family}/[slug]/timeline/page.tsx`);
 const routeSources = routeFiles.map(read);
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.5.0", "Package identity/version is ScreenWhy 0.5.0");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.5.2", "Package identity/version is ScreenWhy 0.5.2");
 record(routeFiles.every(exists), "1. Five title-scoped Timeline route-family wrappers exist");
 record(routeSources.every((source) => source.includes("renderTimelineRoute") && source.includes("generateTimelineMetadata")), "2. All Timeline wrappers delegate to one shared feature");
 record(routes.includes("timelineRoute(") && routes.includes("?order=presentation"), "3. Centralized timelineRoute helper owns Timeline URL construction");

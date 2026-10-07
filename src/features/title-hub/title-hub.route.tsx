@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { SiteFrame } from "@/components/navigation/SiteFrame";
 import { brandConfig } from "@/config/brand";
 import { titleRoute, type PublicRouteFamily } from "@/config/routes";
+import { siteConfig } from "@/config/site";
 import { getRepositories } from "@/data";
 import { TitleHubPage } from "@/features/title-hub/TitleHub";
 import { loadTitleHub } from "@/features/title-hub/title-hub.loader";
@@ -30,7 +31,10 @@ export async function generateTitleHubMetadata(
     alternates: {
       canonical: seo.canonicalUrl,
     },
-    robots: { index: seo.index, follow: seo.follow ?? seo.index },
+    robots: {
+      index: siteConfig.allowIndexing && seo.index,
+      follow: siteConfig.allowIndexing && (seo.follow ?? seo.index),
+    },
     openGraph: {
       title: seo.openGraph?.title ?? metadataTitle,
       description: seo.openGraph?.description ?? description,

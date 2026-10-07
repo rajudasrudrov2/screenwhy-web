@@ -190,7 +190,7 @@ function ViewerQuestions({ model }: { readonly model: TitleHubViewModel }) {
   if (model.viewerQuestions.length === 0) return null;
   return (
     <section className={styles.section} aria-labelledby="viewer-questions-heading">
-      <div className={styles.sectionIntro}><div><p className={styles.eyebrow}>Answered questions</p><h2 id="viewer-questions-heading">Popular Viewer Questions</h2><p>Questions this fictional demo data already has explanations for.</p></div></div>
+      <div className={styles.sectionIntro}><div><p className={styles.eyebrow}>Answered questions</p><h2 id="viewer-questions-heading">Viewer Questions</h2><p>Questions the available fictional sample already has explanations for.</p></div></div>
       <div className={styles.questionGrid}>
         {model.viewerQuestions.slice(0, 6).map((item) => (
           <Link className={styles.questionCard} key={`${String(item.explanation.identity.logicalId)}-${item.question}`} href={explanationRoute(item.explanation.identity.localization.currentVariant.slug, model.locale)}>

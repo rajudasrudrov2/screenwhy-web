@@ -25,7 +25,7 @@ const families = ["movies", "tv", "anime", "k-drama", "documentaries"];
 const routeFiles = families.map((family) => `src/app/(en)/${family}/[slug]/relationships/[characterA]/[characterB]/page.tsx`);
 const routeSources = routeFiles.map(read);
 
-record(pkg.name === "screenwhy-web" && pkg.version === "0.5.0", "Package identity/version is ScreenWhy 0.5.0");
+record(pkg.name === "screenwhy-web" && pkg.version === "0.5.2", "Package identity/version is ScreenWhy 0.5.2");
 record(routeFiles.every(exists), "1. Five title-scoped Relationship route-family wrappers exist");
 record(routeSources.every((source) => source.includes("renderRelationshipRoute") && source.includes("generateRelationshipMetadata")), "2. All route wrappers delegate to one shared Relationship feature");
 record(loader.includes("repositories.titles.getBySlug") && loader.includes("routeFamily") && loader.includes("slug: titleSlug"), "3. Title lookup uses routeFamily + Title slug");

@@ -1,0 +1,58 @@
+import fs from "node:fs";
+import path from "node:path";
+import process from "node:process";
+
+const root = process.cwd();
+const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8");
+const exists = (rel) => fs.existsSync(path.join(root, rel));
+const checks = [];
+const check = (condition, label) => checks.push({ ok: Boolean(condition), label });
+
+const notFound = read("src/app/(en)/not-found.tsx");
+const errorBoundary = read("src/app/(en)/error.tsx");
+const loading = read("src/app/(en)/loading.tsx");
+const utility = read("src/features/utility-states/UtilityState.tsx");
+const utilityCss = read("src/features/utility-states/UtilityState.module.css");
+const archive = read("src/features/archive/ArchivePage.tsx");
+const discovery = read("src/features/explanation-discovery/ExplanationDiscovery.tsx");
+const search = read("src/features/search/SearchPage.tsx");
+const routes = read("src/config/routes.ts");
+const repositoryBoundary = read("src/data/repositories/create-repository.ts");
+const cardMedia = read("src/components/domain/cards/CardMedia.tsx");
+const mediaFrame = read("src/components/layout/MediaFrame.tsx");
+const newSource = [notFound, errorBoundary, loading, utility, utilityCss].join("\n");
+
+check(notFound.includes('title="Page not found"') && notFound.includes('eyebrow="404"'), "1. Final public Page not found experience exists");
+check(!notFound.includes("Return to foundation"), "2. Old Return to foundation action is absent");
+check(!/PE-FE|technical foundation|route is not implemented/i.test([notFound, errorBoundary, loading].join("\n")), "3. Foundation/development copy is absent from public utility routes");
+check(utility.includes('action={searchRoute("en-US")}') && utility.includes('method="get"'), "4. 404 recovery search is a native GET form targeting centralized Search route");
+check(utility.includes('name="q"'), "5. Utility Search uses the q parameter");
+check(utility.includes("PUBLIC_HUB_ROUTES.movies") && utility.includes("PUBLIC_HUB_ROUTES.tv") && utility.includes("PUBLIC_HUB_ROUTES.anime") && utility.includes("PUBLIC_HUB_ROUTES.kDrama"), "6. Recovery browse destinations use real centralized routes");
+check(errorBoundary.includes("RetryableFailure") && errorBoundary.includes("onRetry={reset}"), "7. Production error boundary uses the reusable retryable failure experience");
+check(errorBoundary.includes("reset") && utility.includes("Try again"), "8. Retry continues to use App Router reset()");
+check(!/digest|stack trace|server path/i.test(utility) && !errorBoundary.includes("error.message"), "9. User-facing error UI exposes no technical error detail");
+check(loading.includes("PageLoadingState") && utility.includes("PageLoadingState"), "10. Production loading experience exists");
+check(utility.includes('role="status"') && utility.includes('ariaLive="polite"'), "11. Loading uses status/polite semantics");
+check(utilityCss.includes("prefers-reduced-motion") && utilityCss.includes("animation: none"), "12. Utility loading/recovery styling has reduced-motion protection");
+check(utility.includes("CompactEmptyState") && archive.includes("CompactEmptyState") && discovery.includes("CompactEmptyState"), "13. Shared empty-state architecture is used by Archives and Explanation Discovery");
+check(archive.includes("Clear filters") && discovery.includes("Clear filters"), "14. Archive/discovery empty states retain useful filter recovery");
+check(search.includes("NoResults") && search.includes("alternatives"), "15. Search-specific no-results behavior remains intact");
+check(utility.includes("ContentUnavailableState") && !notFound.includes("ContentUnavailableState"), "16. Content-unavailable foundation exists without replacing normal 404 handling");
+check(!/removedStatus|unpublishedStatus|temporarily unavailable/i.test(utility), "17. Utility system invents no removed/unpublished/temporary status data");
+check(repositoryBoundary.includes('if (mode === "mock") return createMockRepositories();') && repositoryBoundary.includes("return createApiRepositories") && !/catch[\s\S]{0,180}createMockRepositories/.test(repositoryBoundary), "18. API mode continues to fail closed without API-to-mock fallback");
+check(!/localization unavailable|language unavailable|view in english/i.test(newSource), "19. No obsolete localization-unavailable utility UI is introduced");
+const removedLocale = ["bn", "BD"].join("-");
+const removedRoutePrefix = "/" + ["b", "n"].join("") + "/";
+const removedGroup = "(" + ["b", "n"].join("") + ")";
+check(!exists(`src/app/${removedGroup}`) && !newSource.includes(removedLocale) && !newSource.includes(removedRoutePrefix), "20. English-only utility implementation remains intact");
+check(!/PlotExplainer|plotexplainer\.com|PE logo/.test(newSource), "21. New utility-state source contains no former public brand");
+const pkg = JSON.parse(read("package.json"));
+check(Object.keys(pkg.dependencies ?? {}).length === 3 && !/d3|framer-motion|lottie|motion\/react|react-icons/i.test(JSON.stringify(pkg.dependencies)), "22. No heavy utility dependency was added");
+check(exists("src/app/global-error.tsx") && read("src/app/global-error.tsx").includes('"use client"') && read("src/app/global-error.tsx").includes("<html") && read("src/app/global-error.tsx").includes("ScreenWhy"), "23. Minimal resilient global error fallback exists");
+check(cardMedia.includes("fallbackLabel") && cardMedia.includes('role="img"') && mediaFrame.includes("styles[ratio]"), "24. Existing media fallback and stable MediaFrame behavior remain in place");
+check(routes.includes("searchRoute") && routes.includes("PUBLIC_HUB_ROUTES"), "25. Central route helpers remain the utility navigation source");
+
+const failed = checks.filter((item) => !item.ok);
+for (const item of checks) console.log(`${item.ok ? "PASS" : "FAIL"} — ${item.label}`);
+console.log(`\n${checks.length - failed.length}/${checks.length} SW-FE-03J utility-state guardrails passed.`);
+if (failed.length) process.exitCode = 1;

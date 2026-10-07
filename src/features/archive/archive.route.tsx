@@ -50,7 +50,7 @@ export async function createTitleArchiveMetadata(routeFamily: PublicRouteFamily,
     title,
     description: definition.description,
     alternates: { canonical },
-    robots: { index, follow: true },
+    robots: { index, follow: siteConfig.allowIndexing },
     openGraph: { title: `${title} | ScreenWhy`, description: definition.description, url: canonical, siteName: "ScreenWhy", type: "website" },
   };
 }
@@ -73,7 +73,7 @@ export async function createCharacterArchiveMetadata(params: ArchiveSearchParams
     title,
     description,
     alternates: { canonical },
-    robots: { index, follow: true },
+    robots: { index, follow: siteConfig.allowIndexing },
     openGraph: { title: `${title} | ScreenWhy`, description, url: canonical, siteName: "ScreenWhy", type: "website" },
   };
 }

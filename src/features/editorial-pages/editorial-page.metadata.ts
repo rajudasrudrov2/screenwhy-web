@@ -10,7 +10,7 @@ export function createEditorialPageMetadata(pageKey: EditorialPageKey): Metadata
     title: page.title,
     description: page.metaDescription,
     alternates: { canonical },
-    robots: { index: siteConfig.allowIndexing, follow: true },
+    robots: { index: siteConfig.allowIndexing, follow: siteConfig.allowIndexing },
     openGraph: {
       title: `${page.title} | ScreenWhy`,
       description: page.metaDescription,

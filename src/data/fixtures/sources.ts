@@ -10,7 +10,7 @@ export const MOCK_SOURCES: readonly PublicSource[] = Object.freeze([
   {
     sourceId: FIXTURE_IDS.sources.lastSignalFilm,
     sourceType: "primary_screen_work",
-    sourceTitle: "The Last Signal — fictional demonstration film",
+    sourceTitle: "The Last Signal — fictional sample film",
     creatorAuthor: "Northline Pictures",
     publicationDate: serializedDate("2026-03-14"),
     verificationState: "approved",
@@ -18,7 +18,7 @@ export const MOCK_SOURCES: readonly PublicSource[] = Object.freeze([
   {
     sourceId: FIXTURE_IDS.sources.lastSignalNovel,
     sourceType: "source_material",
-    sourceTitle: "The Last Signal — fictional demonstration novel",
+    sourceTitle: "The Last Signal — fictional sample novel",
     creatorAuthor: "Iris North",
     publisher: "Lantern House",
     publicationDate: serializedDate("2024-09-05"),
@@ -44,6 +44,6 @@ export const LAST_SIGNAL_SOURCE_WORK = {
   publisher: "Lantern House",
   initialPublicationDate: serializedDate("2024-09-05"),
   initialPublicationYear: 2024,
-  editionNotes: "Fictional demonstration source work for frontend contract QA.",
+  editionNotes: "Fictional sample source work used for content-model validation.",
   relatedScreenTitles: [TITLE_REFERENCES.lastSignalEn],
 } as const satisfies SourceWorkDetail;
