@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - feature/SW-FE-05F-api-runtime-qa
+  pull_request:
+    branches:
+      - feature/SW-FE-05E-R2-api-reconciliation
   workflow_dispatch:
 
 permissions:
