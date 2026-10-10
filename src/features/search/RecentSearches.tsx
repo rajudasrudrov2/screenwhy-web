@@ -34,11 +34,15 @@ export function RecentSearches() {
 
   useEffect(() => {
     const sync = () => setItems(readRecent());
-    setMounted(true);
-    sync();
+    // Defer the initial hydration read; subsequent updates respond to user/storage events.
+    const frame = window.requestAnimationFrame(() => {
+      setMounted(true);
+      sync();
+    });
     window.addEventListener("screenwhy:recent-searches", sync);
     window.addEventListener("storage", sync);
     return () => {
+      window.cancelAnimationFrame(frame);
       window.removeEventListener("screenwhy:recent-searches", sync);
       window.removeEventListener("storage", sync);
     };
