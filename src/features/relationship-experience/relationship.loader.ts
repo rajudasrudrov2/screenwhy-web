@@ -21,7 +21,7 @@ import {
   strongestRelationshipSpoiler,
 } from "@/features/relationship-experience/relationship.utils";
 
-const PAGE_SIZE = 100;
+const PAGE_SIZE = 50;
 
 const EXPLANATION_PRIORITY: Readonly<Record<ExplanationType, number>> = {
   relationship_explained: 0,
