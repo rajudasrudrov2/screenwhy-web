@@ -123,6 +123,30 @@ export function Homepage({ model }: { readonly model: HomepageViewModel }) {
         </PageContainer>
       </section>
 
+      {/* Reading-preview feature, deliberately outside CMS-published collections. */}
+      <section className={`${styles.section} ${styles.trianglePreviewSection}`} aria-labelledby="triangle-reading-heading">
+        <PageContainer>
+          <article className={styles.trianglePreviewCard}>
+            <div className={styles.trianglePreviewContent}>
+              <p className={styles.trianglePreviewLabel}>First movie explanation · Reading preview · Full spoilers</p>
+              <h2 id="triangle-reading-heading">Triangle (2009) Explained</h2>
+              <p className={styles.trianglePreviewDescription}>
+                Untangle the Aeolus time loop, the different versions of Jess, and the film’s mysterious ending.
+                The complete article is available to read while its CMS fact-check and source review are in progress.
+              </p>
+              <Link className={styles.trianglePreviewLink} href="/explain/triangle-2009/">
+                Read the full explanation <ArrowRightIcon size={17} />
+              </Link>
+            </div>
+            <div className={styles.trianglePreviewAside} aria-hidden="true">
+              <span>TRIANGLE</span>
+              <strong>2009</strong>
+              <small>Time loop / Ending explained</small>
+            </div>
+          </article>
+        </PageContainer>
+      </section>
+
       {model.featured.length ? (
         <section className={styles.section} aria-labelledby="featured-heading">
           <PageContainer>
