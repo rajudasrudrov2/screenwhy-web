@@ -1,0 +1,21 @@
+.wrap { max-width: 1180px; margin: 0 auto; padding: 26px 22px 110px; }
+.crumbs { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; font-size: 13px; color: var(--pe-text-muted); margin-bottom: 42px; }
+.crumbs a { color: var(--pe-text-link); text-underline-offset: 3px; }
+.hero { max-width: 880px; margin: 0 auto 64px; }
+.eyebrow { color: #80600d; font-weight: 800; font-size: 12px; letter-spacing: .11em; margin-bottom: 15px; }
+.hero h1 { font-size: clamp(34px, 4.5vw, 62px); letter-spacing: -.035em; line-height: 1.12; }
+.deck { max-width: 770px; margin-top: 22px; font-size: clamp(17px, 2vw, 21px); color: var(--pe-text-secondary); line-height: 1.55; }
+.notice { margin-top: 28px; padding: 15px 18px; border: 1px solid #d3c39c; border-radius: 11px; background: #fff9ea; font-size: 14px; color: #513b17; line-height: 1.6; }
+.columns { display: grid; grid-template-columns: minmax(215px, 270px) minmax(0, 1fr); gap: clamp(38px, 5.5vw, 86px); align-items: start; }
+.sidebar { position: sticky; top: 22px; max-height: calc(100vh - 50px); overflow: auto; padding: 21px; background: var(--pe-surface-canvas); border: 1px solid #d9dee5; border-radius: 14px; }
+.sidebar h2 { font-size: 15px; margin-bottom: 16px; }
+.sidebar ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 11px; }
+.sidebar a { display: block; color: var(--pe-text-secondary); font-size: 13px; line-height: 1.45; text-decoration: none; }
+.sidebar a:hover { color: var(--pe-text-link); text-decoration: underline; }
+.article { min-width: 0; max-width: 740px; margin: 0 auto; font-size: clamp(16px, 1.7vw, 18px); line-height: 1.8; overflow-wrap: anywhere; }
+.article p { margin: 0 0 1.25em; }
+.article h2 { font-size: clamp(25px, 2.8vw, 35px); line-height: 1.24; padding-top: 15px; margin: 2.2em 0 .75em; scroll-margin-top: 28px; }
+.article h2:first-child { margin-top: 0; }
+.article h3 { font-size: clamp(20px, 2.2vw, 26px); line-height: 1.32; margin: 1.8em 0 .7em; scroll-margin-top: 28px; }
+@media (max-width: 820px) { .columns { grid-template-columns: minmax(0,1fr); gap: 18px; } .sidebar { position: static; max-height: none; margin: 0 0 22px; } .sidebar ol { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px 20px; } .hero { margin-bottom: 36px; } }
+@media (max-width: 520px) { .wrap { padding: 18px 18px 80px; } .crumbs { margin-bottom: 24px; } .sidebar ol { grid-template-columns: 1fr; } .article { line-height: 1.72; } .hero h1 { font-size: 34px; } }
