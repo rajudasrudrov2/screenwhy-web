@@ -20,7 +20,7 @@ import {
   type TimelineOrderMode,
 } from "@/features/story-timeline/timeline.utils";
 
-const PAGE_SIZE = 100;
+const PAGE_SIZE = 50;
 const RELATED_EXPLANATION_TYPES = new Set([
   "timeline_explained",
   "scene_explained",
