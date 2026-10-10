@@ -51,7 +51,7 @@ check(queries.includes("readonly countrySlug?: string") && queries.includes("rea
 check(queries.includes("readonly sort?: CharacterArchiveSort") && queries.includes("readonly query?: string"), "CharacterListQuery search/sort extension is optional");
 check(titleRepo.includes("matchesDiscovery") && titleRepo.includes("sortTitles"), "Mock Title repository implements deterministic discovery");
 check(characterRepo.includes("character.aliases?.some") && characterRepo.includes("sortCharacters"), "Character search includes names/aliases with deterministic sort");
-check(read("src/data/api/requests.ts").includes('notReady("title.list")') && read("src/data/api/requests.ts").includes('notReady("character.list")'), "API list contracts remain fail-closed");
+check(read("src/data/api/requests.ts").includes("screenWhyApiRequests") && read("src/data/api/requests.ts").includes("buildTitleList:q=>") && read("src/data/api/mappers.ts").includes("malformed"), "API list requests use authoritative routes and invalid responses still fail closed");
 check(archivePage.includes('name="q"') && archivePage.includes('method="get"'), "Local archive search is native GET using q");
 check(archivePage.includes('name="genre"') && archivePage.includes('name="year"'), "Supported Title filters use URL parameters");
 check(!archivePage.includes('name="country"') && !archivePage.includes('name="platform"'), "Country/Platform controls are omitted without trustworthy facet vocabulary");
