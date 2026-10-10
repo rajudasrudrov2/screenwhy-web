@@ -32,12 +32,7 @@ export function SearchField({ initialQuery = "", filter = "all", autofocus = fal
 
   useEffect(() => {
     const query = value.trim();
-    if (query.length < 2) {
-      setSuggestions(null);
-      setOpen(false);
-      setActiveIndex(-1);
-      return;
-    }
+    if (query.length < 2) return;
     let cancelled = false;
     const timer = window.setTimeout(async () => {
       setLoading(true);
@@ -120,7 +115,15 @@ export function SearchField({ initialQuery = "", filter = "all", autofocus = fal
           aria-expanded={open}
           aria-controls={listboxId}
           aria-activedescendant={activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined}
-          onChange={(event: ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            const nextValue = event.target.value;
+            setValue(nextValue);
+            if (nextValue.trim().length < 2) {
+              setSuggestions(null);
+              setOpen(false);
+              setActiveIndex(-1);
+            }
+          }}
           onFocus={() => {
             if (suggestions?.groups.length) setOpen(true);
           }}
