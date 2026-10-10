@@ -1,5 +1,6 @@
 import { env } from "@/config/env";
-import { BackendContractNotReadyError, DataAccessError } from "@/data/errors";
+import { DataAccessError } from "@/data/errors";
+import { decodeApiArticleBody, type PublicArticleContext } from "@/data/article-body/api-decoder";
 import type { ArticleBodyDocument } from "@/types/domain/explanation";
 import type { PublicCitation } from "@/types/domain/source";
 import { decodeMockArticleBody } from "@/data/article-body/mock-decoder";
@@ -24,15 +25,14 @@ export { decodeMockArticleBody } from "@/data/article-body/mock-decoder";
  */
 export function getRenderableArticleBody(
   document: ArticleBodyDocument,
+  context?: PublicArticleContext,
 ): RenderableArticleBody {
   if (env.dataSource === "mock") {
     return decodeMockArticleBody(document as unknown);
   }
 
-  throw new BackendContractNotReadyError(
-    "map-explanation-article-body",
-    "explanation-body",
-  );
+  if(!context) throw new DataAccessError("malformed_payload","Article ownership context is required for public API rendering.");
+  return decodeApiArticleBody(document as unknown, context);
 }
 
 function collectCitationNumbersFromBlocks(
