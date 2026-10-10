@@ -115,8 +115,11 @@ async function inspectBrowser() {
           const response = await page.goto(origin + route, { waitUntil: 'domcontentloaded', timeout: 50000 });
           await page.waitForTimeout(600);
           const code = response?.status() ?? 0;
-          record('browser-' + device, name + '-http', code === expectedStatus,
-            `HTTP ${code}; expected ${expectedStatus}`);
+          // Next.js App Router may stream a notFound() page with HTTP 200 after
+          // headers are committed. Accept only with verified not-found + noindex.
+          const streamedNotFound = name === 'unknown-explanation' && code === 200;
+          record('browser-' + device, name + '-http', code === expectedStatus || streamedNotFound,
+            `HTTP ${code}; expected ${expectedStatus}${streamedNotFound ? ' (streamed notFound candidate)' : ''}`);
           const title = await page.title();
           record('browser-' + device, name + '-document', title.length > 0, title.slice(0, 100));
           const horizontal = await page.evaluate(() => ({
@@ -127,6 +130,11 @@ async function inspectBrowser() {
             horizontal.sw <= horizontal.vw + 4, `${horizontal.sw}/${horizontal.vw}`);
           const robots = await page.locator('meta[name="robots"]').first().getAttribute('content').catch(() => null);
           record('browser-' + device, name + '-noindex', Boolean(robots?.includes('noindex')), String(robots));
+          if (streamedNotFound) {
+            record('browser-' + device, name + '-streamed-404-safety',
+              title.toLowerCase().includes('not found') && Boolean(robots?.includes('noindex')),
+              'HTTP 200 is allowed here only for the framework streaming notFound response');
+          }
           record('browser-' + device, name + '-client-error', errors.length === 0, errors.slice(0, 2).join(' | '));
           if (name === 'home') {
             const link = page.locator('a[href*="/explain/triangle-2009/"]');
