@@ -34,11 +34,11 @@ function record(area, name, passed, detail = '') {
   return passed;
 }
 function summarizeError(error) { return error instanceof Error ? error.message : String(error); }
-async function writeReport() {
+async function writeReport(serverDiagnostics = {}) {
   await writeFile(path.join(outDir, 'SW-FE-05F-API-Browser-QA.json'), JSON.stringify({
     task: 'SW-FE-05F', started, completed: new Date().toISOString(),
     source: process.env.GITHUB_SHA ?? 'local', origin, rest, dataSource: 'api',
-    checks, totals: {
+    checks, serverDiagnostics, totals: {
       passed: checks.filter(x => x.status === 'PASS').length,
       failed: checks.filter(x => x.status === 'FAIL').length,
     },
@@ -112,7 +112,10 @@ async function inspectBrowser() {
         const errors = [];
         page.on('pageerror', err => errors.push(summarizeError(err)));
         try {
-          const response = await page.goto(origin + route, { waitUntil: 'domcontentloaded', timeout: 50000 });
+          const response = await page.goto(origin + route, { waitUntil: 'load', timeout: 50000 });
+          // Do not abort outstanding React Server Component/Link prefetch streams
+          // by closing the browser tab while Next.js is still sending responses.
+          await page.waitForLoadState('networkidle', { timeout: 12000 }).catch(() => null);
           await page.waitForTimeout(600);
           const code = response?.status() ?? 0;
           // Next.js App Router may stream a notFound() page with HTTP 200 after
@@ -164,6 +167,7 @@ async function inspectBrowser() {
         } catch (error) {
           record('browser-' + device, name + '-navigation', false, summarizeError(error));
         } finally {
+          await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => null);
           await page.close();
         }
       }
@@ -205,7 +209,11 @@ async function main() {
   } finally {
     child.kill('SIGTERM');
     await writeFile(path.join(outDir, 'next-api-mode-server.log'), logs.slice(-18000));
-    await writeReport();
+    await writeReport({
+      streamClosedEarlyCount: (logs.match(/The destination stream closed early/g) ?? []).length,
+      otherServerErrorCount: (logs.match(/Error:/g) ?? []).length
+        - (logs.match(/The destination stream closed early/g) ?? []).length,
+    });
   }
   const failed = checks.filter(x => x.status === 'FAIL');
   console.log(`SW-FE-05F: ${checks.length - failed.length}/${checks.length} checks passed; ${failed.length} failed`);
