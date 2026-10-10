@@ -4,7 +4,7 @@ import { API_RESOURCE_PATHS } from "@/data/api/paths";
 import { createApiTransport } from "@/data/api/transport";
 import { serializeApiQuery } from "@/data/api/query";
 import type { ApiTransport } from "@/data/api/transport";
-import { BackendContractNotReadyError, DataAccessError } from "@/data/errors";
+import { DataAccessError } from "@/data/errors";
 import { runMockDataValidation } from "@/data/mock/validation";
 import { createRepositories } from "@/data/repositories/create-repository";
 
@@ -22,15 +22,6 @@ function requireCheck(
 ): void {
   if (condition) checks.push(label);
   else failures.push(label);
-}
-
-async function expectBackendNotReady(action: () => Promise<unknown>): Promise<boolean> {
-  try {
-    await action();
-    return false;
-  } catch (error) {
-    return error instanceof BackendContractNotReadyError;
-  }
 }
 
 export async function runDataFoundationValidation(): Promise<DataFoundationValidationResult> {
@@ -99,19 +90,14 @@ export async function runDataFoundationValidation(): Promise<DataFoundationValid
     failures,
   );
 
-  const apiNotReady = await expectBackendNotReady(() =>
-    api.titles.getBySlug({
-      locale: "en-US",
-      routeFamily: "movies",
-      slug: "the-last-signal",
-    }),
-  );
-  requireCheck(
-    apiNotReady && transportCalls === 0,
-    "API mode fails closed before network and never falls back to mock",
-    checks,
-    failures,
-  );
+  let failedClosed = false;
+  try {
+    await api.titles.getBySlug({locale:"en-US",routeFamily:"movies",slug:"the-last-signal"});
+  } catch(error) {
+    failedClosed = error instanceof DataAccessError && error.code === "malformed_payload";
+  }
+  requireCheck(failedClosed && transportCalls === 1,
+    "API mode performs one typed request then rejects malformed wire data; never falls back to mock",checks,failures);
 
   const serialized = serializeApiQuery({
     locale: "en-US",
