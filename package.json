@@ -34,7 +34,8 @@
     "validate:frontend-integration-source": "node scripts/validate-frontend-integration-source.mjs",
     "validate:accessibility-source": "node scripts/validate-accessibility-source.mjs",
     "validate:seo-source": "node scripts/validate-seo-source.mjs",
-    "validate:performance-source": "node scripts/validate-performance-source.mjs"
+    "validate:performance-source": "node scripts/validate-performance-source.mjs",
+    "validate": "npm run validate:data-foundation && node scripts/run-all-source-validation.mjs"
   },
   "dependencies": {
     "next": "16.3.8",
