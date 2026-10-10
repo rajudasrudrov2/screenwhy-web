@@ -156,3 +156,5 @@
 @media (prefers-reduced-motion: reduce) {
   .suggestionOverlay { scroll-behavior: auto; }
 }
+
+.previewNoPublishedResults{max-width:1120px;margin:0 auto 24px;font-size:14px;line-height:1.6;color:var(--pe-text-secondary)}

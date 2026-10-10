@@ -13,6 +13,7 @@ import type {
   SearchViewModel,
 } from "@/features/search/search.types";
 import { buildSearchHref } from "@/features/search/search.utils";
+import { matchesTriangleReadingQuery, TriangleDiscoveryCard } from "@/features/triangle-preview/TriangleDiscoveryCard";
 import styles from "./SearchPage.module.css";
 
 const FILTER_LABELS: Record<SearchFilter, string> = {
@@ -214,13 +215,22 @@ function NoQuery({ model }: { readonly model: SearchViewModel }) {
 
 export function SearchPage({ model }: { readonly model: SearchViewModel }) {
   const hasResults = model.totalCount > 0;
+  const showReadingPreview = Boolean(model.query)
+    && matchesTriangleReadingQuery(model.query)
+    && (model.filter === "all" || model.filter === "explanations"
+      || model.filter === "titles" || model.filter === "questions");
   return (
     <PageContainer className={styles.page}>
       <header className={styles.header}>
         <h1>{model.query ? "Search results" : "Search ScreenWhy"}</h1>
         <SearchField initialQuery={model.query} filter={model.filter} autofocus={!model.query} />
       </header>
-      {!model.query ? <NoQuery model={model} /> : hasResults ? <Results model={model} /> : <NoResults model={model} />}
+      {showReadingPreview ? <TriangleDiscoveryCard kind={model.filter === "titles" ? "movie" : "explanation"} /> : null}
+      {!model.query ? <NoQuery model={model} />
+        : hasResults ? <Results model={model} />
+          : showReadingPreview
+            ? <p className={styles.previewNoPublishedResults}>No additional CMS-published matches for this query. The reading preview above is shown separately until its editorial review is complete.</p>
+            : <NoResults model={model} />}
     </PageContainer>
   );
 }

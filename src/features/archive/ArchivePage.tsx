@@ -4,6 +4,7 @@ import { PageContainer } from "@/components/layout/Layout";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { PUBLIC_HUB_ROUTES } from "@/config/routes";
 import { CompactEmptyState } from "@/features/utility-states";
+import { matchesTriangleReadingQuery, TriangleDiscoveryCard } from "@/features/triangle-preview/TriangleDiscoveryCard";
 import type { CharacterArchiveViewModel, TitleArchiveViewModel } from "./archive.types";
 import {
   archiveBaseRoute,
@@ -87,11 +88,17 @@ function TitleControls({ model }: { readonly model: TitleArchiveViewModel }) {
 export function TitleArchivePage({ model }: { readonly model: TitleArchiveViewModel }) {
   const { definition, filters, results } = model;
   const resultLabel = `${results.totalItems} ${results.totalItems === 1 ? "title" : "titles"}`;
+  const showTriangleReadingPreview = definition.routeFamily === "movies"
+    && results.page === 1
+    && !filters.genreSlug
+    && (!filters.releaseYear || filters.releaseYear === 2009)
+    && (!filters.query || matchesTriangleReadingQuery(filters.query));
   return (
     <PageContainer className={styles.page}>
       <Breadcrumbs items={[{ label: "Home", href: PUBLIC_HUB_ROUTES.home }, { label: definition.heading }]} />
       <ArchiveHero heading={definition.heading} description={definition.description} />
       <TitleControls model={model} />
+      {showTriangleReadingPreview ? <TriangleDiscoveryCard kind="movie" /> : null}
       <section className={styles.results} aria-labelledby={`${definition.routeFamily}-results-heading`}>
         <div className={styles.resultsHeading}>
           <h2 id={`${definition.routeFamily}-results-heading`}>{filters.query ? `Results for “${filters.query}”` : `All ${definition.heading}`}</h2>
