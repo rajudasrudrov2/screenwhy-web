@@ -33,6 +33,8 @@ jobs:
         run: npm run lint
       - name: Data and source guardrails
         run: npm run validate
+      - name: Sitemap approved-only contract tests
+        run: npm run validate:sitemap
       - name: Next.js production build
         run: npm run build
       - name: Package 05E R2 cumulative source
@@ -42,6 +44,4 @@ jobs:
         if: github.event_name == 'pull_request' && github.head_ref == 'feature/SW-FE-05E-R2-api-reconciliation'
         uses: actions/upload-artifact@v4
         with:
-          name: screenwhy-web-05E-R2-api-integrated-source
-          path: screenwhy-web-05E-R2-api-integrated-source.zip
-          retention-days: 7
+          name: screenwhy-web-05E-R2-api-integr¶»§q«^

@@ -24,30 +24,4 @@
     "validate:character-detail-source": "node scripts/validate-character-detail-source.mjs",
     "validate:search-source": "node scripts/validate-search-source.mjs",
     "validate:search-data": "tsc -p tsconfig.data-validation.json && node scripts/run-data-validation.mjs",
-    "validate:archive-source": "node scripts/validate-archive-source.mjs",
-    "validate:english-only": "node scripts/validate-english-only.mjs",
-    "validate:relationship-source": "node scripts/validate-relationship-source.mjs",
-    "validate:timeline-source": "node scripts/validate-timeline-source.mjs",
-    "validate:explanation-discovery-source": "node scripts/validate-explanation-discovery-source.mjs",
-    "validate:static-pages-source": "node scripts/validate-static-pages-source.mjs",
-    "validate:utility-states-source": "node scripts/validate-utility-states-source.mjs",
-    "validate:frontend-integration-source": "node scripts/validate-frontend-integration-source.mjs",
-    "validate:accessibility-source": "node scripts/validate-accessibility-source.mjs",
-    "validate:seo-source": "node scripts/validate-seo-source.mjs",
-    "validate:performance-source": "node scripts/validate-performance-source.mjs",
-    "validate": "npm run validate:data-foundation && node scripts/run-all-source-validation.mjs"
-  },
-  "dependencies": {
-    "next": "16.3.8",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
-  },
-  "devDependencies": {
-    "@types/node": "26.6.4",
-    "@types/react": "19.3.0",
-    "@types/react-dom": "19.3.0",
-    "eslint": "9.39.1",
-    "eslint-config-next": "16.3.8",
-    "typescript": "5.9.3"
-  }
-}
+    "validate:archive-source": "n¶»§q«^
