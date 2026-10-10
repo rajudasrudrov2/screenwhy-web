@@ -9,7 +9,7 @@ import styles from "./page.module.css";
  * All existing CMS publication gates and frontend API integrations remain intact.
  */
 export const metadata: Metadata = {
-  title: "Triangle (2009) Explained — Reading Preview | ScreenWhy",
+  title: "Triangle (2009) Explained — Reading Preview",
   description: "Read the owner-reviewed Triangle (2009) explanation, covering Aeolus, Jess's overlapping selves, the timeline and the ending.",
   robots: { index: false, follow: false, noarchive: true },
 };
