@@ -1,6 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import Link from "next/link";
 
 const pageStyle: CSSProperties = {
   minHeight: "100vh",
@@ -27,10 +28,10 @@ export default function GlobalError({ reset }: { readonly error: Error & { diges
         <main style={panelStyle}>
           <p style={brandStyle}>ScreenWhy</p>
           <h1 style={titleStyle}>Something went wrong</h1>
-          <p style={copyStyle}>We couldn't load this page. Try again, or return to ScreenWhy and continue browsing.</p>
+          <p style={copyStyle}>We couldn&apos;t load this page. Try again, or return to ScreenWhy and continue browsing.</p>
           <div style={actionsStyle}>
             <button type="button" style={primaryStyle} onClick={reset}>Try again</button>
-            <a href="/" style={linkStyle}>Go to Home</a>
+            <Link href="/" style={linkStyle}>Go to Home</Link>
           </div>
         </main>
       </body>
