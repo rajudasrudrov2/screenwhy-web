@@ -36,7 +36,9 @@ jobs:
         run: npm run typecheck
       - name: ESLint
         run: npm run lint
-      - name: Data and source guardrails
+      - name: Data and source guardrails (fixture mode)
+        env:
+          SCREENWHY_DATA_SOURCE: mock
         run: npm run validate
       - name: Build Next.js against live public CMS API (noindex)
         run: npm run build
