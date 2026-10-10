@@ -40,6 +40,11 @@ jobs:
         env:
           SCREENWHY_DATA_SOURCE: mock
         run: npm run validate
+      - name: Diagnose public CMS REST connectivity (read-only)
+        continue-on-error: true
+        run: |
+          curl --connect-timeout 8 --max-time 20 --silent --show-error --location --output /tmp/screenwhy-05f-rest-probe.json --write-out "Public REST HTTP %{http_code} (remote %{remote_ip})\\n" "https://cms.screenwhy.com/wp-json/screenwhy/v1/titles"
+          node --input-type=module -e 'try { const r = await fetch("https://cms.screenwhy.com/wp-json/screenwhy/v1/titles", { signal: AbortSignal.timeout(10000) }); console.log("Node API fetch HTTP", r.status); } catch (e) { console.log("Node API fetch error", e.message, "cause", e.cause?.code ?? e.cause?.message ?? "unspecified"); }'
       - name: Build Next.js against live public CMS API (noindex)
         run: npm run build
       - name: Install pinned browser harness dependency without changing lockfile
