@@ -4,3 +4,6 @@
  * explicitly approve any future namespace/version change.
  */
 export const PLOTEXPLAINER_API_NAMESPACE = "/plotexplainer/v1" as const;
+
+/** Authoritative ScreenWhy Core REST v1 namespace. */
+export const SCREENWHY_API_NAMESPACE = "/screenwhy/v1" as const;
