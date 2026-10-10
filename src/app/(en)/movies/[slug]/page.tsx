@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: TitleRouteProps): Promise<Met
   const { slug } = await params;
   if (await needsTrianglePreview(slug)) {
     return {
-      title: "Triangle (2009) — Movie Guide and Ending Explained | ScreenWhy",
+      title: "Triangle (2009) — Movie Guide and Ending Explained",
       description: "Explore the time loop and multiple versions of Jess in Triangle (2009). Read the complete, full-spoiler explanation.",
       robots: { index: false, follow: false, noarchive: true },
       alternates: { canonical: "/movies/triangle/" },
