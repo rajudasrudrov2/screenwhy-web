@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import {
   AdaptationDifferenceNote,
   ArticleBlockquote,
@@ -46,6 +47,15 @@ function InlineContent({
 }) {
   return content.map((item, index) => {
     if (item.kind === "text") return <span key={index}>{item.text}</span>;
+    if (item.kind === "code") return <code key={index}>{item.text}</code>;
+    if (item.kind === "styled") {
+      let content: ReactNode = item.text;
+      if(item.code) content = <code>{content}</code>;
+      if(item.italic) content = <ArticleEmphasis>{content}</ArticleEmphasis>;
+      if(item.bold) content = <ArticleStrong>{content}</ArticleStrong>;
+      if(item.href) content = <ArticleLink href={item.href} external={item.external}>{content}</ArticleLink>;
+      return <span key={index}>{content}</span>;
+    }
     if (item.kind === "strong") return <ArticleStrong key={index}>{item.text}</ArticleStrong>;
     if (item.kind === "emphasis") return <ArticleEmphasis key={index}>{item.text}</ArticleEmphasis>;
     if (item.kind === "link") {
