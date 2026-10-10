@@ -35,10 +35,8 @@ export function SiteHeader({ locale, activePath }: SiteHeaderProps) {
   const headerRef = useRef<HTMLElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const menuPanelRef = useRef<HTMLElement>(null);
-  const triggerRefs = {
-    search: useRef<HTMLButtonElement>(null),
-    menu: useRef<HTMLButtonElement>(null),
-  };
+  const searchTriggerRef = useRef<HTMLButtonElement>(null);
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
 
   function toggle(panel: Exclude<OpenPanel, null>) {
     setOpenPanel((current) => current === panel ? null : panel);
@@ -60,7 +58,10 @@ export function SiteHeader({ locale, activePath }: SiteHeaderProps) {
       event.preventDefault();
       const closingPanel = openPanel;
       setOpenPanel(null);
-      requestAnimationFrame(() => triggerRefs[closingPanel].current?.focus());
+      requestAnimationFrame(() => {
+        if (closingPanel === "search") searchTriggerRef.current?.focus();
+        else menuTriggerRef.current?.focus();
+      });
     }
 
     function onPointerDown(event: PointerEvent) {
@@ -106,7 +107,7 @@ export function SiteHeader({ locale, activePath }: SiteHeaderProps) {
         <div className={styles.actions}>
           <div className={styles.actionWrap}>
             <button
-              ref={triggerRefs.search}
+              ref={searchTriggerRef}
               type="button"
               className={styles.actionButton}
               aria-label="Open search"
@@ -137,7 +138,7 @@ export function SiteHeader({ locale, activePath }: SiteHeaderProps) {
 
           <div className={`${styles.actionWrap} ${styles.mobileMenuWrap}`}>
             <button
-              ref={triggerRefs.menu}
+              ref={menuTriggerRef}
               type="button"
               className={styles.actionButton}
               aria-label={openPanel === "menu" ? "Close navigation menu" : "Open navigation menu"}
