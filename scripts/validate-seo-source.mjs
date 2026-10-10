@@ -12,11 +12,13 @@ check(search.includes("robots: { index: false")&&archive.includes("hasFacetOrSea
 check(timeline.includes("hasOrderQuery")&&timeline.includes("canonicalPath")&&timeline.includes("robots: { index"),"7. Timeline order query does not create a competing canonical document");
 check(relationship.includes("isReverseRequest")&&relationship.includes("permanentRedirect")&&relationship.includes("!model.isReverseRequest"),"8. Reverse Relationship pair remains canonicalized and non-duplicate");
 check(exists("src/app/robots.ts")&&robots.includes("siteConfig.allowIndexing"),"9. Production robots metadata route exists and respects allowIndexing");
-check(exists("src/app/sitemap.ts")&&sitemap.includes("PUBLIC_INDEXABLE_STATIC_ROUTES")&&sitemap.includes("siteConfig.origin"),"10. Sitemap uses centralized clean static routes and site origin");
+check(exists("src/lib/seo/sitemap-public.ts")&&sitemap.includes("collectApprovedPublicSitemap")&&sitemap.includes("siteConfig.origin")&&read("src/lib/seo/sitemap-public.ts").includes("PUBLIC_INDEXABLE_STATIC_ROUTES"),"10. Sitemap uses centralized static routes and verified CMS collector with site origin");
 check(!sitemap.includes("search")&&!sitemap.includes("__ui")&&!/\[slug\]|the-last-signal|mara-vale/.test(sitemap),"11. Sitemap excludes Search, dev UI, query variants and mock detail inventory");
 check(!/publishedLocaleAlternates|x-default|languages/.test(urls),"12. Removed multilingual hreflang/locale-alternate helper is no longer emitted");
 check(rootMeta.includes("metadataBase: new URL(siteConfig.origin)"),"13. metadataBase remains centralized on siteConfig.origin");
 check(robots.includes('sitemap: `${siteConfig.origin}/sitemap.xml`'),"14. Robots advertises the canonical sitemap through siteConfig.origin when indexing is enabled");
 check(!sitemap.includes("PUBLIC_HUB_ROUTES.search")&&!sitemap.includes("?"),"15. Sitemap has no filtered/search query URL source");
 check([search,archive,discovery,editorial,titleHub,character,explanation,timeline].every((source)=>source.includes("siteConfig.allowIndexing")),"16. Child route robots metadata respects the centralized global indexing switch");
+check(sitemap.includes("if (!siteConfig.allowIndexing) return []") && sitemap.includes('env.dataSource !== "api"') && sitemap.includes('force-dynamic'),"17. Sitemap rejects indexing-off and mock mode");
+check(read("src/lib/seo/sitemap-public.ts").includes('record.verification.state !== "approved"') && read("src/lib/seo/sitemap-public.ts").includes("MAX_PAGES_PER_COLLECTION"),"18. Approved-only bounded dynamic pagination remains enforced");
 const failed=checks.filter(x=>!x.ok); for(const x of checks) console.log(`${x.ok?"PASS":"FAIL"} — ${x.label}`); console.log(`\n${checks.length-failed.length}/${checks.length} SEO source guardrails passed.`); if(failed.length) process.exitCode=1;
