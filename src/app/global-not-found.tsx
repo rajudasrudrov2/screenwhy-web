@@ -20,7 +20,7 @@ export default function GlobalNotFound() {
               <UtilityState
                 eyebrow="404"
                 title="Page not found"
-                description={<p>The page you're looking for doesn't exist or may have moved.</p>}
+                description={<p>The page you&apos;re looking for doesn&apos;t exist or may have moved.</p>}
               >
                 <RecoverySearch />
                 <BrowseRecovery />
