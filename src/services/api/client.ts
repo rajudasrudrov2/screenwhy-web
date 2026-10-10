@@ -1,4 +1,4 @@
-import { PLOTEXPLAINER_API_NAMESPACE } from "@/config/api";
+import { SCREENWHY_API_NAMESPACE } from "@/config/api";
 import { env } from "@/config/env";
 import type { ApiFailure, ApiResult } from "@/lib/http/api-result";
 
@@ -48,7 +48,7 @@ export function createApiClient(): ApiClient {
 
       try {
         const response = await fetch(
-          `${env.cmsApiBaseUrl}${PLOTEXPLAINER_API_NAMESPACE}${normalizePath(path)}`,
+          `${env.cmsApiBaseUrl}${SCREENWHY_API_NAMESPACE}${normalizePath(path)}`,
           {
             ...requestInit,
             signal: controller.signal,

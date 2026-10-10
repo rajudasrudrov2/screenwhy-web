@@ -12,7 +12,9 @@ export type RenderableArticleInline =
       readonly href: string;
       readonly external?: boolean;
     }
-  | { readonly kind: "citation"; readonly citationNumber: number };
+  | { readonly kind: "citation"; readonly citationNumber: number }
+  | { readonly kind: "code"; readonly text: string }
+  | { readonly kind: "styled"; readonly text: string; readonly bold?:boolean; readonly italic?:boolean; readonly code?:boolean; readonly href?:string; readonly external?:boolean };
 
 export type RenderableArticleBlock =
   | {

@@ -30,7 +30,7 @@ const searchRepo = await text("src/data/mock/search-repository.ts");
 const packageJson = JSON.parse(await text("package.json"));
 const appFiles = await allFiles("src/app");
 
-check(appFiles.includes("src/app/(en)/search/page.tsx"), "/search/ production page exists");
+check(appFiles.some((file) => file.split(path.sep).join("/") === "src/app/(en)/search/page.tsx"), "/search/ production page exists");
 check(/!model\.query/.test(featureText) && /NoQuery/.test(featureText), "No-query Search state exists");
 check(/params\.q/.test(page) && /name="q"/.test(featureText), "q GET parameter is used");
 check(/getRepositories\(\)/.test(featureText), "Search feature uses repository boundary");

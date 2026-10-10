@@ -1,3 +1,4 @@
+import { DataAccessError } from "@/data/errors";
 import type { ApiRepositoryContext } from "@/data/api/repository-context";
 import type { ExplanationRepository } from "@/data/repositories/contracts";
 
@@ -8,10 +9,15 @@ export function createApiExplanationRepository(
     async getBySlug(query) {
       context.requests.assertReady("explanation.lookup");
       context.mappers.assertReady("explanation.lookup");
+      try {
       const payload = await context.transport.request(
         context.requests.buildExplanationLookup(query),
       );
       return context.mappers.mapExplanationLookup(payload, query);
+      } catch(error) {
+        if(error instanceof DataAccessError && error.status===404) return {status:"unavailable",requestedLocale:query.locale,value:null,variant:{locale:query.locale,publicationState:"not-created",published:false}};
+        throw error;
+      }
     },
 
     async list(query) {

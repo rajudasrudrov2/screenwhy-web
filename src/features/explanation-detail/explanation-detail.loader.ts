@@ -94,7 +94,7 @@ export async function loadExplanationDetail(
   if (result.status !== "available") return null;
 
   const explanation: ExplanationDetail<"en-US"> = result.value;
-  const article = getRenderableArticleBody(explanation.body.document);
+  const article = getRenderableArticleBody(explanation.body.document, { primaryTitleId: explanation.primaryTitle.logicalId, canon: explanation.canon });
   assertArticleEvidenceIntegrity(article, explanation.citations ?? []);
 
   const [primaryTitle, relatedCharacters, relatedExplanations] =

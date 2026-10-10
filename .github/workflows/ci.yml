@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: "24"
       - name: Install pinned project dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: TypeScript
         run: npm run typecheck
       - name: ESLint
@@ -35,3 +35,13 @@ jobs:
         run: npm run validate
       - name: Next.js production build
         run: npm run build
+      - name: Package 05E R2 cumulative source
+        if: github.event_name == 'pull_request' && github.head_ref == 'feature/SW-FE-05E-R2-api-reconciliation'
+        run: git archive --format=zip --output=screenwhy-web-05E-R2-api-integrated-source.zip HEAD
+      - name: Upload verified 05E R2 source
+        if: github.event_name == 'pull_request' && github.head_ref == 'feature/SW-FE-05E-R2-api-reconciliation'
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenwhy-web-05E-R2-api-integrated-source
+          path: screenwhy-web-05E-R2-api-integrated-source.zip
+          retention-days: 7
