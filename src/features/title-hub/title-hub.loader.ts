@@ -5,7 +5,7 @@ import type { ExplanationDetail, ExplanationSummary, ExplanationType } from "@/t
 import type { CanonContext } from "@/types/domain/canon";
 import type { TitleHubTopic, TitleHubViewModel } from "@/features/title-hub/title-hub.types";
 
-const PAGE_SIZE = 100;
+const PAGE_SIZE = 50;
 
 function canonKey(context: CanonContext): string {
   return [
