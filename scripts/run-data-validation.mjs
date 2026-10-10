@@ -27,6 +27,9 @@ async function run(entry) {
 
 await prepareAliasTree();
 let exitCode = await run("validate-data-foundation.js");
+if (exitCode === 0) exitCode = await run("validate-api-05a.js");
+if (exitCode === 0) exitCode = await run("validate-api-05b.js");
+if (exitCode === 0) exitCode = await run("validate-api-loader-05b.js");
 if (exitCode === 0) exitCode = await run("validate-homepage-data.js");
 if (exitCode === 0) exitCode = await run("validate-title-hub-data.js");
 if (exitCode === 0) exitCode = await run("validate-character-detail-data.js");
