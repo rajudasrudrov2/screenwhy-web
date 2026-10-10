@@ -20,4 +20,15 @@ try {
  check("Robots HTTP 200",robots.status===200,String(robots.status));
  check("Robots disallows site",/Disallow:\s*\//i.test(txt),txt.slice(0,400));
  check("Robots does not publish sitemap while indexing disabled",!txt.includes("Sitemap:"),txt.slice(0,400));
-¶»§q«^
+ const homepage=await fetch(origin+"/");
+ const html=await homepage.text();
+ check("API-mode homepage HTTP 200",homepage.status===200,String(homepage.status));
+ check("Homepage noindex",/noindex/i.test(html),html.match(/<meta[^>]+robots[^>]+>/i)?.[0]??"");
+ check("No former-brand sitemap links",!xml.includes("plotexplainer"),xml.slice(0,200));
+}finally {
+ command.kill("SIGTERM");
+ await mkdir("/vercel/sandbox/step05/evidence",{recursive:true});
+ await writeFile("/vercel/sandbox/step05/evidence/sitemap-runtime-qa.json",JSON.stringify({checks,summary:{passed:checks.filter(v=>v.status==="PASS").length,failed:checks.filter(v=>v.status==="FAIL").length},classification:"REAL API-mode build, empty public CMS and indexing disabled",serverLog:serverLog.slice(-2000)},null,2));
+}
+console.log("RUNTIME_SITEMAP_CHECKS="+checks.length);
+

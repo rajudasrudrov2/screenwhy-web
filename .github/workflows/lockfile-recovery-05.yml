@@ -1,0 +1,29 @@
+name: Temporary Step 05 Lockfile Recovery (Feature Branch Only)
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feature/SW-GATE-05A-dynamic-sitemap'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Regenerate genuine lockfile in ephemeral runner
+        run: rm -f package-lock.json && npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Verify clean installation
+        run: npm ci --no-audit --no-fund
+      - name: Commit generated lockfile only to source feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "SW-GATE-05A: restore reproducible lockfile" || exit 0
+          git push origin HEAD:refs/heads/${{ github.head_ref }}

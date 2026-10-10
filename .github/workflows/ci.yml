@@ -44,4 +44,6 @@ jobs:
         if: github.event_name == 'pull_request' && github.head_ref == 'feature/SW-FE-05E-R2-api-reconciliation'
         uses: actions/upload-artifact@v4
         with:
-          name: screenwhy-web-05E-R2-api-integr¶»§q«^
+          name: screenwhy-web-05E-R2-api-integrated-source
+          path: screenwhy-web-05E-R2-api-integrated-source.zip
+          retention-days: 7
