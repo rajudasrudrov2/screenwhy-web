@@ -1,0 +1,64 @@
+name: ScreenWhy 05F Real API Runtime Browser QA
+
+on:
+  push:
+    branches:
+      - feature/SW-FE-05F-api-runtime-qa
+  pull_request:
+    branches:
+      - feature/SW-FE-05E-R2-api-reconciliation
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  api-runtime-browser-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      SCREENWHY_DATA_SOURCE: api
+      SCREENWHY_CMS_API_BASE_URL: https://cms.screenwhy.com/wp-json
+      SCREENWHY_SITE_URL: https://screenwhy.com
+      SCREENWHY_ALLOW_INDEXING: "false"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Check out isolated feature branch
+        uses: actions/checkout@v4
+      - name: Configure Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Install reproducible frontend dependencies
+        run: npm ci --no-audit --no-fund
+      - name: TypeScript
+        run: npm run typecheck
+      - name: ESLint
+        run: npm run lint
+      - name: Data and source guardrails (fixture mode)
+        env:
+          SCREENWHY_DATA_SOURCE: mock
+        run: npm run validate
+      - name: Diagnose public CMS REST connectivity (read-only)
+        continue-on-error: true
+        run: |
+          curl --connect-timeout 8 --max-time 20 --silent --show-error --location --output /tmp/screenwhy-05f-rest-probe.json --write-out "Public REST HTTP %{http_code} (remote %{remote_ip})\\n" "https://cms.screenwhy.com/wp-json/screenwhy/v1/titles"
+          node --input-type=module -e 'try { const r = await fetch("https://cms.screenwhy.com/wp-json/screenwhy/v1/titles", { signal: AbortSignal.timeout(10000) }); console.log("Node API fetch HTTP", r.status); } catch (e) { console.log("Node API fetch error", e.message, "cause", e.cause?.code ?? e.cause?.message ?? "unspecified"); }'
+      - name: Build Next.js against live public CMS API (noindex)
+        run: npm run build
+      - name: Install pinned browser harness dependency without changing lockfile
+        run: npm install --no-save --package-lock=false --ignore-scripts --no-audit --no-fund playwright@1.56.1
+      - name: Install Chromium on ephemeral runner
+        run: npx playwright install --with-deps chromium
+      - name: Real public REST and 390px / 1440px browser acceptance
+        run: node scripts/qa-api-05f-browser.mjs
+      - name: Upload 05F evidence and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenwhy-05f-real-api-browser-qa
+          path: .qa-05f/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 14
