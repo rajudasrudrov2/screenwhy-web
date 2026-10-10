@@ -34,7 +34,7 @@ export function RecentSearches() {
 
   useEffect(() => {
     const sync = () => setItems(readRecent());
-    // Avoid synchronous state updates in the effect and render no local values during SSR.
+    // Defer the initial hydration read; subsequent updates respond to user/storage events.
     const frame = window.requestAnimationFrame(() => {
       setMounted(true);
       sync();
