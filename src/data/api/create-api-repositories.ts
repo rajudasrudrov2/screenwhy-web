@@ -1,6 +1,6 @@
-import { backendContractNotReadyMappers, type ApiDomainMappers } from "@/data/api/mappers";
+import { screenWhyApiMappers, type ApiDomainMappers } from "@/data/api/mappers";
 import {
-  backendContractNotReadyRequests,
+  screenWhyApiRequests,
   type ApiRequestBuilders,
 } from "@/data/api/requests";
 import { createApiTransport, type ApiTransport } from "@/data/api/transport";
@@ -27,8 +27,8 @@ export function createApiRepositories(
 ): PublicReadRepositories {
   const context = {
     transport: options.transport ?? createApiTransport(),
-    requests: options.requests ?? backendContractNotReadyRequests,
-    mappers: options.mappers ?? backendContractNotReadyMappers,
+    requests: options.requests ?? screenWhyApiRequests,
+    mappers: options.mappers ?? screenWhyApiMappers,
   };
 
   return {
