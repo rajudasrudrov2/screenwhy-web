@@ -44,7 +44,11 @@
     "scripts/validate-timeline-data.ts",
     "src/features/story-timeline/timeline.loader.ts",
     "src/features/story-timeline/timeline.types.ts",
-    "src/features/story-timeline/timeline.utils.ts"
+    "src/features/story-timeline/timeline.utils.ts",
+    "scripts/validate-api-05a.ts",
+    "scripts/validate-api-05b.ts",
+    "scripts/validate-api-loader-05b.ts",
+    "src/features/explanation-detail/explanation-detail.loader.ts"
   ],
   "exclude": [
     "node_modules",
