@@ -50,7 +50,7 @@ record(!/PlotExplainer|Plot Explainer|plotexplainer\.com/.test(feature), "New Ex
 record(!/["'`]\/en\//.test(combined), "No /en/ route prefix is introduced");
 record(!/\.body\.document\s*\.\s*blocks|body\.document\[|document\.blocks/.test(feature), "Opaque ArticleBodyDocument is not inspected by page presentation code");
 record(adapter.includes("document as unknown") && adapter.includes("decodeMockArticleBody"), "Mock article decoder receives the opaque document through an unknown validation boundary");
-record(adapter.includes("BackendContractNotReadyError") && adapter.includes('env.dataSource === "mock"'), "API article-body mapping remains explicitly contract-not-ready without mock fallback");
+record(adapter.includes("decodeApiArticleBody") && adapter.includes('env.dataSource === "mock"'), "API article-body uses dedicated safe decoder and retains source-separated mock behavior");
 record(adapter.includes("malformed_payload") && adapter.includes("unsupported mock article document version"), "Malformed mock article body fails predictably");
 record(!/acf_fields|post_meta|Gutenberg|wp-json|WP[A-Z]\w*Response/.test(adapter), "Article adapter invents no WordPress/CMS payload contract");
 record(route.includes("generateMetadata") && route.includes("explanation.seo") && route.includes("seo.canonicalUrl"), "Dynamic metadata uses the existing Explanation SEO contract");
