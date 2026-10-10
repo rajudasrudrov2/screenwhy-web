@@ -10,6 +10,7 @@ import {
 import { CANON_CLASSIFICATIONS } from "@/types/domain/canon";
 import { PUBLIC_HUB_ROUTES, PUBLIC_ROUTE_FAMILIES } from "@/config/routes";
 import { CompactEmptyState } from "@/features/utility-states";
+import { matchesTriangleReadingQuery, TriangleDiscoveryCard } from "@/features/triangle-preview/TriangleDiscoveryCard";
 import {
   curatedExplanationHref,
   explanationDiscoveryHasFilters,
@@ -158,6 +159,13 @@ export function ExplanationDiscovery({ model }: { readonly model: ExplanationDis
   const { definition, filters, results, featured } = model;
   const resultLabel = `${results.totalItems} ${results.totalItems === 1 ? "explanation" : "explanations"}`;
   const title = filters.query ? `Results for “${filters.query}”` : definition.resultsHeading;
+  const showTriangleReadingPreview =
+    (definition.key === "all" || definition.key === "ending")
+    && results.page === 1
+    && (!filters.query || matchesTriangleReadingQuery(filters.query))
+    && (!filters.routeFamily || filters.routeFamily === "movies")
+    && (!filters.explanationType || filters.explanationType === "ending_explained")
+    && !filters.canonClassification;
 
   return (
     <PageContainer className={styles.page}>
@@ -189,6 +197,7 @@ export function ExplanationDiscovery({ model }: { readonly model: ExplanationDis
       <TypeNavigator />
 
       {definition.key === "all" ? <DiscoveryControls model={model} /> : null}
+      {showTriangleReadingPreview ? <TriangleDiscoveryCard /> : null}
 
       <section className={styles.results} aria-labelledby="explanation-results-heading">
         <div className={styles.resultsHeading}>
