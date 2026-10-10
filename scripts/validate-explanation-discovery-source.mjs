@@ -57,7 +57,7 @@ record(config.includes('lockedType: "ending_explained"') && config.includes('loc
 record(loader.includes("pageSize: EXPLANATION_DISCOVERY_PAGE_SIZE") && read(`${featureDir}/explanation-discovery.loader.ts`).includes("EXPLANATION_DISCOVERY_PAGE_SIZE = 12"), "22. Stable server page size is 12");
 record(view.includes("No explanations found") && view.includes("Clear filters"), "23. Intentional empty state replaces broken/empty grids");
 record(view.includes("Recently updated explanation") && loader.includes('sort: "updated_newest"'), "24. Start Here selection is deterministic and uses actual data");
-record(apiRequests.includes("backendContractNotReadyRequests") && apiMappers.includes("backendContractNotReadyMappers") && !apiRequests.includes('params.set("query"'), "25. API mode remains fail-closed without guessed discovery wire parameters");
+record(apiRequests.includes("screenWhyApiRequests") && apiRequests.includes("optionalSearch(q.query)") && apiMappers.includes("malformed") && !apiRequests.includes('params.set("query"'), "25. API discovery uses approved q wire parameter, strict DTO validation and fail-closed errors");
 record(!/"use client"|'use client'/.test(combined), "26. Explanation Discovery remains server-first");
 record(!/PlotExplainer|Plot Explainer|plotexplainer\.com|PE logo/.test(combined), "27. Former public brand is absent from new discovery source");
 const removedLocale = ["bn", "BD"].join("-");
