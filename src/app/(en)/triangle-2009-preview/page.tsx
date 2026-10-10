@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteFrame } from "@/components/navigation/SiteFrame";
 import styles from "./page.module.css";
 
@@ -2039,8 +2040,8 @@ export default function TriangleReadingPreviewPage() {
     <SiteFrame locale="en-US" activePath="/explanations/">
       <div className={styles.wrap}>
         <nav aria-label="Breadcrumb" className={styles.crumbs}>
-          <a href="/">Home</a><span aria-hidden="true">/</span>
-          <a href="/explanations/">Explanations</a><span aria-hidden="true">/</span>
+          <Link href="/">Home</Link><span aria-hidden="true">/</span>
+          <Link href="/explanations/">Explanations</Link><span aria-hidden="true">/</span>
           <span>Triangle (2009)</span>
         </nav>
         <header className={styles.hero}>
