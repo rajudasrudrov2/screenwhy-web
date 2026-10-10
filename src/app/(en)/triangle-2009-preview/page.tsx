@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 type ArticleItem =
   | { readonly kind: "paragraph"; readonly text: string }
-  | { readonly kind: "section" | "subsection"; readonly text: string; readonly id: string };
+  | { readonly kind: "section"; readonly text: string; readonly id: string }
+  | { readonly kind: "subsection"; readonly text: string; readonly id: string };
 
 const paragraphs: readonly ArticleItem[] = [
   {
