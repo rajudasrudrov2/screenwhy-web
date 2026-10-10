@@ -459,3 +459,82 @@
 @media (prefers-reduced-motion: reduce) {
   .searchForm button { transition: none; }
 }
+
+/* Reading preview sits outside CMS-published collection cards. */
+.trianglePreviewSection { background: var(--pe-surface-subtle); }
+.trianglePreviewCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(220px, .7fr);
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid var(--pe-divider);
+  border-radius: var(--pe-radius-lg);
+  background: var(--pe-surface-canvas);
+  box-shadow: var(--pe-elevation-raised);
+}
+.trianglePreviewContent { padding: clamp(24px, 4vw, 44px); }
+.trianglePreviewLabel {
+  margin: 0;
+  color: var(--pe-brand-indigo);
+  font-weight: 750;
+  font-size: var(--pe-type-badge);
+  letter-spacing: .045em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.trianglePreviewContent h2 {
+  margin: var(--pe-space-3) 0 0;
+  color: var(--pe-text-primary);
+  font: 800 clamp(25px, 3vw, 36px)/1.15 var(--pe-font-heading);
+  letter-spacing: -.025em;
+}
+.trianglePreviewDescription {
+  margin: var(--pe-space-4) 0 0;
+  max-width: 690px;
+  color: var(--pe-text-secondary);
+  font-size: var(--pe-type-body-small);
+  line-height: 1.65;
+}
+.trianglePreviewLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pe-space-2);
+  min-height: 46px;
+  margin-top: var(--pe-space-5);
+  padding: 0 var(--pe-space-4);
+  border-radius: var(--pe-radius-md);
+  background: var(--pe-primary-default);
+  color: var(--pe-text-inverse);
+  font-size: var(--pe-type-button);
+  font-weight: 700;
+  text-decoration: none;
+}
+.trianglePreviewLink:hover { background: var(--pe-primary-hover); }
+.trianglePreviewLink:focus-visible {
+  outline: var(--pe-focus-ring-width) solid var(--pe-focus);
+  outline-offset: var(--pe-focus-offset);
+}
+.trianglePreviewAside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pe-space-3);
+  min-width: 0;
+  padding: var(--pe-space-6);
+  background: var(--pe-surface-dark);
+  color: var(--pe-text-inverse);
+  text-align: center;
+}
+.trianglePreviewAside span {
+  font: 850 clamp(24px, 3.2vw, 39px)/1.1 var(--pe-font-heading);
+  letter-spacing: .14em;
+}
+.trianglePreviewAside strong { color: var(--pe-brand-amber); font-size: 40px; line-height: 1; }
+.trianglePreviewAside small { color: var(--pe-border-strong); font-size: var(--pe-type-caption); }
+@media (max-width: 767px) {
+  .trianglePreviewCard { grid-template-columns: 1fr; }
+  .trianglePreviewContent { padding: var(--pe-space-6); }
+  .trianglePreviewAside { padding: var(--pe-space-5); }
+  .trianglePreviewAside strong { font-size: 30px; }
+}
