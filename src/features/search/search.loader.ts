@@ -21,7 +21,7 @@ import {
 } from "@/features/search/search.utils";
 import { characterRoute, explanationRoute, titleRoute } from "@/config/routes";
 
-const SCAN_PAGE_SIZE = 100;
+const SCAN_PAGE_SIZE = 50;
 const SUGGESTION_LIMITS = {
   explanation: 3,
   title: 2,
