@@ -1,0 +1,12 @@
+.page { width: min(100% - 2rem, 900px); margin-inline: auto; padding-block: var(--pe-space-5); color: var(--pe-text-primary); }
+.page a { color: inherit; text-underline-offset: .2em; }
+.page a:focus-visible { outline: 2px solid currentColor; outline-offset: .2rem; }
+.header { display: flex; align-items: flex-start; gap: var(--pe-space-5); padding-block: var(--pe-space-5); border-bottom: 1px solid var(--pe-border-subtle); }
+.header h1 { overflow-wrap:anywhere; }
+.header p { line-height: 1.65; overflow-wrap: anywhere; }
+.avatar { width: 128px; height: 128px; border-radius: 50%; object-fit: cover; }
+.list { list-style: none; margin: var(--pe-space-4) 0; padding: 0; }
+.list li { border-bottom: 1px solid var(--pe-border-subtle); padding: var(--pe-space-4) 0; }
+.list h3 { margin: 0 0 var(--pe-space-2); }
+.pagination { display: flex; flex-wrap: wrap; gap: var(--pe-space-4); align-items: center; padding-block: var(--pe-space-3); }
+@media (max-width: 767px) { .header { flex-direction:column; } .page { width: calc(100% - 2rem); } }

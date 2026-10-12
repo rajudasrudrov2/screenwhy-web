@@ -33,8 +33,20 @@ jobs:
         run: npm run lint
       - name: Data and source guardrails
         run: npm run validate
+      - name: Sitemap approved-only contract tests
+        run: npm run validate:sitemap
       - name: Next.js production build
         run: npm run build
+      - name: Package Step 05 cumulative frontend source
+        if: github.event_name == 'pull_request' && github.head_ref == 'feature/SW-GATE-05A-dynamic-sitemap'
+        run: git archive --format=zip --output=SW-GATE-05-Cumulative-Frontend-Source.zip HEAD
+      - name: Upload Step 05 cumulative source artifact
+        if: github.event_name == 'pull_request' && github.head_ref == 'feature/SW-GATE-05A-dynamic-sitemap'
+        uses: actions/upload-artifact@v4
+        with:
+          name: SW-GATE-05-Cumulative-Frontend-Source
+          path: SW-GATE-05-Cumulative-Frontend-Source.zip
+          retention-days: 30
       - name: Package 05E R2 cumulative source
         if: github.event_name == 'pull_request' && github.head_ref == 'feature/SW-FE-05E-R2-api-reconciliation'
         run: git archive --format=zip --output=screenwhy-web-05E-R2-api-integrated-source.zip HEAD
