@@ -14,10 +14,11 @@ async function prepareAliasTree() {
   }
 }
 
-async function run(entry) {
+async function run(entry, env = process.env) {
   const child = spawn(process.execPath, [path.join(outputRoot, "scripts", entry)], {
     cwd: root,
     stdio: "inherit",
+    env,
   });
   return await new Promise((resolve, reject) => {
     child.once("error", reject);
@@ -37,5 +38,6 @@ if (exitCode === 0) exitCode = await run("validate-relationship-data.js");
 if (exitCode === 0) exitCode = await run("validate-timeline-data.js");
 if (exitCode === 0) exitCode = await run("validate-search-data.js");
 if (exitCode === 0) exitCode = await run("validate-explanation-discovery-data.js");
+if (exitCode === 0) exitCode = await run("validate-author-profile.js", { ...process.env, SCREENWHY_DATA_SOURCE: "api", SCREENWHY_CMS_API_BASE_URL: "https://cms.screenwhy.com/wp-json" });
 await rm(outputRoot, { recursive: true, force: true });
 process.exitCode = exitCode;

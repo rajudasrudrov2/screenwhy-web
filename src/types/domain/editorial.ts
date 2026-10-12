@@ -46,4 +46,6 @@ export interface EditorialContributorSummary {
   readonly displayName: string;
   readonly slug?: string;
   readonly roleTitle?: string;
+  /** Only a consented CMS profile may be linked; a legacy slug alone is insufficient. */
+  readonly profilePublic?: boolean;
 }
