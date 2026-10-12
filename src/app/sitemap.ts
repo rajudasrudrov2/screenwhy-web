@@ -1,11 +1,15 @@
 import type { MetadataRoute } from "next";
-import { PUBLIC_INDEXABLE_STATIC_ROUTES } from "@/config/routes";
+import { createApiRepositories } from "@/data/api";
+import { env } from "@/config/env";
 import { siteConfig } from "@/config/site";
+import { collectApprovedPublicSitemap } from "@/lib/seo/sitemap-public";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = "force-dynamic";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!siteConfig.allowIndexing) return [];
-
-  return PUBLIC_INDEXABLE_STATIC_ROUTES.map((pathname) => ({
-    url: new URL(pathname, `${siteConfig.origin}/`).toString(),
-  }));
+  if (env.dataSource !== "api" || !env.dataSourceExplicitlyConfigured) return [];
+  if (!env.cmsApiBaseUrl) throw new Error("Indexable sitemap requires CMS API configuration.");
+  return collectApprovedPublicSitemap(createApiRepositories(), siteConfig.origin);
 }
+

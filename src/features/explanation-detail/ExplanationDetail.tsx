@@ -198,6 +198,10 @@ export function ExplanationDetailPage({ model }: ExplanationDetailPageProps) {
             spoiler={explanation.spoiler}
             spoilerScopeLabel={explanation.primaryTitle.displayTitle}
             sourceWorkLabel={sourceWorkLabel}
+            label="Cut to the Chase"
+            sectionId="cut-to-the-chase"
+            prominentHeading
+            protectSpoilers
           />
         </ReadingColumn>
 
