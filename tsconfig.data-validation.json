@@ -48,7 +48,8 @@
     "scripts/validate-api-05a.ts",
     "scripts/validate-api-05b.ts",
     "scripts/validate-api-loader-05b.ts",
-    "src/features/explanation-detail/explanation-detail.loader.ts"
+    "src/features/explanation-detail/explanation-detail.loader.ts",
+    "scripts/validate-author-profile.ts"
   ],
   "exclude": [
     "node_modules",

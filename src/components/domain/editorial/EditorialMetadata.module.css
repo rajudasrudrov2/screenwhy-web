@@ -67,3 +67,6 @@
     gap: var(--pe-space-3);
   }
 }
+
+.personLink { color: var(--pe-text-primary); text-decoration: underline; text-underline-offset: 0.2em; }
+.personLink:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 2px; }
