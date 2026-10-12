@@ -84,7 +84,9 @@ function detail(value:unknown,kind:"title"|"character"|"explanation"):Obj {
   if(r.relatedExplanations!==undefined)list(r.relatedExplanations,"related explanations").forEach(explRef);
   if(r.additionalMedia!==undefined)list(r.additionalMedia,"additional media").forEach(media);
  } else {
-  str(r.quickAnswer,"quickAnswer");enumStr(r.editorialStage,STAGES,"editorialStage");if(r.publicationState!=="published")malformed("publicationState");const body=rec(r.body,"article body");if(body.format!=="structured_document")malformed("article format");rec(body.document,"structured document");const author=rec(r.author,"author");integer(author.userId,"author ID",1);str(author.displayName,"author name");if(r.reviewerEditor!==undefined){const reviewer=rec(r.reviewerEditor);integer(reviewer.userId,"reviewer ID",1);str(reviewer.displayName,"reviewer name");}
+  str(r.quickAnswer,"quickAnswer");enumStr(r.editorialStage,STAGES,"editorialStage");if(r.publicationState!=="published")malformed("publicationState");const body=rec(r.body,"article body");if(body.format!=="structured_document")malformed("article format");rec(body.document,"structured document");const author=rec(r.author,"author");integer(author.userId,"author ID",1);str(author.displayName,"author name");
+  if(author.profilePublic!==undefined){if(author.profilePublic!==true)malformed("unapproved author profile visibility");const aslug=str(author.slug,"author profile slug");if(!/^[a-z][a-z0-9-]{2,63}$/.test(aslug))malformed("unapproved author slug");}
+if(r.reviewerEditor!==undefined){const reviewer=rec(r.reviewerEditor);integer(reviewer.userId,"reviewer ID",1);str(reviewer.displayName,"reviewer name");}
   if(r.secondaryTitles!==undefined)list(r.secondaryTitles,"secondary titles").forEach(titleRef);
   if(r.relatedCharacters!==undefined)list(r.relatedCharacters,"related characters").forEach(charRef);
   if(r.relatedExplanations!==undefined)list(r.relatedExplanations,"related explanations").forEach(explRef);

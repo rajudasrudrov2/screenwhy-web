@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { explanationTypeLabels } from "@/components/domain/shared/domain-labels";
 import type { LocaleCode } from "@/lib/i18n/locales";
 import type { EditorialContributorSummary, EditorialDates } from "@/types/domain/editorial";
@@ -72,7 +73,13 @@ export function EditorialMetadata({
       {primaryTitle ? <Item label={text.title}>{primaryTitle.displayTitle}</Item> : null}
       {author ? (
         <Item label={text.author}>
-          <span className={styles.person}>{author.displayName}{author.roleTitle ? <span className={styles.role}> · {author.roleTitle}</span> : null}</span>
+          {author.profilePublic === true && author.slug && /^[a-z][a-z0-9-]{2,63}$/.test(author.slug) ? (
+            <Link className={styles.personLink} href={`/authors/${author.slug}/`}>
+              {author.displayName}{author.roleTitle ? <span className={styles.role}> · {author.roleTitle}</span> : null}
+            </Link>
+          ) : (
+            <span className={styles.person}>{author.displayName}{author.roleTitle ? <span className={styles.role}> · {author.roleTitle}</span> : null}</span>
+          )}
         </Item>
       ) : null}
       {reviewerEditor ? (

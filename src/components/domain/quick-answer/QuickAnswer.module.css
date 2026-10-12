@@ -41,3 +41,8 @@
 @media (min-width: 1024px) {
   .answer { font-size: var(--pe-type-article-desktop); }
 }
+
+/* ScreenWhy SW-EXT-01B: keyboard-targetable article anchor, unobtrusive reading size. */
+.quickAnswer { scroll-margin-top: var(--pe-space-10); min-width: 0; }
+.label { margin: 0; }
+.answer { overflow-wrap: anywhere; }
