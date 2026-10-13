@@ -1,3 +1,5 @@
+import { createApiClient } from "@/services/api/client";
+import type { ApiResult } from "@/lib/http/api-result";
 import { env } from "@/config/env";
 
 /** Wire shape for v0.7.1's public, WordPress-published-only /live-explanations endpoint. */
@@ -41,6 +43,12 @@ const ITEM_LIMIT = 20000;
 export function isLiveApiMode(): boolean {
   return process.env.NODE_ENV === "production" || env.dataSource === "api";
 }
+
+function unavailable(status: number): Error {
+  return new Error(`ScreenWhy public CMS temporarily unavailable (${status}).`);
+}
+
+const apiClient = createApiClient();
 
 function apiBase(): string {
   if (process.env.NODE_ENV === "production" && env.dataSource !== "api") {
@@ -113,21 +121,22 @@ function decodeItem(raw: unknown, detail: boolean): LiveExplanation {
   if (!item.headline.trim() || item.id < 1) throw new Error("Invalid published explanation record.");
   return item;
 }
-async function request(path: string): Promise<Response> {
-  const url = `${apiBase()}/screenwhy/v1${path}`;
-  const response = await fetch(url, { cache: "no-store", headers: { Accept: "application/json" }, redirect: "error" });
-  if (response.status >= 500 || response.status === 401 || response.status === 403) {
-    throw new Error(`ScreenWhy public CMS temporarily unavailable (${response.status}).`);
+async function request(path: string): Promise<{ ok: true; status: number; data: unknown } | { ok: false; status: number | null }> {
+  apiBase();
+  const result: ApiResult<unknown> = await apiClient.request<unknown>(path, { cache: "no-store" });
+  if (result.ok === false && result.status !== null && (result.status >= 500 || result.status === 401 || result.status === 403)) {
+    throw unavailable(result.status);
   }
-  return response;
+  if (result.ok) return { ok: true, status: result.status, data: result.data };
+  return { ok: false, status: result.status };
 }
 
 export async function getLiveExplanation(slug: string): Promise<LiveExplanation | null> {
   if (!SLUG.test(slug)) return null;
   const response = await request(`/live-explanations/${encodeURIComponent(slug)}`);
-  if (response.status === 404) return null;
+  if (!response.ok && response.status === 404) return null;
   if (!response.ok) throw new Error(`Published explanation API error (${response.status}).`);
-  return decodeItem(await response.json(), true);
+  return decodeItem(response.data, true);
 }
 export async function getLiveExplanations(options: { page?: number; perPage?: number; q?: string } = {}): Promise<LiveList> {
   const page = Math.max(1, Math.min(1000, Math.floor(options.page ?? 1)));
@@ -137,7 +146,7 @@ export async function getLiveExplanations(options: { page?: number; perPage?: nu
   if (q) params.set("q", q);
   const response = await request(`/live-explanations?${params.toString()}`);
   if (!response.ok) throw new Error(`Published explanation listing API error (${response.status}).`);
-  const r = record(await response.json());
+  const r = record(response.data);
   if (!Array.isArray(r.items)) throw new Error("Malformed published explanation listing.");
   return { items: r.items.map((x) => decodeItem(x, false)), page: int(r.page), perPage: int(r.perPage), total: int(r.total) };
 }
