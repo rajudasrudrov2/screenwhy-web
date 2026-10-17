@@ -1,32 +1,39 @@
-# SW3-FE-01 — Repository-relative PATCH manifest
+# SW3-FE-01 BUILD FIX 01 — Exact Patch Manifest
 
-**Base `main`: `84ea1ae94e4fa007ccb75268ff8f52d75eb569ed`**. Never apply against newer main without a new diff.
+**Base:** `rajudasrudrov2/screenwhy-web` current GitHub `main` commit `140231c1450da8ebe096e13f73e3b3801bc7b61c` (verified in the current audit). Do NOT overwrite if HEAD advances; recompare first.
 
-**ADD 15 · MODIFY 3 · DELETE 0.**
+**MODIFY (1):** `src/features/homepage3/live-adapter.ts`. ADD: none. DELETE: none.
 
-| Operation | Exact repository-relative path | SHA-256 |
-|---|---|---|
-| ADD | `src/features/homepage3/types.ts` | `bfe3588b5508a2c607c4b5f4fc56a0bd52604d7137b207589959f9d73f2e973c` |
-| ADD | `src/features/homepage3/live-adapter.ts` | `7d5a66fe6539c105a7a264002aaa4d1c7f3f10f507d62f78f8d3b94d5c5c62b9` |
-| ADD | `src/features/homepage3/PremiumHomepage.tsx` | `bf496ef4d3336b53a41da33bb58c10413ecbe1c3513e70d6d62b97623bc61b48` |
-| ADD | `src/features/homepage3/PremiumHomepage.module.css` | `a0ad5d0134de180cc70029412ffe93529972024fdb5bc57bf6e05ca4525bf4ac` |
-| ADD | `src/features/homepage3/PreviewExperience.tsx` | `7e7ff212d52699bcfd97546414af9973d8c6b67f990cefae7692294d7cb6c27e` |
-| ADD | `src/features/homepage3/PreviewExperience.module.css` | `e2061c6e5488eab59071c6e4063f6c242b8c4a36db138a62ed3cf6e724fe4592` |
-| ADD | `src/demo/screenwhy3-homepage/movies.ts` | `9bb9e3857fc7afa74465851d649122fe2b7d586b11355eab9300504f6c65fcdc` |
-| ADD | `src/demo/screenwhy3-homepage/explanations.ts` | `f24820fe2eb72ff2dd927a314e627c2d525d77581f81bb241b2e7f62e19215d9` |
-| ADD | `src/demo/screenwhy3-homepage/collections.ts` | `552f68ba99b0c6fa0b51173f0ff366a5eb8d13630eaffc01f886648324867fdb` |
-| ADD | `src/demo/screenwhy3-homepage/index.ts` | `bedc7cde6311f7f748c5527396fe167d697d792c55b7214b9e9aa09cc6441356` |
-| ADD | `src/demo/screenwhy3-homepage/manifest.json` | `7dfd800318f0d2898bcadfef025c28bfab8eb404fa00ebd570f88c3f3a190a3d` |
-| ADD | `src/app/(en)/__ui/screenwhy3/page.tsx` | `953ec3ce045f0d3c1a4e4bc9369a0c3b4fd827f22678188e296163574f15aebf` |
-| ADD | `src/app/(en)/__ui/screenwhy3/actions.ts` | `94949e3f303d159db392a287adc5e3cd184d2f829250d0ba3a2510dfb7617ba9` |
-| ADD | `scripts/sw3-demo-manager.mjs` | `9c5176649c09b5c5d149dd151f9af4f5f1ce5411a1aa926c64882183076f75ce` |
-| ADD | `scripts/validate-sw3-homepage.mjs` | `fd3f9b373a594e1c1a029fdcdbbe3eff2d2ae542b1c56225cd8af7ef0efcfc3f` |
-| MODIFY | `src/app/(en)/page.tsx` | `8a23a1371445ff93368896638c8c3f7820ba89f812e26a390f58451fe0af2e04` |
-| MODIFY | `next.config.ts` | `89db737bf18a8f96d69876d150ceb27ee6ea302bda4714af6408d4ce620514f0` |
-| MODIFY | `package.json` | `78ac4c22f999588c1acd2ad6a45ac6b95a9302f88d0d1f35e09ffa5e5156dbf5` |
+**Existing GitHub blob SHA-1:** `bed89161674e9684b69c4c639114442ed20d0490` (matched exactly to source supplied in the original SW3 patch).  
+**New Git blob SHA-1:** `433b058f4858395173b14a1ea502cc1fd9fe1da8`.  
+**Original file SHA-256:** `7d5a66fe6539c105a7a264002aaa4d1c7f3f10f507d62f78f8d3b94d5c5c62b9`.  
+**Corrected file SHA-256:** `2c45c6bae790b588ce67e9ea3523cae57116e664f82ff75a2317dcd9ccfa3158`.
 
-## Scope and application
+## Exact one-line diff
 
-Copy the listed paths into the EXISTING Next.js repository at exactly their paths, not alongside or inside an extra ZIP directory. `src/demo/screenwhy3-homepage` is the ONLY new demo dataset. `src/app/(en)/__ui/screenwhy3/` is authenticated/local owner-preview only. Shared `src/features/homepage3` rendering and live adapter use no demo imports. No WordPress, GitHub or Vercel changes were made by generating this ZIP.
+```diff
+--- a/src/features/homepage3/live-adapter.ts
++++ b/src/features/homepage3/live-adapter.ts
+@@ -3,7 +3,7 @@
+ const date = (raw: string) => { const ms = Date.parse(raw.replace(" ", "T")); return Number.isFinite(ms) ? ms : 0; };
+ /** NO demo fallback. The WordPress feed supplies only Published explanations. */
+ export function buildLiveHomepageModel(feed: LiveList): PremiumHomeModel {
+-  const explanations: HomeExplanation[] = feed.items.map(item => ({
++  const explanations: HomeExplanation[] = feed.items.map<HomeExplanation>(item => ({
+     id: `wp:${item.id}`, source: "live", isDemo: false,
+     headline: item.headline, excerpt: item.excerpt, href: item.publicPath,
+     publishedAt: item.publishedAt, modifiedAt: item.modifiedAt,
+```
 
-If `main` differs from the base SHA, perform a three-way merge before applying. `npm ci`, `npm run typecheck`, `npm run lint`, `npm run validate`, `npm run validate:sitemap`, `npm run build`, `npm run validate:sw3-homepage` and `npm run demo:audit:sw3` must pass on a real current checkout before approval for deployment. A Vercel **preview** environment additionally requires `SCREENWHY_SW3_PREVIEW_ENABLED=true`, a strong secret `SCREENWHY_SW3_PREVIEW_PASSWORD` (>=24 characters) and Vercel Deployment Protection. Never set these for public production.
+The generic return type preserves the `HomeExplanation` literal union `source: "live"` instead of inferring `string`, eliminating the reported TS2322. No runtime behavior change, no demo removals, no CSS/design change, no WordPress changes, no configuration changes.
+
+## Tests, limitations and deployment gate
+
+- PASS — original reproduces TS2322 in an isolated strict TypeScript compiler using the original `live-adapter.ts`/`types.ts` and a structural `LiveList` declaration.
+- PASS — corrected pair compiles in the same isolated strict TypeScript test.
+- PASS — actual SW3 `validate-sw3-homepage.mjs` standalone suite: 11 source parses, 48 demo movies, 24 explanations, 12 themes, 8 collections, owner preview control contracts, live-only route guards, scratch-copy cleanup dry-run and confirmed cleanup.
+- PASS — actual `sw3-demo-manager.mjs audit`: all demo records counted, no demo public-runtime imports.
+- BLOCKED — **full authoritative repository** `npm run typecheck`, `npm run lint`, `npm run validate`, `npm run build`. The GitHub connector is read-only and returns individual files; the container cannot access github.com to clone. The available patch-only workspace lacks the complete repository, tsconfig/lockfile, Next.js, React and ESLint dependencies. Commands were attempted there but these are infrastructure failures, not results for the full current main.
+- BLOCKED — browser/remote Vercel build; no commit, preview deployment or GitHub Actions trigger authorized.
+
+**Acceptance:** targeted TS2322 fix verified, full production build acceptance PENDING. Run `npm ci && npm run typecheck && npm run lint && npm run validate && npm run build && npm run validate:sw3-homepage && npm run demo:audit:sw3` on a complete checkout at the expected commit **before approval of merge/deployment**. Do not delete demo content in production.
