@@ -1,0 +1,27 @@
+{
+  "pack": "screenwhy3_demo",
+  "revision": 1,
+  "counts": {
+    "movies": 48,
+    "explanations": 24,
+    "themes": 12,
+    "collections": 8
+  },
+  "ownedFiles": [
+    "src/demo/screenwhy3-homepage/movies.ts",
+    "src/demo/screenwhy3-homepage/explanations.ts",
+    "src/demo/screenwhy3-homepage/collections.ts",
+    "src/demo/screenwhy3-homepage/index.ts",
+    "src/demo/screenwhy3-homepage/manifest.json",
+    "src/app/(en)/__ui/screenwhy3/page.tsx",
+    "src/features/homepage3/PreviewExperience.tsx",
+    "src/features/homepage3/PreviewExperience.module.css",
+    "src/app/(en)/__ui/screenwhy3/actions.ts"
+  ],
+  "protected": [
+    "src/data/fixtures",
+    "src/data/mock",
+    "src/lib/live-explanations.ts",
+    "src/app/(en)/page.tsx"
+  ]
+}

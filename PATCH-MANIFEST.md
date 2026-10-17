@@ -1,32 +1,32 @@
-# SW-LIVE-02 — Frontend Changed-Files PATCH Manifest
+# SW3-FE-01 — Repository-relative PATCH manifest
 
-Base repository: `rajudasrudrov2/screenwhy-web`
-Locked `main` commit: `292a1ca08793eab37a93708547bbaf2879f09cfb`
-Target: **separate owner-reviewed feature branch only after authorization.**
+**Base `main`: `84ea1ae94e4fa007ccb75268ff8f52d75eb569ed`**. Never apply against newer main without a new diff.
 
-Do not bulk replace the repository or assume uploading a ZIP to GitHub extracts it. Do not delete demo fixtures until itemized owner approval.
+**ADD 15 · MODIFY 3 · DELETE 0.**
 
-| Action | Repo-relative exact path | SHA-256 in patch |
+| Operation | Exact repository-relative path | SHA-256 |
 |---|---|---|
-| ADD | `scripts/validate-live-integration.mjs` | `ff01120e8d8cdc1dcb1c18abd73dd6c7784295e602cd48651b52f2154d750ff3` |
-| ADD | `src/lib/live-explanations.ts` | `bd3ef84c3f8257585d46c45ab71d7c4299bf6729bd388bad6478d9c55cec886f` |
-| ADD | `src/features/live-explanation/LiveExplanationViews.tsx` | `7f9b1629d86af13a771df2519cd12ee7d5bf201a927b8413046bfad6e0882e7f` |
-| ADD | `src/features/live-explanation/LiveExplanationViews.module.css` | `6193d1badf054b4ee169ee89ac7b3e1bc13718a0260761f18d74e2b7b3389e57` |
-| ADD | `src/app/api/screenwhy/revalidate/route.ts` | `74d3392db16c3a772de4dc181716fc942d11bba07dbacfc6143f01964e108278` |
-| MODIFY | `src/app/(en)/explain/[slug]/page.tsx` | `5d158a99020556f49060e643a8b26d6e8e6a8549339c3ca31f0f55bdf655fa2b` |
-| MODIFY | `src/app/(en)/explain/triangle-2009/page.tsx` | `962475765cab14ffbf023aa5af89f67b340e6b8c8e804e0bf951b37d42ba10aa` |
-| MODIFY | `src/app/(en)/explanations/page.tsx` | `daa44544ee83d42900866343f8e679b31b88bfebbc4a94716dabf550f0a53417` |
-| MODIFY | `src/app/(en)/page.tsx` | `9774354b90f0d47f14c9293aa470951a3510797181106131a7808f2d2ca69bd3` |
-| MODIFY | `src/app/(en)/search/page.tsx` | `d67a36ee4ff8154fdefe24fddd3eec1e2545f6945ea96bf6336ec847caee9c02` |
-| MODIFY | `src/app/sitemap.ts` | `98187b87daad16c8069fa4475ff82bde9a96300ae7e51107a23e7d904bd56d1d` |
-| MODIFY | `src/data/repositories/create-repository.ts` | `e9c941fe1c980f0a946f2a84a8b7f9e4ea8f14c59c974de933df9a234567f857` |
+| ADD | `src/features/homepage3/types.ts` | `bfe3588b5508a2c607c4b5f4fc56a0bd52604d7137b207589959f9d73f2e973c` |
+| ADD | `src/features/homepage3/live-adapter.ts` | `7d5a66fe6539c105a7a264002aaa4d1c7f3f10f507d62f78f8d3b94d5c5c62b9` |
+| ADD | `src/features/homepage3/PremiumHomepage.tsx` | `bf496ef4d3336b53a41da33bb58c10413ecbe1c3513e70d6d62b97623bc61b48` |
+| ADD | `src/features/homepage3/PremiumHomepage.module.css` | `a0ad5d0134de180cc70029412ffe93529972024fdb5bc57bf6e05ca4525bf4ac` |
+| ADD | `src/features/homepage3/PreviewExperience.tsx` | `7e7ff212d52699bcfd97546414af9973d8c6b67f990cefae7692294d7cb6c27e` |
+| ADD | `src/features/homepage3/PreviewExperience.module.css` | `e2061c6e5488eab59071c6e4063f6c242b8c4a36db138a62ed3cf6e724fe4592` |
+| ADD | `src/demo/screenwhy3-homepage/movies.ts` | `9bb9e3857fc7afa74465851d649122fe2b7d586b11355eab9300504f6c65fcdc` |
+| ADD | `src/demo/screenwhy3-homepage/explanations.ts` | `f24820fe2eb72ff2dd927a314e627c2d525d77581f81bb241b2e7f62e19215d9` |
+| ADD | `src/demo/screenwhy3-homepage/collections.ts` | `552f68ba99b0c6fa0b51173f0ff366a5eb8d13630eaffc01f886648324867fdb` |
+| ADD | `src/demo/screenwhy3-homepage/index.ts` | `bedc7cde6311f7f748c5527396fe167d697d792c55b7214b9e9aa09cc6441356` |
+| ADD | `src/demo/screenwhy3-homepage/manifest.json` | `7dfd800318f0d2898bcadfef025c28bfab8eb404fa00ebd570f88c3f3a190a3d` |
+| ADD | `src/app/(en)/__ui/screenwhy3/page.tsx` | `953ec3ce045f0d3c1a4e4bc9369a0c3b4fd827f22678188e296163574f15aebf` |
+| ADD | `src/app/(en)/__ui/screenwhy3/actions.ts` | `94949e3f303d159db392a287adc5e3cd184d2f829250d0ba3a2510dfb7617ba9` |
+| ADD | `scripts/sw3-demo-manager.mjs` | `9c5176649c09b5c5d149dd151f9af4f5f1ce5411a1aa926c64882183076f75ce` |
+| ADD | `scripts/validate-sw3-homepage.mjs` | `fd3f9b373a594e1c1a029fdcdbbe3eff2d2ae542b1c56225cd8af7ef0efcfc3f` |
+| MODIFY | `src/app/(en)/page.tsx` | `8a23a1371445ff93368896638c8c3f7820ba89f812e26a390f58451fe0af2e04` |
+| MODIFY | `next.config.ts` | `89db737bf18a8f96d69876d150ceb27ee6ea302bda4714af6408d4ce620514f0` |
+| MODIFY | `package.json` | `78ac4c22f999588c1acd2ad6a45ac6b95a9302f88d0d1f35e09ffa5e5156dbf5` |
 
-**DELETE: NONE.** The patch does not contain unmodified repository files.
+## Scope and application
 
-Key dependencies: Next.js 16.3.8, React 19.3.0, Node >=20.19; Node 24.x on current Vercel project. New webhook is server-only and needs `SCREENWHY_REVALIDATION_SECRET` in Vercel production, matching WordPress config.
+Copy the listed paths into the EXISTING Next.js repository at exactly their paths, not alongside or inside an extra ZIP directory. `src/demo/screenwhy3-homepage` is the ONLY new demo dataset. `src/app/(en)/__ui/screenwhy3/` is authenticated/local owner-preview only. Shared `src/features/homepage3` rendering and live adapter use no demo imports. No WordPress, GitHub or Vercel changes were made by generating this ZIP.
 
-Before deployment: configure **production** `SCREENWHY_DATA_SOURCE=api`, `SCREENWHY_CMS_API_BASE_URL=https://cms.screenwhy.com/wp-json`, `SCREENWHY_SITE_URL=https://screenwhy.com`, and review `SCREENWHY_ALLOW_INDEXING`; old `PLOTEXPLAINER_DATA_SOURCE` value was not decrypted or changed. WordPress requires matching `SCREENWHY_REVALIDATION_SECRET` and `SCREENWHY_REVALIDATION_ENDPOINT` constants.
-
-Rollback: revert the exact new commit/PR and restore env values; WordPress plugin and SQL/media rollback are separate. If live is in mock mode, activating production enforcement **without configuring API** produces a configuration error by design.
-
-**FULL npm build/lint/tsc NOT RUN**: no full GitHub checkout in local working directory; isolated parser and webhook tests do not certify the deployment.
+If `main` differs from the base SHA, perform a three-way merge before applying. `npm ci`, `npm run typecheck`, `npm run lint`, `npm run validate`, `npm run validate:sitemap`, `npm run build`, `npm run validate:sw3-homepage` and `npm run demo:audit:sw3` must pass on a real current checkout before approval for deployment. A Vercel **preview** environment additionally requires `SCREENWHY_SW3_PREVIEW_ENABLED=true`, a strong secret `SCREENWHY_SW3_PREVIEW_PASSWORD` (>=24 characters) and Vercel Deployment Protection. Never set these for public production.
