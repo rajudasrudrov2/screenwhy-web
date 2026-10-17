@@ -1,5 +1,5 @@
 import { Homepage as OriginalHomepage } from "./Homepage";
-import { LiveHomepage } from "./LiveHomepage";
+import { ScreeningRoomHome } from "./ScreeningRoomHome";
 import type { HomepageViewModel } from "./homepage.types";
 import type { LiveList } from "@/lib/live-explanations";
 
@@ -12,6 +12,6 @@ export function Homepage(props: HomepageProps) {
   if ("model" in props && props.model !== undefined) {
     return <OriginalHomepage model={props.model} />;
   }
-  if (props.live !== undefined) return <LiveHomepage list={props.live} />;
+  if (props.live !== undefined) return <ScreeningRoomHome list={props.live} />;
   throw new Error("A homepage view model or published CMS list is required.");
 }

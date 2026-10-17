@@ -2,6 +2,7 @@
   /* Brand — OWNER-LOCKED */
   --pe-brand-ink: #121722;
   --pe-brand-amber: #f0b44d;
+  --pe-brand-amber-deep: #d99a2e;
   --pe-brand-indigo: #4f5bd5;
   --pe-brand-teal: #177e75;
 
@@ -12,6 +13,10 @@
   --pe-surface-raised: #ffffff;
   --pe-surface-dark: #121722;
   --pe-surface-dark-raised: #1b2130;
+  /* Screening Room concept — deep cinema canvas surfaces. */
+  --pe-surface-cinema: #0b0f16;
+  --pe-surface-cinema-raised: #11161f;
+  --pe-surface-cinema-panel: #161c27;
   --pe-surface-indigo-soft: #f3f4fd;
   --pe-surface-teal-soft: #edf7f5;
   --pe-surface-amber-soft: #fff7e8;
@@ -96,6 +101,8 @@
   /* Typography */
   --pe-font-body: var(--font-inter), Inter, Arial, sans-serif;
   --pe-font-heading: var(--font-manrope), Manrope, Arial, sans-serif;
+  /* Editorial serif accent — display-only pairing for the Sans heading stack. */
+  --pe-font-serif: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
 
   --pe-type-display-mobile: 40px;
   --pe-type-display-desktop: 56px;

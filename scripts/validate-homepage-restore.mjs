@@ -12,7 +12,7 @@ const files = [
   "src/app/(en)/page.tsx",
   "src/features/homepage/index.ts",
   "src/features/homepage/HomepageEntry.tsx",
-  "src/features/homepage/LiveHomepage.tsx",
+  "src/features/homepage/ScreeningRoomHome.tsx",
   "src/features/homepage/LiveHomepageCard.tsx",
 ];
 for (const name of files) {
@@ -21,7 +21,7 @@ for (const name of files) {
   assert.equal(source.parseDiagnostics.length, 0, `Invalid TS/TSX: ${name}`);
 }
 const home = get("src/app/(en)/page.tsx");
-const layout = get("src/features/homepage/LiveHomepage.tsx");
+const layout = get("src/features/homepage/ScreeningRoomHome.tsx");
 const entry = get("src/features/homepage/HomepageEntry.tsx");
 const card = get("src/features/homepage/LiveHomepageCard.tsx");
 assert.match(home, /<Homepage live=\{published\}/);
@@ -29,7 +29,7 @@ assert.match(home, /getLiveExplanations\(\{ perPage: 50 \}\)/);
 assert.match(home, /await connection\(\)/);
 assert.doesNotMatch(home, /LiveExplanationListing|createMockRepositories/);
 assert.match(entry, /<OriginalHomepage model=\{props\.model\}/);
-assert.match(layout, /\.\/Homepage\.module\.css/);
+assert.match(layout, /\.\/ScreeningRoomHome\.module\.css/);
 assert.match(card, /ExplanationCard\.module\.css/);
 for (const name of ["hero", "heroEyebrow", "searchForm", "primaryGrid", "latestGrid", "discoveryGrid", "gatewayGrid", "updatedGrid", "trust"]) {
   assert.match(layout, new RegExp(`styles\\.${name}\\b`), `Missing original premium section ${name}`);

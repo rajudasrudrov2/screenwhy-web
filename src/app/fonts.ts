@@ -1,4 +1,4 @@
-import { Inter, Manrope } from "next/font/google";
+import { Inter, Instrument_Serif, Manrope } from "next/font/google";
 
 export const inter = Inter({
   variable: "--font-inter",
@@ -16,4 +16,14 @@ export const manrope = Manrope({
   fallback: ["Arial", "sans-serif"],
 });
 
-export const fontVariableClassName = [inter.variable, manrope.variable].join(" ");
+export const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+  preload: true,
+  fallback: ["Georgia", "serif"],
+});
+
+export const fontVariableClassName = [inter.variable, manrope.variable, instrumentSerif.variable].join(" ");

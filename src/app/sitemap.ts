@@ -17,8 +17,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (let page = 1; page <= 20; page++) {
     const batch = await getLiveExplanations({ page, perPage: 50 });
     for (const entry of batch.items) {
-      const parsed = entry.modifiedAt ? new Date(entry.modifiedAt.replace(" ", "T") + "Z") : undefined;
-      additions.push({ url: `${siteConfig.origin}${entry.publicPath}`, ...(parsed && Number.isFinite(parsed.getTime()) ? { lastModified: parsed } : {}) });
+      const parsed = Date.parse(`${entry.modifiedAt.replace(" ", "T")}Z`);
+      const record: MetadataRoute.Sitemap[number] = { url: `${siteConfig.origin}${entry.publicPath}` };
+      if (Number.isFinite(parsed)) record.lastModified = new Date(parsed);
+      additions.push(record);
     }
     if (batch.items.length < 50 || page * 50 >= batch.total) break;
   }

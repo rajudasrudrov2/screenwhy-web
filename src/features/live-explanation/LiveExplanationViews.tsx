@@ -21,7 +21,7 @@ function renderNode(node: LiveNode, key: number | string): ReactNode {
 
 export function LiveExplanationArticle({ explanation }: { readonly explanation: LiveExplanation }) {
   return (
-    <main className={styles.main}>
+    <div className={styles.main}>
       <nav className={styles.breadcrumb}><Link href="/">Home</Link> / <Link href="/explanations/">Explanations</Link></nav>
       <article>
         <h1>{explanation.headline}</h1>
@@ -32,12 +32,12 @@ export function LiveExplanationArticle({ explanation }: { readonly explanation: 
           {(explanation.body ?? []).map((node, index) => <div key={index} className={styles.node}>{renderNode(node, index)}</div>)}
         </div>
       </article>
-    </main>
+    </div>
   );
 }
 
 export function LiveExplanationListing({ list, title, q = "", pagination = true }: { readonly list: LiveList; readonly title: string; readonly q?: string; readonly pagination?: boolean }) {
-  return <main className={styles.main}>
+  return <div className={styles.main}>
     <header className={styles.listHeader}>
       <h1>{title}</h1>
       <p>Published explanations from the ScreenWhy editorial CMS.</p>
@@ -57,5 +57,5 @@ export function LiveExplanationListing({ list, title, q = "", pagination = true 
       <span>Page {list.page}</span>
       {list.page * list.perPage < list.total ? <Link href={`?page=${list.page + 1}${q ? `&q=${encodeURIComponent(q)}` : ""}`}>Next →</Link> : null}
     </div> : null}
-  </main>;
+  </div>;
 }
